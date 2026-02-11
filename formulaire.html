@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expérience Links</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body id="formbody">
+  <h1 id="title">Links !</h1>
+  <div id="instructions">
+    <div id="exp">
+      <div id="exp-1">
+        Bienvenue dans cette étude. Vous allez participer à une expérience dans laquel vous devrez trouver une information dans un texte le plus rapidement possible.
+      </div>
+      <div id="exp-2">
+        <div class="txt-img">
+            Vous aurez 4 textes différents à parcourir à la recherche d'informations spécifiques. Ce texte contient des liens hypertextes qui vous permetteront de trouver certaines informations. 
+        </div>
+        <img class="img" src="assets/Stimulus-rouge.png" alt="exemple-texte-liens" />
+      </div>
+      <div id="exp-3">
+        <div class="txt-img">
+            Vous pouvez utiliser le bouton de retour de votre navigateur pour revenir à la page précédente.
+        </div>
+        <img class="img" src="assets/selection-rep.png" alt="bouton-retour"/>
+      </div>
+      <div id="exp-4">
+        <div class="txt-img">
+            Vous devrez repondre sur la page initiale à la questions posée en tapant la reponse dans la zone de texte prévue à cet effet. Vous devrez ensuite cliquer sur le bouton "Valider" pour soumettre votre réponse et passer à la question suivante.
+</div>      
+        <img class="img" src="assets/selection-rep.png" alt="exemple-reponse"/>
+
+        </div>
+      <div id="exp-5">
+        <div class="txt-img">
+          Si vous faites une erreur, vous pouvez toujours modifier votre réponse en allant cherchant à nouveau l'information dans le texte.
+        </div>
+         <img class="img" src="assets/croix-rouge.png" alt="exemple d'erreur"/>
+      </div>
+      Concentrez-vous et essayez de répondre rapidement !
+    </div>
+  </div>
+  <form id="form">
+    <label id="nom-age">
+      <legend>Votre âge</legend>
+      <input type="number" id="age" placeholder="Âge">
+    </label>
+    <fieldset class="choix" id="part-genre">
+      <legend>Genre</legend>
+
+      <label>
+        <input type="radio" name="genre" value="1"> Femme
+      </label>
+
+      <label>
+        <input type="radio" name="genre" value="2"> Homme
+      </label>
+
+      <label>
+        <input type="radio" name="genre" value="3"> Autre
+      </label>
+    </fieldset>
+
+
+    <fieldset class="choix" id="part-lateralite">
+      <legend>Latéralité</legend>
+
+      <label>
+        <input type="radio" name="lateralite" value="1"> Droitier
+      </label>
+
+      <label>
+        <input type="radio" name="lateralite" value="2"> Gaucher
+      </label>
+    </fieldset>
+
+    <fieldset class="choix" id="part-daltonisme">
+      <legend>Daltonisme</legend>
+
+      <label>
+        <input type="radio" name="daltonisme" value="0"> Non
+      </label>
+
+      <label>
+        <input type="radio" name="daltonisme" value="1"> Oui
+      </label>
+    </fieldset>
+
+    <fieldset class="choix" id="part-dyslexie">
+      <legend>Dyslexique</legend>
+
+      <label>
+        <input type="radio" name="dyslexie" value="0"> Non
+      </label>
+
+      <label>
+        <input type="radio" name="dyslexie" value="1"> Oui
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Consentement</legend>
+      <div id="consent">
+        <p><strong>Informations importantes :</strong></p>
+        <ul>
+          <li>Cette expérience est volontaire et vous pouvez l'arrêter à tout moment.</li>
+          <li>Vos données seront traitées de manière confidentielle.</li>
+          <li>Elles seront utilisées uniquement à des fins de recherches.</li>
+          <li>Vos données personnelles ne seront pas partagées.</li>
+        </ul>
+      </div>
+      <label class="choix">
+        <legend>Je consens à participer à cette expérience. Je consens que mes données soient utilisées à des fins de
+          recherche.</legend>
+        <input type="checkbox" id="consentement" required> Je consens
+      </label>
+    </fieldset>
+
+    <br>
+    <button id="soumission" type="submit">Commencer</button>
+  </form>
+  <script src="formulaire.js"></script>
+</body>

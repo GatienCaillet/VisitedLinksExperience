@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    /* Supprime les marges par défaut des navigateurs */
+    padding: 0;
+    /* Supprime les espacements internes par défaut */
+    box-sizing: border-box;
+    /* Les bordures et padding ne s'ajoutent pas à la largeur/hauteur */
+}
+
+/* Réinitialisation et style global (Fond blanc, texte noir) */
+body {
+    height: 100%;
+    width: 100%;
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: Arial, sans-serif;
+    font-size: 1.2rem;
+    overflow: hidden;
+    /* Empêche le défilement pendant le mouvement de souris */
+    user-select: none;
+    /* Empêche la sélection de texte accidentelle */
+}
+
+/* ---------------------------
+//       FORMULAIRE
+// --------------------------- */
+#formbody{
+    height: 100%;
+    width: 100%;
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: Arial, sans-serif;
+    overflow-y: auto;
+    user-select: none;
+    line-height: 1.8;
+    font-size: 1.2rem;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+}
+
+label {
+    margin-bottom: 15px;
+    font-family: Arial, sans-serif;
+}
+
+#soumission {
+    align-self: center;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#soumission:hover {
+    background-color: #ccc;
+}
+fieldset {
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#consent {
+    padding: 15px; 
+    border-radius: 5px; 
+    margin-bottom: 15px;
+
+}
+
+@keyframes couleur-periodique {
+  0%   { color: red; }    /* Au début (0%) de la séquence */
+  25%  { color: blue; }   /* À un tiers (25%) de la séquence */
+  50%  { color: green; }  /* Aux deux tiers (50%) de la séquence */
+  75% { color: yellow; }    /* À la fin (75%) de la séquence, revient à la première couleur */
+  100% { color: red; }
+}
+
+#instructions{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 30px;
+}
+#exp{
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+}
+
+#title{
+    text-align: center;
+    margin-bottom: 20px;
+    animation: couleur-periodique 8s ease-in-out infinite;
+    font-size: 6rem;
+    /*position:sticky;*/
+    top:0;
+    width: 100%;
+    background-color: #FFFFFF;
+    z-index: 20;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.img {
+    border: 2px solid #ccc;
+    display: block;
+    margin: 10px auto;
+    max-width: 500px;
+    height: auto;
+}
+#exp-2, #exp-3, #exp-5 {
+    display: flex;
+    flex-direction:row;
+    gap: 30px;
+    padding-inline: 30px;
+    padding-block:15px ;
+}
+.txt-img {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+#exp-4 {
+    padding-inline: 30px;
+}
+
+/* ---------------------------
+//       TEST
+// --------------------------- */
+
+/* Conteneur principal pour organiser l'écran */
+.main {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Texte */
+.text-container {
+    max-width: 80%;
+    margin: auto;
+    text-align: justify;
+}
+
+.text-container a, .text-container a:visited {
+    color: #0000EE
+}
+
+.visited-link {
+    color: #551A8B;
+}
+
+/* Boutons de réponse */
+
+.reponse-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.reponse-container p {
+    text-align: center;
+}
+
+#reponse {
+
+}
+
+#submit-btn {
+    align-self: center;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#submit-btn:hover {
+    background-color: #ccc;
+}
