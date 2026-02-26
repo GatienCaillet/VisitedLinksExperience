@@ -9,14 +9,17 @@
 <body>
     <div class="main">
         <div class="text-container">
-            <p>
+            <p id="text">
                 Texte avec des <a href="https://www.example.com/lien1">liens visités</a> et des <a href="https://www.example.com/lien2">liens non visités</a>.
             </p>
         </div>
         <div class="reponse-container">
+            <span id="question">
             Question : Quel est le lien visité ?
+            </span>
             <input type="text" id="reponse" placeholder="Tapez votre réponse ici">
             <button id="submit-btn">Valider</button>
+            <div id="erreur-message"></div>
         </div>
     </div>
     <script src="test.js"></script>

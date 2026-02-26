@@ -148,11 +148,12 @@ fieldset {
     position: relative;
     width: 100vw;
     height: 100vh;
+    margin-top: 30px;
 }
 
 /* Texte */
-.text-container {
-    max-width: 80%;
+.text-container, .reponse-container{
+    max-width: 500px;
     margin: auto;
     text-align: justify;
 }
@@ -179,10 +180,6 @@ fieldset {
     text-align: center;
 }
 
-#reponse {
-
-}
-
 #submit-btn {
     align-self: center;
     padding: 10px 20px;
@@ -197,4 +194,11 @@ fieldset {
 
 #submit-btn:hover {
     background-color: #ccc;
+}
+
+#erreur-message {
+    display: none;
+    color: red;
+    text-align: center;
+    margin-top: 10px;
 }
