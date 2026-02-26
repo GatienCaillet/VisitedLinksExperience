@@ -22,6 +22,11 @@ if (testNumber != "1" && testNumber != "2") {
     
 }
 
+const links = [
+    { name: "Ultima Segmentum", text: "L'Ultima Segmentum est ..." },
+    { name: "2eme", text: "Le texte du deuxième..." }
+];
+
 questionIndex = -1;
 const listeQuestions = [
     { q: "Question 1 ?", r: "Réponse 1" },
@@ -31,10 +36,10 @@ const listeQuestions = [
 
 textIndex = -1;
 const texts = [
-    `Dans un futur lointain, aux confins de l’Ultima Segmentum, le système oublié de Morologus Novem (ou "Cap du Désespoir") refait surface près de la Cicatrix Maledictum. Après la chute de Cadia, une flotte de l’Adeptus Mechanicus y échoue, découvrant les vestiges d’une civilisation humaine avancée. Ce système, stratégique et ravagé par les marées du Warp, attire l’Imperium, les Orks, le Chaos et même les Nécrons, tous en quête d’un artéfact mystérieux enfoui sous sa surface. Les factions s’affrontent pour contrôler ce point clé entre l’Imperium Sanctus et l’Imperium Nihilus, tandis que son destin reste incertain, enveloppé dans les ombres du Warp.`,
-    "Le code est disponible sur <a href='https://github.com'>GitHub</a>.",
-    "Contactez-nous via <a href='mailto:test@example.com'>email</a>.",
-    "Lisez la <a href='/doc.pdf'>documentation</a>."
+    `Dans un futur lointain, aux confins de l’<span class="link">Ultima Segmentum</span>, le système oublié de Morologus Novem (ou "Cap du Désespoir") refait surface près de la Cicatrix Maledictum. Après la chute de Cadia, une flotte de l’Adeptus Mechanicus y échoue, découvrant les vestiges d’une civilisation humaine avancée. Ce système, stratégique et ravagé par les marées du Warp, attire l’Imperium, les Orks, le Chaos et même les Nécrons, tous en quête d’un artéfact mystérieux enfoui sous sa surface. Les factions s’affrontent pour contrôler ce point clé entre l’Imperium Sanctus et l’Imperium Nihilus, tandis que son destin reste incertain, enveloppé dans les ombres du Warp.`,
+    `2eme <span class="link">Ultima Segmentum</span>`,
+    `3eme <span class="link">Ultima Segmentum</span>`,
+    `4eme <span class="link">Ultima Segmentum</span>`
 ]
 
 // ---------------------------
@@ -55,6 +60,9 @@ function shuffle(array) {
 const textElement = document.getElementById("text");
 const questionElement = document.getElementById("question");
 const erreurDiv = document.getElementById("erreur-message");
+const modal = document.getElementById("myModal");
+const modalText = document.getElementById("modal-text");
+const closeBtn = document.querySelector(".close-btn");
 
 // Bouton valider la réponse
 const submitBtn = document.getElementById("submit-btn");
@@ -128,6 +136,35 @@ function verifierReponse(reponse) {
         return false;
     }
 }
+
+// ---------------------------
+//      GESTION DE LA MODAL
+// ---------------------------
+
+// Détection du clic sur les liens (Délégation d'évènement)
+textElement.addEventListener("click", (e) => {
+    if (e.target.classList.contains("link")) {
+        const terme = e.target.textContent; // Récupère le texte du span
+        
+        // On cherche l'objet dont le "name" correspond au texte cliqué
+        const lienTrouve = links.find(item => item.name === terme);
+
+        // Si on a trouvé quelque chose, on affiche son "text", sinon le message par défaut
+        modalText.textContent = lienTrouve ? lienTrouve.text : `Informations détaillées sur ${terme} ...`;
+        
+        modal.style.display = "flex";
+    }
+});
+
+// Fermeture au clic sur le X
+closeBtn.onclick = () => modal.style.display = "none";
+
+// Fermeture au clic en dehors de la fenêtre blanche
+window.addEventListener("click", (event) => {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+});
 
 // ---------------------------
 //       ENVOYER LES DONNÉES
