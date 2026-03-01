@@ -1,11 +1,26 @@
 // ---------------------------
 //       FORMULAIRE
 // ---------------------------
-document.getElementById("form").addEventListener("submit", (e) => {
-    e.preventDefault();
+// 1. On vérifie l'ID dès que le script est lu par le navigateur
+const params = new URLSearchParams(window.location.search);
+const participantId = params.get("id");
 
-    const keys = [
-        "testNumber",
+if (!participantId) {
+    // Bloquer immédiatement : on écrase le contenu de la page
+    document.body.innerHTML = `
+        <div style="text-align: center; margin-top: 50px; font-family: sans-serif;">
+            <h1>Erreur : Accès invalide</h1>
+            <p>Aucun identifiant participant n'a été détecté dans l'URL.</p>
+            <p>Veuillez vérifier votre lien de connexion.</p>
+        </div>
+    `;
+} else {
+    // 2. Si l'ID est là, on attache l'écouteur du formulaire
+    document.getElementById("form").addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const keys = [
+        "userId",
         "userAge",
         "userGenre",
         "userDaltonisme",
@@ -45,15 +60,13 @@ document.getElementById("form").addEventListener("submit", (e) => {
         return;
     }
 
-    // Stockage des données
-    const params = new URLSearchParams(window.location.search);
-    const testNumber = params.get("test");
+        // Stockage des données (on utilise le participantId qu'on a déjà vérifié plus haut)
+        localStorage.setItem("userId", participantId);
+        localStorage.setItem("userAge", age);
+        localStorage.setItem("userGenre", genre);
+        localStorage.setItem("userDaltonisme", daltonisme);
+        localStorage.setItem("userDyslexie", dyslexie);
 
-    localStorage.setItem("testNumber", testNumber);
-    localStorage.setItem("userAge", age);
-    localStorage.setItem("userGenre", genre);
-    localStorage.setItem("userDaltonisme", daltonisme);
-    localStorage.setItem("userDyslexie", dyslexie);
-
-    window.location.href = `test.html`;
-});
+        window.location.href = `test.html?id=${participantId}`;
+    });
+}
