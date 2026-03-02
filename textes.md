@@ -64,6 +64,8 @@ NieR: Automata se déroule en l’an 11 945, dans un monde post-apocalyptique o�
 
 ### machines extraterrestres
 
+Les Machines, apparues lors de la 1ère Guerre des Machines, sont devenues des fantassins redoutablement efficaces dans la guerre interminable contre les Androïdes.
+
 ### 2B
 
 ### 9S

@@ -13,34 +13,43 @@ let experimentalSequence = [];
 // Note : Assure-toi d'avoir bien 30 spans par texte pour la condition C3/C4
 const baseTexts = [
     {
-        id: "T1",
-        content: `Dans un futur lointain... <span class="link">Ultima Segmentum</span>... <span class="link">2eme</span>...`,
+        id: "Warhammer",
+        content: `Dans un futur lointain, aux confins de <span class="link">l’Ultima Segmentum<span>, le système oublié de <span class = "link">Morologus Novem</span> (ou "Cap du Désespoir") refait surface près de la <span class = "link">Cicatrix Maledictum</span>. Après la chute de <span class ="link">Cadia</span>, une flotte de l’<span class = "link">Adeptus Mechanicus<span> y échoue, découvrant les vestiges d’une civilisation humaine avancée. Ce système, stratégique et ravagé par les marées du Warp, attire l’Imperium, les Orks, le Chaos et même les Nécrons, tous en quête d’un artéfact mystérieux enfoui sous sa surface. Les factions s’affrontent pour contrôler ce point clé entre l’Imperium Sanctus et l’Imperium Nihilus, tandis que son destin reste incertain, enveloppé dans les ombres du Warp.
+`,
         questions: [
-            { q: "Question 1 T1 ?", r: "Réponse 1" },
+            { q: "Ou se situe Ultima Segmentum ?", r: "est de Terra" },
             { q: "Question 2 T1 ?", r: "Réponse 2" },
             { q: "Question 3 T1 ?", r: "Réponse 3" },
             { q: "Question 4 T1 ?", r: "Réponse 4" },
             { q: "Question 5 T1 ?", r: "Réponse 5" }
         ],
         links: [
-            { name: "Ultima Segmentum", info: "L'Ultima Segmentum est un truc long de fou..." },
-            { name: "2eme", info: "Le texte du deuxième..." }
+            { name: "Ultima Segmentum", info: "L'Ultima Segmentum est un segment de l'Imperium situé à l'extrême Est de l'Imperium" },
+            // Les infos suivantes sont à revoir, j'ai mis des placeholders pour l'instant
+            { name: "Morologus Novem", info: "un truc pas sympas askip" },
+            { name: "Cicatrix Maledictum", info: "La Cicatrix Maledictum est un truc pas sympas askip" },
+            { name: "Cadia", info: "Cadia est un truc pas sympas askip" },
+            { name: "Adeptus Mechanicus", info: "L'Adeptus Mechanicus est un truc pas sympas askip" },
             // Ajoute ici tes 30 liens pour T1
         ]
     },
     {
-        id: "T2",
-        content: `Texte 2 avec ses <span class="link">Ultima Segmentum</span>...`,
+        id: "NieR",
+        content: `NieR: Automata se déroule en l’an 11 945, dans un monde post-apocalyptique où la Terre, abandonnée par les humains après une invasion de <span class ="link">machines extraterrestres</span>, est devenue le théâtre d’une guerre par procuration. Les derniers humains, réfugiés sur la Lune, envoient des androïdes (comme <span class = "">2B</span>, <span class = "link">9S</span> et <span class ="link" >A2 </span>) pour <span class="link">combattre les machines</span>, créées par des extraterrestres. Le jeu explore les thèmes de la futilité de la guerre, de l’humanité, de la mémoire et de la quête de sens, à travers une narration complexe nécessitant plusieurs parties pour en révéler tous les aspects. L’histoire mêle action, émotion et philosophie, dans un univers riche et mélancolique, marqué par une bande-son inoubliable
+`,
         questions: [
-            { q: "Question 1 T2 ?", r: "Réponse 1" },
-            { q: "Question 2 T2 ?", r: "Réponse 2" },
+            { q: "Quand est-ce que les machines extraterrestres ont envahi la Terre ?", r: "1ère Guerre des Machines" },
+            { q: "Quel personnage est reconus pour son efficacité ?", r: "2B" },
             { q: "Question 3 T2 ?", r: "Réponse 3" },
             { q: "Question 4 T2 ?", r: "Réponse 4" },
             { q: "Question 5 T2 ?", r: "Réponse 5" }
         ],
-        links: [
-            { name: "Ultima Segmentum", info: "Infos spécifiques T2..." },
-            { name: "2eme", info: "Infos 2eme lien T2..." }
+        links: [ // réponse à revoir
+            { name: "machines extraterrestres", info: "Les Machines, apparues lors de la 1ère Guerre des Machines, sont devenues des fantassins redoutablement efficaces dans la guerre interminable contre les Androïdes." },
+            { name: "2B", info: "2B est une androïde de combat de type YoRHa, connue pour son efficacité et son apparence élégante." },
+            { name: "9S", info: "9S est un androïde de reconnaissance de type YoRHa, curieux et intelligent, spécialisé dans le piratage." },
+            { name: "A2", info: "A2 est une androïde de combat de type YoRHa, rebelle et mystérieuse, avec un passé sombre." },
+            { name: "combattre les machines", info: "Les Androïdes sont envoyés sur Terre pour combattre les Machines et tenter de reprendre le contrôle de la planète." },
         ]
     },
     { id: "T3", content: `Contenu T3...`, questions: [{q:"Q1 T3", r:"R1"}], links: [] },
