@@ -18,18 +18,18 @@ const baseTexts = [
 `,
         questions: [
             { q: "Où se situe Ultima Segmentum ?", r: "est de Terra" },
-            { q: "Question 2 T1 ?", r: "Réponse 2" },
-            { q: "Question 3 T1 ?", r: "Réponse 3" },
-            { q: "Question 4 T1 ?", r: "Réponse 4" },
-            { q: "Question 5 T1 ?", r: "Réponse 5" }
+            { q: "Quel est le nom du système oublié ?", r: "Morologus Novem" },
+            { q: "Quel est la zone connaissant des dangers extrems ?", r: "Cicatrix Maledictum" },
+            { q: "Quelle planète stratégique est connue pour son importance militaire ?", r: "Cadia" },
+            { q: "Quel est la faction chargé de la technologie et de la science ?", r: "Adeptus Mechanicus" }
         ],
         links: [
             { name: "l'Ultima Segmentum", info: "L'Ultima Segmentum est un segment de l'Imperium situé à l'extrême Est de l'Imperium" },
             // Les infos suivantes sont à revoir, j'ai mis des placeholders pour l'instant
-            { name: "Morologus Novem", info: "un truc pas sympas askip" },
-            { name: "Cicatrix Maledictum", info: "La Cicatrix Maledictum est un truc pas sympas askip" },
-            { name: "Cadia", info: "Cadia est un truc pas sympas askip" },
-            { name: "Adeptus Mechanicus", info: "L'Adeptus Mechanicus est un truc pas sympas askip" },
+            { name: "Morologus Novem", info: "Morologus Novem est un système oublié situé à l'extrême Est de l'Imperium, connu pour ses marées du Warp et son artéfact mystérieux." },
+            { name: "Cicatrix Maledictum", info: "La Cicatrix Maledictum est une zone de l'Imperium marquée par des effets du Warp et connais des anomalies et des dangers extrêmes." },
+            { name: "Cadia", info: "Cadia est une planète stratégique de l'Imperium, connue pour son importance militaire et son rôle dans la défense de l'Imperium." },
+            { name: "Adeptus Mechanicus", info: "L'Adeptus Mechanicus est un ordre religieux de l'Imperium chargé de la technologie et de la science, souvent en conflit avec les autres factions de l'Imperium." },
             // Ajoute ici tes 30 liens pour T1
         ]
     },
@@ -40,9 +40,9 @@ const baseTexts = [
         questions: [
             { q: "Quand est-ce que les machines extraterrestres ont envahi la Terre ?", r: "1ère Guerre des Machines" },
             { q: "Quel personnage est reconus pour son efficacité ?", r: "2B" },
-            { q: "Question 3 T2 ?", r: "Réponse 3" },
-            { q: "Question 4 T2 ?", r: "Réponse 4" },
-            { q: "Question 5 T2 ?", r: "Réponse 5" }
+            { q: "Dans quel but les androïdes sont-ils envoyés ?", r: "Reprendre le contrôle de la planète Terre" },
+            { q: "Quel est le type d'androïde de 9S ?", r: "YoRHa" },
+            { q: "Quel est l'android rebelle du jeu ?", r: "A2" }
         ],
         links: [ // réponse à revoir
             { name: "machines extraterrestres", info: "Les Machines, apparues lors de la 1ère Guerre des Machines, sont devenues des fantassins redoutablement efficaces dans la guerre interminable contre les Androïdes." },
@@ -52,8 +52,46 @@ const baseTexts = [
             { name: "combattre les machines", info: "Les Androïdes sont envoyés sur Terre pour combattre les Machines et tenter de reprendre le contrôle de la planète." },
         ]
     },
-    { id: "T3", content: `Contenu T3...`, questions: [{q:"Q1 T3", r:"R1"}], links: [] },
-    { id: "T4", content: `Contenu T4...`, questions: [{q:"Q1 T4", r:"R1"}], links: [] }
+    { 
+        id: "Game of rols", 
+        content: `Quatre héros partent pour <span class = "link">l’île du roi sorcier-dragon</span> : <span class ="link">Archibald</span> (marchand), <span class = "link">Evy</span> (archéologue maudite), <span class="link">Raoul</span> (barde) et <span class ="link">Mimolin</span> (orphelin amnésique). Arrivés, ils découvrent un piège : le roi est un dragon qui dévore les invités. Survivants, ils doivent trouver une rançon (75 000 pièces d’or et un livre maudit) à Mirabilia. Leurs aventures les mènent à Nol (où ils déclenchent une catastrophe), puis à Torini, où Mimolin tombe amoureux, Evy apprend sa malédiction, et Raoul découvre sa paternité secrète. Après avoir livré la rançon, le roi les envoie chercher une sorcière pour la transmigration des âmes. Leur quête les mène au Bharat, où ils affrontent des dragons, des doubles maléfiques, et découvrent des secrets cosmiques.`, 
+        questions: [
+            {q:"Quel est le nom de la fête organisé sur l'île de Tenegriffe", r:"Fête de la pleine lune"},
+            {q:"Qui été chargé la reine Julia de négocier avec le roi sorcier-dragon ?", r:"Archibald"},
+            {q:"Qui porte une rune ?", r:"Evy"},
+            {q:"Qui est le meilleur ami de Kaheena D’Ashanul", r:"Raoul"},
+            {q:"A qui a échappé à un assassinat ?", r:"Mimolin"}
+        ], 
+        links: [
+            { name: "l’île du roi sorcier-dragon", info: "Tenegriffe, anciennement appelée simplement l'île du roi sorcier-dragon, est une île située dans la mer des eaux dansantes qui organise la \"fête de la pleine lune\" tous les 10 ans où tout est gratuit." },
+            { name: "Archibald", info: "La famille Brisant-Choyeur, autrefois poissonniers et montés en puissance dans le commerce maritime, envoie l’impitoyable homme d’affaires, Archibald, chargé par la reine Julia de négocier et rapporter 2000 pièces d’or au roi sorcier-dragon." },
+            { name: "Evy", info: "Une jeune noble avide de savoir et des choses brillantes, cachant des yeux complètement noirs derrière sa coiffure, porte une rune lui donnant un sort quotidien et souffre d’une malédiction liée au Codex Pontis." },
+            { name: "Raoul", info: "Raoul, un barde mondialement connu qui promène amour et polémique, veut jouer à la fête de la pleine lune sur l’île du roi sorcier‑dragon et, avant d’y parvenir, quitte ses trois amis pour suivre sa meilleure amie Kaheena D’Ashanul à travers les mers du globe." },
+            { name: "Mimolin", info: "Jeune amnésique convaincu d’être un roi, Mimolin traîne une bague et un balai, découvre un contrat de transfert d’âme à Nol, apprend ses liens avec le chevalier Bear et, entre prisons et flash‑backs meurtriers, échappe à un assassinat lié au Tigre de Jade." },
+        ] 
+    },
+    { 
+        id: "Lovely Complex", 
+        content: `Lovely Complex est l'histoire d'une relation entre deux personnages complexés par leur taille : <span class="link">Risa Koizumi</span>, jeune fille mesurant 170 cm ; et <span class = "link">Atsushi Ootani</span> haut de 156 cm.
+En raison de leur taille et de leurs nombreuses chamailleries, ces deux personnages sont comparés à un duo d'humoristes, les All <span class= "link" >Hanshin Kyojin</span>. Mais leur taille les empêchent de s'épanouir complètement : ils manquent de confiance en eux pour ce qui est des relations avec les personnes du sexe opposé.
+Durant les vacances d'été, Risa et Atsushi tombent amoureux de <span class="link">deux autres personnages </span> et décident de s'entraider et de s'encourager mutuellement pour vaincre leurs complexes et essayer de séduire les élus de leurs coeurs... Mais il s'agit d'un <span class = "link">échec</span> pour eux deux.
+Cependant, à force de rester aux côtés d'Atsushi, Risa ne commence-t-elle pas à devenir amoureuse de lui ?`, 
+        questions: [
+            {q:"Quel instrument joue le personnage principal ?", r:"saxophone"},
+            {q:"Nobuko est...", r:"La petite amie de Nakao"},
+            {q:"Qui est le membre du duo Hanshin Kyojin le plus petit ?", r:"Hanshin"},
+            {q:"Qui est la première amoureuse de Atsushi ?", r:"Chiharu Tanaka"},
+            {q:"Quel promesse ont-ils faite ?", r:"Ne plus jamais aimer quelqu’un qui ne correspond pas à leur taille"}
+        ], 
+        links: [
+            { name: "Risa Koizumi", info: "Koizumiest une lycéenne passionnée de musique et membre du club de fanfare, où elle joue du saxophone, ce qui révèle son côté artistique et déterminé malgré ses complexes liés à sa taille." },
+            { name: "Atsushi Ootani", info: "Atsushi Ootani, garçon populaire grâce à son poste dans l’équipe de basketball et complexé par sa taille (156 cm), forme avec Risa le duo All Hanshin-Kyojin ; il a du mal à comprendre ses sentiments pour Koizumi, finit par en tomber amoureux malgré ses prétendantes Mimi et Kanzaki, et compte Nakao et Suzuki parmi ses meilleurs amis, l’appelant parfois \"idiote\"." },
+            { name: "Nakao", info: "Nakao est un garçon très mignon et gentil, toujours prêt à consoler ses amis et à mettre le doigt là où ça fait mal, provoquant souvent Ootani ; follement amoureux de sa petite amie Nobuko et décidé à passer sa vie avec elle." },
+            { name: "Hanshin Kyojin", info: "Le duo comique All Hanshin-Kyojin est célèbre au Japon pour son humour basé sur le contraste de taille entre ses deux membres : l’un très petit (Hanshin) et l’autre très grand (Kyojin)." },
+            { name: "deux autres personnages", info: "Risa Koizumi est d'abord amoureuse de Suzuki. Atsushi Ootani est d'abord amoureux de Chiharu Tanaka." },
+            { name: "échec", info: "Risa et Atsushi échouent à séduire respectivement Suzuki et Chiharu à cause de leur taille, et se promettent alors de ne plus jamais aimer quelqu’un qui ne correspond pas à leur taille." },
+        ]   
+    }
 ];
 
 const conditions = [
