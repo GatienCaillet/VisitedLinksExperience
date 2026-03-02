@@ -17,7 +17,7 @@ const baseTexts = [
         content: `Dans un futur lointain, aux confins de <span class="link">l’Ultima Segmentum</span>, le système oublié de <span class = "link">Morologus Novem</span> (ou "Cap du Désespoir") refait surface près de la <span class = "link">Cicatrix Maledictum</span>. Après la chute de <span class ="link">Cadia</span>, une flotte de l’<span class = "link">Adeptus Mechanicus</span> y échoue, découvrant les vestiges d’une civilisation humaine avancée. Ce système, stratégique et ravagé par les marées du Warp, attire l’Imperium, les Orks, le Chaos et même les Nécrons, tous en quête d’un artéfact mystérieux enfoui sous sa surface. Les factions s’affrontent pour contrôler ce point clé entre l’Imperium Sanctus et l’Imperium Nihilus, tandis que son destin reste incertain, enveloppé dans les ombres du Warp.
 `,
         questions: [
-            { q: "Ou se situe Ultima Segmentum ?", r: "est de Terra" },
+            { q: "Où se situe Ultima Segmentum ?", r: "est de Terra" },
             { q: "Question 2 T1 ?", r: "Réponse 2" },
             { q: "Question 3 T1 ?", r: "Réponse 3" },
             { q: "Question 4 T1 ?", r: "Réponse 4" },
