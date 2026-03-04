@@ -127,6 +127,17 @@ function getAllPermutations(array) {
 }
 
 // ---------------------------
+//      SHUFFLE
+// ---------------------------
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// ---------------------------
 //      INITIALISATION
 // ---------------------------
 function initExperience() {
@@ -175,31 +186,43 @@ window.onload = initExperience;
 
 function chargerTexteEtCondition() {
     const currentBlock = experimentalSequence[experimentalSequenceIndex];
-
-    // 1. Injecter le texte
+    
+    // 1. Injecter le texte HTML
     textElement.innerHTML = currentBlock.text.content;
 
-    // 2. Récupérer tous les liens injectés
-    const domLinks = textElement.querySelectorAll('.link');
+    // 2. Identifier les deux types de liens
+    const allLinks = Array.from(textElement.querySelectorAll('.link'));
+    const requiredLinks = allLinks.filter(l => !l.classList.contains('distracteur'));
+    const distractorLinks = allLinks.filter(l => l.classList.contains('distracteur'));
 
-    domLinks.forEach((link, index) => {
-        // --- RÉINITIALISATION ---
-        // On s'assure qu'aucun lien ne garde son état "visité" du texte précédent
+    // 3. Calculer combien de distracteurs on doit ajouter
+    // linksCount (10 ou 30) - les 5 obligatoires
+    const numDistractorsToShow = currentBlock.condition.linksCount - requiredLinks.length;
+
+    // 4. Tirer au sort les distracteurs
+    const shuffledDistractors = shuffleArray([...distractorLinks]);
+    const selectedDistractors = shuffledDistractors.slice(0, numDistractorsToShow);
+
+    // 5. Créer la liste finale des liens à activer
+    const linksToActivate = [...requiredLinks, ...selectedDistractors];
+
+    // 6. Appliquer les styles et comportements
+    allLinks.forEach((link) => {
+        // Reset systématique
         link.classList.remove('visited-link');
 
-        // --- VI : NOMBRE DE LIENS ---
-        if (index >= currentBlock.condition.linksCount) {
-            // Désactivation des liens excédentaires
+        if (linksToActivate.includes(link)) {
+            // ACTIVATION
+            link.style.pointerEvents = 'auto';
+            link.style.cursor = 'pointer';
+            link.style.textDecoration = 'underline'; // On s'assure qu'ils sont visibles comme liens
+            link.style.color = ''; // Reprend la couleur CSS par défaut des liens
+        } else {
+            // DÉSACTIVATION (Distracteurs non choisis)
             link.style.pointerEvents = 'none';
             link.style.textDecoration = 'none';
             link.style.color = 'inherit';
             link.style.cursor = 'default';
-        } else {
-            // Activation
-            link.style.pointerEvents = 'auto';
-            link.style.cursor = 'pointer';
-
-            // la couleur est géré avec la class .visited-link
         }
     });
 }
