@@ -14,7 +14,7 @@ let experimentalSequence = [];
 const baseTexts = [
     {
         id: "Warhammer",
-        content: `Dans un futur lointain, aux confins de <span class="link required">l’Ultima Segmentum</span>, le système oublié de <span class = "link required">Morologus Novem</span> (ou "Cap du Désespoir") refait surface près de la <span class = "link required">Cicatrix Maledictum</span>. Après la chute de <span class ="link required">Cadia</span>, une flotte de l’<span class = "link required">Adeptus Mechanicus</span> y échoue, découvrant les vestiges d’une civilisation humaine avancée. Ce système, stratégique et ravagé par les marées du Warp, attire l’Imperium, les Orks, le Chaos et même les Nécrons, tous en quête d’un artéfact mystérieux enfoui sous sa surface. Les factions s’affrontent pour contrôler ce point clé entre l’Imperium Sanctus et l’Imperium Nihilus, tandis que son destin reste incertain, enveloppé dans les ombres du Warp.
+        content: `Dans un <span class= "link distracteur"futur lointain</span>, aux confins de <span class="link">l’Ultima Segmentum</span>, le <span class = "link distracteur">système</span> oublié de <span class = "link">Morologus Novem</span> (ou "Cap du Désespoir") refait surface près de la <span class = "link">Cicatrix Maledictum</span>. Après la chute de <span class ="link">Cadia</span>, <span class = "link distracteur">une flotte</span> de l’<span class = "link">Adeptus Mechanicus</span> y échoue, découvrant les vestiges d’une civilisation humaine avancée. Ce système, stratégique et ravagé par les marées du Warp, attire l’Imperium, les Orks, le Chaos et même les Nécrons, tous en quête d’un artéfact mystérieux enfoui sous sa surface. Les factions s’affrontent pour contrôler ce point clé entre <span class = "link distracteur">l’Imperium Sanctus</span> et <span class = "link distracteur">l’Imperium Nihilus</span>, tandis que son destin reste incertain, enveloppé dans les ombres du Warp.
 `,
         questions: [
             { q: "Où se situe Ultima Segmentum ?", r: "est de Terra" },
@@ -30,7 +30,13 @@ const baseTexts = [
             { name: "Cicatrix Maledictum", info: "La Cicatrix Maledictum est une zone de l'Imperium marquée par des effets du Warp et connais des anomalies et des dangers extrêmes." },
             { name: "Cadia", info: "Cadia est une planète stratégique de l'Imperium, connue pour son importance militaire et son rôle dans la défense de l'Imperium." },
             { name: "Adeptus Mechanicus", info: "L'Adeptus Mechanicus est un ordre religieux de l'Imperium chargé de la technologie et de la science, souvent en conflit avec les autres factions de l'Imperium." },
-            // Ajoute ici tes 30 liens pour T1
+            // 5 lien distracteur 
+            { name: "futur lointain", info: "Le futur lointain dans l'univers de Warhammer 40k est une période où l'humanité a colonisé de nombreux systèmes stellaires et est en guerre constante avec diverses factions." },
+            { name: "système", info: "Un système dans l'univers de Warhammer 40k est une région de l'espace contenant des étoiles, des planètes et d'autres corps célestes." },
+            { name: "une flotte", info: "Une flotte dans l'univers de Warhammer 40k est un groupe de vaisseaux spatiaux utilisés pour le transport, la guerre ou d'autres missions." },
+            { name: "Imperium Sanctus", info: "L'Imperium Sanctus est une partie de l'Imperium située à l'extrême Est, connue pour sa foi et sa dévotion envers l'Empereur." },
+            { name: "Imperium Nihilus", info: "L'Imperium Nihilus est une partie de l'Imperium située à l'extrême Ouest, connue pour son isolement et ses dangers extrêmes." }
+
         ]
     },
     {
