@@ -124,34 +124,28 @@ function getAllPermutations(array) {
 //      INITIALISATION
 // ---------------------------
 function initExperience() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const pIdRaw = urlParams.get('id');
+    const pId = parseInt(new URLSearchParams(window.location.search).get('id'));
+    
+    // 1. Définir les ordres possibles pour les textes (ex: 4 textes = 24 permutations)
+    const textOrders = getAllPermutations([0, 1, 2, 3]); 
+    // 2. Définir les ordres pour les conditions
+    const conditionOrders = getAllPermutations([0, 1, 2, 3]);
 
-    // 1. Vérification stricte de l'ID
-    if (!pIdRaw || isNaN(parseInt(pIdRaw))) {
-        alert("Erreur : Aucun identifiant participant détecté. Vous allez être redirigé vers le formulaire.");
-        // Redirige vers ton formulaire (adapte le nom de fichier si besoin)
-        window.location.href = "formulaire.html"; 
-        return; // On arrête l'exécution ici
-    }
+    // Assigner selon l'ID
+    const textIdx = (pId - 1) % textOrders.length;
+    const condIdx = Math.floor((pId - 1) / textOrders.length) % conditionOrders.length;
 
-    const pId = parseInt(pIdRaw);
-    const allOrders = getAllPermutations([0, 1, 2, 3]);
-
-    // On s'assure que l'ID est compris entre 1 et 24 (ou plus si tu as plus de participants)
-    // Ici, on utilise le modulo pour rester dans les 24 permutations possibles
-    const orderIndex = (pId - 1) % 24;
-    const myOrder = allOrders[orderIndex];
+    const myTextOrder = textOrders[textIdx];
+    const myConditionOrder = conditionOrders[condIdx];
 
     // Construction de la séquence
-    experimentalSequence = baseTexts.map((textObj, index) => {
+    experimentalSequence = myTextOrder.map((textIndex, i) => {
         return {
-            text: textObj,
-            condition: conditions[myOrder[index]]
+            text: baseTexts[textIndex],
+            condition: conditions[myConditionOrder[i]] // Condition spécifique à ce texte
         };
     });
 
-    // On lance le test
     texteSuivant();
 }
 
