@@ -17,7 +17,7 @@ const baseTexts = [
         content: `Dans un <span class= "link distracteur">futur lointain</span>, aux confins de l’<span class="link">Ultima Segmentum</span>, le <span class = "link distracteur">système</span> oublié de <span class = "link">Morologus Novem</span> (ou "Cap du Désespoir") refait surface près de la <span class = "link">Cicatrix Maledictum</span>. Après la chute de <span class ="link">Cadia</span>, <span class = "link distracteur">une flotte</span> de l’<span class = "link">Adeptus Mechanicus</span> y échoue, découvrant les vestiges d’une <span class = "link distracteur">civilisation</span> <span class = "link distracteur">humaine</span> avancée. Ce système, stratégique et ravagé par les marées du Warp, attire l’Imperium, les Orks, le Chaos et même les Nécrons, tous en quête d’un artéfact mystérieux enfoui sous sa surface. Les factions s’affrontent pour contrôler ce point clé entre <span class = "link distracteur">l’Imperium Sanctus</span> et <span class = "link distracteur">l’Imperium Nihilus</span>, tandis que son destin reste incertain, enveloppé dans les ombres du Warp.
 `,
         questions: [
-            { q: "Où se situe Ultima Segmentum ?", r: "est de Terra" },
+            { q: "Où se situe Ultima Segmentum ?", p:["est de Terra", "ouest de Terra", "nord de Terra", "sud de Terra"], r: "est de Terra" },
             { q: "Quel est le nom du système oublié ?", r: "Morologus Novem" },
             { q: "Quel est la zone connaissant des dangers extrems ?", r: "Cicatrix Maledictum" },
             { q: "Quelle planète stratégique est connue pour son importance militaire ?", r: "Cadia" },
@@ -181,8 +181,6 @@ const erreurDiv = document.getElementById("erreur-message");
 const modal = document.getElementById("myModal");
 const modalText = document.getElementById("modal-text");
 const closeBtn = document.querySelector(".close-btn");
-const submitBtn = document.getElementById("submit-btn");
-const reponseInput = document.getElementById("reponse");
 
 window.onload = initExperience;
 
@@ -245,15 +243,31 @@ function texteSuivant() {
 }
 
 function questionSuivante() {
-    const currentText = experimentalSequence[experimentalSequenceIndex].text;
+    const currentBlock = experimentalSequence[experimentalSequenceIndex];
+    const currentText = currentBlock.text;
     questionIndex++;
 
     if (questionIndex >= currentText.questions.length) {
         texteSuivant();
     } else {
-        questionElement.innerHTML = currentText.questions[questionIndex].q;
-        reponseInput.value = "";
-        startTimeQuestion = Date.now(); // Reset du chrono pour la question
+        const targetQuestion = currentText.questions[questionIndex];
+        questionElement.innerHTML = targetQuestion.q;
+        
+        const choicesContainer = document.getElementById("choices-container");
+        choicesContainer.innerHTML = ""; // On vide les anciens choix
+
+        // On mélange les propositions (p) pour que la bonne réponse ne soit pas toujours au même endroit
+        const shuffledChoices = shuffleArray([...targetQuestion.p]);
+
+        shuffledChoices.forEach(choiceText => {
+            const btn = document.createElement("button");
+            btn.textContent = choiceText;
+            btn.className = "choice-btn"; // Pour ton CSS
+            btn.onclick = () => validerReponse(choiceText);
+            choicesContainer.appendChild(btn);
+        });
+
+        startTimeQuestion = Date.now();
     }
 }
 
@@ -261,16 +275,16 @@ function questionSuivante() {
 //      VALIDATION & DATA
 // ---------------------------
 
-submitBtn.addEventListener("click", () => {
+function validerReponse(reponseSelectionnee) {
     desafficherErreur();
-    const reponseValue = reponseInput.value.trim();
+    
     const currentBlock = experimentalSequence[experimentalSequenceIndex];
     const targetQuestion = currentBlock.text.questions[questionIndex];
 
-    const isCorrect = reponseValue.toLowerCase().includes(targetQuestion.r.toLowerCase());
+    const isCorrect = (reponseSelectionnee === targetQuestion.r);
     const duration = Date.now() - startTimeQuestion;
 
-    // Push des données avec le nouveau format
+    // Enregistrement des données
     reponses.push({
         "testId": parseInt(new URLSearchParams(window.location.search).get('id')),
         "ordreDansSession": experimentalSequenceIndex + 1,
@@ -279,7 +293,7 @@ submitBtn.addEventListener("click", () => {
         "linksCount": currentBlock.condition.linksCount,
         "hasColor": currentBlock.condition.hasColor,
         "question": targetQuestion.q,
-        "reponse": reponseValue,
+        "reponse": reponseSelectionnee,
         "correcte": isCorrect,
         "time_ms": duration,
         "timestamp": Date.now()
@@ -287,10 +301,11 @@ submitBtn.addEventListener("click", () => {
 
     if (!isCorrect) {
         afficherErreur();
+        // Optionnel : on peut griser le bouton cliqué pour forcer un autre choix
     } else {
         questionSuivante();
     }
-});
+}
 
 // ---------------------------
 //       MODAL & UTILS

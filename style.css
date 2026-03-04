@@ -239,24 +239,24 @@ fieldset {
     margin-top: 30px;
 }
 
-.reponse-container p {
+.reponse-container span {
     text-align: center;
 }
 
-#submit-btn {
-    align-self: center;
+.choice-btn {
+    display: block;
+    margin: 10px 0;
     padding: 10px 20px;
-    margin: 10px;
-    font-size: 16px;
-    color: white;
-    background-color: black;
-    border: none;
-    border-radius: 5px;
+    width: 100%;
     cursor: pointer;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
-#submit-btn:hover {
-    background-color: #ccc;
+.choice-btn:hover {
+    background-color: #e0e0e0;
 }
 
 #erreur-message {
