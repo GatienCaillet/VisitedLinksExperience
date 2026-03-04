@@ -85,11 +85,11 @@ En raison de leur taille et de leurs nombreuses chamailleries, ces deux personna
 Durant les vacances d'été, Risa et Atsushi tombent amoureux de <span class="link">deux autres personnages </span> et décident de s'entraider et de s'encourager mutuellement pour vaincre leurs complexes et essayer de séduire les élus de leurs coeurs... Mais il s'agit d'un <span class = "link required">échec</span> pour eux deux.
 Cependant, à force de rester aux côtés d'Atsushi, Risa ne commence-t-elle pas à devenir amoureuse de lui ?`,
         questions: [
-            { q: "Quel instrument joue le personnage principal ?", r: "saxophone" },
-            { q: "Nobuko est...", r: "La petite amie de Nakao" },
-            { q: "Qui est le membre du duo Hanshin Kyojin le plus petit ?", r: "Hanshin" },
-            { q: "Qui est la première amoureuse de Atsushi ?", r: "Chiharu Tanaka" },
-            { q: "Quel promesse ont-ils faite ?", r: "Ne plus jamais aimer quelqu’un qui ne correspond pas à leur taille" }
+            { q: "Quel instrument joue le personnage principal ?",p:["Guitare","Piano","Violon","Saxophone"], r: "Saxophone" },
+            { q: "Nobuko est...",p:["La petite amie de Nakao","La sœur de Risa","La meilleure amie d'Atsushi","La mère de Nakao"], r: "La petite amie de Nakao" },
+            { q: "Qui est le membre du duo Hanshin Kyojin le plus petit ?", p:["Hanshin","Kyojin","Nakao","Atsushi"], r: "Hanshin" },
+            { q: "Qui est la première amoureuse de Atsushi ?",p:["Chiharu Tanaka","Mimi Kuroi","Kanzaki","Suzuki"], r: "Chiharu Tanaka" },
+            { q: "Quel sport fait l'un des personnages ?", p:["Football","Basketball","Tennis","Natation"], r: "Basketball" }  
         ],
         links: [
             { name: "Risa Koizumi", info: "Koizumiest une lycéenne passionnée de musique et membre du club de fanfare, où elle joue du saxophone, ce qui révèle son côté artistique et déterminé malgré ses complexes liés à sa taille." },
