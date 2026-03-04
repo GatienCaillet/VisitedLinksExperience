@@ -14,7 +14,7 @@ let experimentalSequence = [];
 const baseTexts = [
     {
         id: "Warhammer",
-        content: `Dans un <futur class= "link distracteur">futur lointain</span>, aux confins de l’<span class="link">Ultima Segmentum</span>, le <span class = "link distracteur">système</span> oublié de <span class = "link">Morologus Novem</span> (ou "Cap du Désespoir") refait surface près de la <span class = "link">Cicatrix Maledictum</span>. Après la chute de <span class ="link">Cadia</span>, <span class = "link distracteur">une flotte</span> de l’<span class = "link">Adeptus Mechanicus</span> y échoue, découvrant les vestiges d’une <span class = "link distracteur">civilisation</span> <span class = "link distracteur">humaine</span> avancée. Ce système, stratégique et ravagé par les marées du Warp, attire l’Imperium, les Orks, le Chaos et même les Nécrons, tous en quête d’un artéfact mystérieux enfoui sous sa surface. Les factions s’affrontent pour contrôler ce point clé entre <span class = "link distracteur">l’Imperium Sanctus</span> et <span class = "link distracteur">l’Imperium Nihilus</span>, tandis que son destin reste incertain, enveloppé dans les ombres du Warp.
+        content: `Dans un <span class= "link distracteur">futur lointain</span>, aux confins de l’<span class="link">Ultima Segmentum</span>, le <span class = "link distracteur">système</span> oublié de <span class = "link">Morologus Novem</span> (ou "Cap du Désespoir") refait surface près de la <span class = "link">Cicatrix Maledictum</span>. Après la chute de <span class ="link">Cadia</span>, <span class = "link distracteur">une flotte</span> de l’<span class = "link">Adeptus Mechanicus</span> y échoue, découvrant les vestiges d’une <span class = "link distracteur">civilisation</span> <span class = "link distracteur">humaine</span> avancée. Ce système, stratégique et ravagé par les marées du Warp, attire l’Imperium, les Orks, le Chaos et même les Nécrons, tous en quête d’un artéfact mystérieux enfoui sous sa surface. Les factions s’affrontent pour contrôler ce point clé entre <span class = "link distracteur">l’Imperium Sanctus</span> et <span class = "link distracteur">l’Imperium Nihilus</span>, tandis que son destin reste incertain, enveloppé dans les ombres du Warp.
 `,
         questions: [
             { q: "Où se situe Ultima Segmentum ?", r: "est de Terra" },
@@ -145,23 +145,27 @@ function shuffleArray(array) {
 function initExperience() {
     const pId = parseInt(new URLSearchParams(window.location.search).get('id'));
 
-    // 1. Définir les ordres possibles pour les textes (ex: 4 textes = 24 permutations)
     const textOrders = getAllPermutations([0, 1, 2, 3]);
-    // 2. Définir les ordres pour les conditions
     const conditionOrders = getAllPermutations([0, 1, 2, 3]);
 
-    // Assigner selon l'ID
     const textIdx = (pId - 1) % textOrders.length;
     const condIdx = Math.floor((pId - 1) / textOrders.length) % conditionOrders.length;
 
     const myTextOrder = textOrders[textIdx];
     const myConditionOrder = conditionOrders[condIdx];
 
-    // Construction de la séquence
+    // Construction de la séquence avec mélange des questions
     experimentalSequence = myTextOrder.map((textIndex, i) => {
+        const originalText = baseTexts[textIndex];
+        
         return {
-            text: baseTexts[textIndex],
-            condition: conditions[myConditionOrder[i]] // Condition spécifique à ce texte
+            // On crée une copie de l'objet texte pour ne pas impacter baseTexts
+            text: {
+                ...originalText,
+                // On crée une copie du tableau questions et on le mélange
+                questions: shuffleArray([...originalText.questions])
+            },
+            condition: conditions[myConditionOrder[i]]
         };
     });
 
@@ -268,6 +272,7 @@ submitBtn.addEventListener("click", () => {
 
     // Push des données avec le nouveau format
     reponses.push({
+        "testId": parseInt(new URLSearchParams(window.location.search).get('id')),
         "ordreDansSession": experimentalSequenceIndex + 1,
         "textId": currentBlock.text.id,
         "conditionId": currentBlock.condition.id,
