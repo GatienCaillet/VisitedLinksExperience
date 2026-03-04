@@ -64,23 +64,42 @@ const baseTexts = [
         ]
     },
     {
-        id: "Game of rols",
-        content: `Quatre héros partent pour <span class = "link ">l’île du roi sorcier-dragon</span> : <span class ="link">Archibald</span> (marchand), <span class = "link ">Evy</span> (archéologue maudite), <span class="link ">Raoul</span> (barde) et <span class ="link">Mimolin</span> (orphelin amnésique). Arrivés, ils découvrent un piège : le roi est un dragon qui dévore les invités. Survivants, ils doivent trouver une rançon (75 000 pièces d’or et un livre maudit) à Mirabilia. Leurs aventures les mènent à Nol (où ils déclenchent une catastrophe), puis à Torini, où Mimolin tombe amoureux, Evy apprend sa malédiction, et Raoul découvre sa paternité secrète. Après avoir livré la rançon, le roi les envoie chercher une sorcière pour la transmigration des âmes. Leur quête les mène au Bharat, où ils affrontent des dragons, des doubles maléfiques, et découvrent des secrets cosmiques.`,
-        questions: [
-            { q: "Quel est le nom de la fête organisé sur l'île de Tenegriffe", r: "Fête de la pleine lune" },
-            { q: "Qui été chargé la reine Julia de négocier avec le roi sorcier-dragon ?", r: "Archibald" },
-            { q: "Qui porte une rune ?", r: "Evy" },
-            { q: "Qui est le meilleur ami de Kaheena D’Ashanul", r: "Raoul" },
-            { q: "A qui a échappé à un assassinat ?", r: "Mimolin" }
-        ],
-        links: [
-            { name: "l’île du roi sorcier-dragon", info: "Tenegriffe, anciennement appelée simplement l'île du roi sorcier-dragon, est une île située dans la mer des eaux dansantes qui organise la \"fête de la pleine lune\" tous les 10 ans où tout est gratuit." },
-            { name: "Archibald", info: "La famille Brisant-Choyeur, autrefois poissonniers et montés en puissance dans le commerce maritime, envoie l’impitoyable homme d’affaires, Archibald, chargé par la reine Julia de négocier et rapporter 2000 pièces d’or au roi sorcier-dragon." },
-            { name: "Evy", info: "Une jeune noble avide de savoir et des choses brillantes, cachant des yeux complètement noirs derrière sa coiffure, porte une rune lui donnant un sort quotidien et souffre d’une malédiction liée au Codex Pontis." },
-            { name: "Raoul", info: "Raoul, un barde mondialement connu qui promène amour et polémique, veut jouer à la fête de la pleine lune sur l’île du roi sorcier‑dragon et, avant d’y parvenir, quitte ses trois amis pour suivre sa meilleure amie Kaheena D’Ashanul à travers les mers du globe." },
-            { name: "Mimolin", info: "Jeune amnésique convaincu d’être un roi, Mimolin traîne une bague et un balai, découvre un contrat de transfert d’âme à Nol, apprend ses liens avec le chevalier Bear et, entre prisons et flash‑backs meurtriers, échappe à un assassinat lié au Tigre de Jade." },
-        ]
-    },
+    id: "Game of Rols",
+    // 30 liens au total : 5 Required (Archibald, Evy, Mimolin, Raoul, Omelas) + 25 Distracteurs
+    content: `Quatre héros partent pour une <span class="link distracteur">île</span> mystérieuse : <span class="link required">Archibald</span> (le marchand), <span class="link distracteur">Evy</span> (l'archéologue) qui <span class="link distracteur">tente</span> de <span class="link distracteur">fuir</span> son <span class="link distracteur">passé</span>. La <span class="link required">Evy</span> porte une <span class="link distracteur">rune</span>, tandis que <span class="link distracteur">Raoul</span> (le barde) <span class="link distracteur">chante</span> ses <span class="link distracteur">exploits</span> dans des <span class="link distracteur">tavernes</span> sombres. Au centre de leurs <span class="link distracteur">tourments</span>, le jeune <span class="link required">Mimolin</span> (l'orphelin amnésique) <span class="link distracteur">cherche</span> désespérément à <span class="link distracteur">comprendre</span> ses <span class="link distracteur">flash-backs</span>. Ils <span class="link distracteur">traversent</span> des <span class="link distracteur">régions</span> isolées où <span class="link required">Raoul</span> compose ses <span class="link distracteur">poèmes</span>, évitant les <span class="link distracteur">dragons</span> et les <span class="link distracteur">assassins</span> de la <span class="link distracteur">guilde</span>. Enfin, sous le <span class="link distracteur">palais</span> du maharaja, ils découvrent la mystérieuse <span class="link required">Omelas</span>, une <span class="link distracteur">créature</span> dont la <span class="link distracteur">destinée</span> <span class="link distracteur">inquiète</span> les <span class="link distracteur">dieux</span> eux-mêmes.`,
+    
+    questions: [
+        { q: "Quel est le tic nerveux d'Archibald ?", r: "Fait craquer ses doigts" },
+        { q: "Quel objet insolite Evy collectionne-t-elle ?", r: "Plumes de corbeau" },
+        { q: "Quel est le seul souvenir que Mimolin a gardé de sa famille ?", r: "Un médaillon en argent" },
+        { q: "Quelle est la particularité de la guitare de Raoul ?", r: "Bois d'ébène enchanté" },
+        { q: "Quelle est la véritable nature d'Omelas ?", r: "Une entité vivante et pensante faite de lumière pure" }
+    ],
+    
+    links: [
+        // 5 REQUIRED (Réponses dans info uniquement)
+        { name: "Archibald", info: "Héritier de la famille Brisant-Choyeur, il a un tic nerveux : il fait craquer ses doigts quand il est stressé." },
+        { name: "Evy", info: "Archéologue maudite, elle collectionne les plumes de corbeau, pensant qu'elles portent chance." },
+        { name: "Mimolin", info: "Bien qu'amnésique, il garde précieusement un médaillon en argent en forme de lune, seul vestige de sa famille." },
+        { name: "Raoul", info: "Barde célèbre, il possède une guitare secrètement sculptée dans du bois d'ébène enchanté." },
+        { name: "Omelas", info: "Loin d'être un monstre, Omelas est une entité vivante et pensante faite de lumière pure, emprisonnée sous le palais." },
+        
+        // 25 DISTRACTEURS
+        { name: "île", info: "Territoire entouré d'eau." }, { name: "tente", info: "Action de chercher à faire quelque chose." },
+        { name: "fuir", info: "Action d'échapper à une menace." }, { name: "passé", info: "Événements survenus avant le présent." },
+        { name: "rune", info: "Symbole magique ancien." }, { name: "chante", info: "Utilisation de la voix pour la musique." },
+        { name: "exploits", info: "Actions héroïques remarquables." }, { name: "tavernes", info: "Lieux de sociabilité." },
+        { name: "tourments", info: "Souffrances morales intenses." }, { name: "cherche", info: "Action d'essayer de trouver." },
+        { name: "comprendre", info: "Action de saisir le sens." }, { name: "flash-backs", info: "Souvenir soudain et vif." },
+        { name: "traversent", info: "Action de passer à travers." }, { name: "régions", info: "Zones géographiques." },
+        { name: "poèmes", info: "Textes littéraires rimés." }, { name: "dragons", info: "Créatures légendaires." },
+        { name: "assassins", info: "Tueurs professionnels." }, { name: "guilde", info: "Association de professionnels." },
+        { name: "palais", info: "Demeure somptueuse d'un souverain." }, { name: "créature", info: "Être vivant." },
+        { name: "destinée", info: "Sort inéluctable." }, { name: "inquiète", info: "Provoque de l'anxiété." },
+        { name: "dieux", info: "Entités supérieures." }, { name: "marchand", info: "Personne faisant du commerce." },
+        { name: "barde", info: "Artiste musicien et poète." }
+    ]
+},
     {
         id: "Lovely Complex",
         content: `Lovely Complex est l'histoire d'une relation entre deux personnages complexés par leur taille : <span class="link required">Risa Koizumi</span>, jeune fille mesurant 170 cm ; et <span class = "link required">Atsushi Ootani</span> haut de 156 cm.
@@ -260,6 +279,9 @@ function chargerTexteEtCondition() {
     // 3. Calculer combien de distracteurs on doit ajouter
     // linksCount (10 ou 30) - les 5 obligatoires
     const numDistractorsToShow = currentBlock.condition.linksCount - Links.length;
+
+    console.log("Condition :", currentBlock.condition);
+    console.log("Nombre de distracteurs à montrer :", numDistractorsToShow);
 
     // 4. Tirer au sort les distracteurs
     const shuffledDistractors = shuffleArray([...distractorLinks]);
