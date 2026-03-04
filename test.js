@@ -14,7 +14,7 @@ let experimentalSequence = [];
 const baseTexts = [
     {
         id: "Warhammer",
-        content: `Dans un <span class= "link distracteur"futur lointain</span>, aux confins de <span class="link">l’Ultima Segmentum</span>, le <span class = "link distracteur">système</span> oublié de <span class = "link">Morologus Novem</span> (ou "Cap du Désespoir") refait surface près de la <span class = "link">Cicatrix Maledictum</span>. Après la chute de <span class ="link">Cadia</span>, <span class = "link distracteur">une flotte</span> de l’<span class = "link">Adeptus Mechanicus</span> y échoue, découvrant les vestiges d’une civilisation humaine avancée. Ce système, stratégique et ravagé par les marées du Warp, attire l’Imperium, les Orks, le Chaos et même les Nécrons, tous en quête d’un artéfact mystérieux enfoui sous sa surface. Les factions s’affrontent pour contrôler ce point clé entre <span class = "link distracteur">l’Imperium Sanctus</span> et <span class = "link distracteur">l’Imperium Nihilus</span>, tandis que son destin reste incertain, enveloppé dans les ombres du Warp.
+        content: `Dans un <span class= "link distracteur"futur lointain</span>, aux confins de <span class="link">l’Ultima Segmentum</span>, le <span class = "link distracteur">système</span> oublié de <span class = "link">Morologus Novem</span> (ou "Cap du Désespoir") refait surface près de la <span class = "link">Cicatrix Maledictum</span>. Après la chute de <span class ="link">Cadia</span>, <span class = "link distracteur">une flotte</span> de l’<span class = "link">Adeptus Mechanicus</span> y échoue, découvrant les vestiges d’une <span class = "link distracteur">civilisation</span> <span class = "link distracteur">humaine</span> avancée. Ce système, stratégique et ravagé par les marées du Warp, attire l’Imperium, les Orks, le Chaos et même les Nécrons, tous en quête d’un artéfact mystérieux enfoui sous sa surface. Les factions s’affrontent pour contrôler ce point clé entre <span class = "link distracteur">l’Imperium Sanctus</span> et <span class = "link distracteur">l’Imperium Nihilus</span>, tandis que son destin reste incertain, enveloppé dans les ombres du Warp.
 `,
         questions: [
             { q: "Où se situe Ultima Segmentum ?", r: "est de Terra" },
@@ -35,7 +35,9 @@ const baseTexts = [
             { name: "système", info: "Un système dans l'univers de Warhammer 40k est une région de l'espace contenant des étoiles, des planètes et d'autres corps célestes." },
             { name: "une flotte", info: "Une flotte dans l'univers de Warhammer 40k est un groupe de vaisseaux spatiaux utilisés pour le transport, la guerre ou d'autres missions." },
             { name: "Imperium Sanctus", info: "L'Imperium Sanctus est une partie de l'Imperium située à l'extrême Est, connue pour sa foi et sa dévotion envers l'Empereur." },
-            { name: "Imperium Nihilus", info: "L'Imperium Nihilus est une partie de l'Imperium située à l'extrême Ouest, connue pour son isolement et ses dangers extrêmes." }
+            { name: "Imperium Nihilus", info: "L'Imperium Nihilus est une partie de l'Imperium située à l'extrême Ouest, connue pour son isolement et ses dangers extrêmes." },
+            { name: "civilisation", info: "Une civilisation dans l'univers de Warhammer 40k est une société avancée technologiquement et culturellement, souvent en conflit avec d'autres civilisations pour le contrôle de ressources et de territoires." },
+            { name: "humain", info: "L'humanité dans l'univers de Warhammer 40k est une espèce qui a colonisé de nombreux systèmes stellaires et est en guerre constante avec diverses factions pour le contrôle de l'espace et des ressources." }
 
         ]
     },
