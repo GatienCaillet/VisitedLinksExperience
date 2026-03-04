@@ -46,7 +46,7 @@ const baseTexts = [
     },
     {
         id: "NieR",
-        content: `NieR: Automata se déroule en l’an 11 945, dans un monde post-apocalyptique où la Terre, abandonnée par les humains après une invasion de <span class ="link required">machines extraterrestres</span>, est devenue le théâtre d’une guerre par procuration. Les derniers humains, réfugiés sur la Lune, envoient des androïdes (comme <span class = "link required">2B</span>, <span class = "link required">9S</span> et <span class ="link required" >A2 </span>) pour <span class="link required">combattre les machines</span>, créées par des extraterrestres. Le jeu explore les thèmes de la futilité de la guerre, de l’humanité, de la mémoire et de la quête de sens, à travers une narration complexe nécessitant plusieurs parties pour en révéler tous les aspects. L’histoire mêle action, émotion et philosophie, dans un univers riche et mélancolique, marqué par une bande-son inoubliable
+        content: `NieR: Automata se déroule en l’an 11 945, dans un monde post-apocalyptique où la Terre, abandonnée par les humains après une invasion de <span class ="link ">machines extraterrestres</span>, est devenue le théâtre d’une guerre par procuration. Les derniers humains, réfugiés sur la Lune, envoient des androïdes (comme <span class = "link ">2B</span>, <span class = "link ">9S</span> et <span class ="link " >A2 </span>) pour <span class="link ">combattre les machines</span>, créées par des extraterrestres. Le jeu explore les thèmes de la futilité de la guerre, de l’humanité, de la mémoire et de la quête de sens, à travers une narration complexe nécessitant plusieurs parties pour en révéler tous les aspects. L’histoire mêle action, émotion et philosophie, dans un univers riche et mélancolique, marqué par une bande-son inoubliable
 `,
         questions: [
             { q: "Quand est-ce que les machines extraterrestres ont envahi la Terre ?", r: "1ère Guerre des Machines" },
@@ -65,7 +65,7 @@ const baseTexts = [
     },
     {
         id: "Game of rols",
-        content: `Quatre héros partent pour <span class = "link required">l’île du roi sorcier-dragon</span> : <span class ="link">Archibald</span> (marchand), <span class = "link required">Evy</span> (archéologue maudite), <span class="link required">Raoul</span> (barde) et <span class ="link">Mimolin</span> (orphelin amnésique). Arrivés, ils découvrent un piège : le roi est un dragon qui dévore les invités. Survivants, ils doivent trouver une rançon (75 000 pièces d’or et un livre maudit) à Mirabilia. Leurs aventures les mènent à Nol (où ils déclenchent une catastrophe), puis à Torini, où Mimolin tombe amoureux, Evy apprend sa malédiction, et Raoul découvre sa paternité secrète. Après avoir livré la rançon, le roi les envoie chercher une sorcière pour la transmigration des âmes. Leur quête les mène au Bharat, où ils affrontent des dragons, des doubles maléfiques, et découvrent des secrets cosmiques.`,
+        content: `Quatre héros partent pour <span class = "link ">l’île du roi sorcier-dragon</span> : <span class ="link">Archibald</span> (marchand), <span class = "link ">Evy</span> (archéologue maudite), <span class="link ">Raoul</span> (barde) et <span class ="link">Mimolin</span> (orphelin amnésique). Arrivés, ils découvrent un piège : le roi est un dragon qui dévore les invités. Survivants, ils doivent trouver une rançon (75 000 pièces d’or et un livre maudit) à Mirabilia. Leurs aventures les mènent à Nol (où ils déclenchent une catastrophe), puis à Torini, où Mimolin tombe amoureux, Evy apprend sa malédiction, et Raoul découvre sa paternité secrète. Après avoir livré la rançon, le roi les envoie chercher une sorcière pour la transmigration des âmes. Leur quête les mène au Bharat, où ils affrontent des dragons, des doubles maléfiques, et découvrent des secrets cosmiques.`,
         questions: [
             { q: "Quel est le nom de la fête organisé sur l'île de Tenegriffe", r: "Fête de la pleine lune" },
             { q: "Qui été chargé la reine Julia de négocier avec le roi sorcier-dragon ?", r: "Archibald" },
@@ -251,19 +251,22 @@ function chargerTexteEtCondition() {
 
     // 2. Identifier les deux types de liens
     const allLinks = Array.from(textElement.querySelectorAll('.link'));
-    const requiredLinks = allLinks.filter(l => !l.classList.contains('distracteur'));
+    const Links = allLinks.filter(l => l.classList.contains('required'));
     const distractorLinks = allLinks.filter(l => l.classList.contains('distracteur'));
+
+    console.log("Liens obligatoires :", Links.map(l => l.textContent.trim()));
+    console.log("Liens distracteurs :", distractorLinks.map(l => l.textContent.trim()));
 
     // 3. Calculer combien de distracteurs on doit ajouter
     // linksCount (10 ou 30) - les 5 obligatoires
-    const numDistractorsToShow = currentBlock.condition.linksCount - requiredLinks.length;
+    const numDistractorsToShow = currentBlock.condition.linksCount - Links.length;
 
     // 4. Tirer au sort les distracteurs
     const shuffledDistractors = shuffleArray([...distractorLinks]);
     const selectedDistractors = shuffledDistractors.slice(0, numDistractorsToShow);
 
     // 5. Créer la liste finale des liens à activer
-    const linksToActivate = [...requiredLinks, ...selectedDistractors];
+    const linksToActivate = [...Links, ...selectedDistractors];
 
     // 6. Appliquer les styles et comportements
     allLinks.forEach((link) => {
