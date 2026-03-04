@@ -14,7 +14,7 @@ let experimentalSequence = [];
 const baseTexts = [
     {
         id: "Warhammer",
-        content: `Dans un futur lointain, aux confins de <span class="link">l’Ultima Segmentum</span>, le système oublié de <span class = "link">Morologus Novem</span> (ou "Cap du Désespoir") refait surface près de la <span class = "link">Cicatrix Maledictum</span>. Après la chute de <span class ="link">Cadia</span>, une flotte de l’<span class = "link">Adeptus Mechanicus</span> y échoue, découvrant les vestiges d’une civilisation humaine avancée. Ce système, stratégique et ravagé par les marées du Warp, attire l’Imperium, les Orks, le Chaos et même les Nécrons, tous en quête d’un artéfact mystérieux enfoui sous sa surface. Les factions s’affrontent pour contrôler ce point clé entre l’Imperium Sanctus et l’Imperium Nihilus, tandis que son destin reste incertain, enveloppé dans les ombres du Warp.
+        content: `Dans un futur lointain, aux confins de <span class="link required">l’Ultima Segmentum</span>, le système oublié de <span class = "link required">Morologus Novem</span> (ou "Cap du Désespoir") refait surface près de la <span class = "link required">Cicatrix Maledictum</span>. Après la chute de <span class ="link required">Cadia</span>, une flotte de l’<span class = "link required">Adeptus Mechanicus</span> y échoue, découvrant les vestiges d’une civilisation humaine avancée. Ce système, stratégique et ravagé par les marées du Warp, attire l’Imperium, les Orks, le Chaos et même les Nécrons, tous en quête d’un artéfact mystérieux enfoui sous sa surface. Les factions s’affrontent pour contrôler ce point clé entre l’Imperium Sanctus et l’Imperium Nihilus, tandis que son destin reste incertain, enveloppé dans les ombres du Warp.
 `,
         questions: [
             { q: "Où se situe Ultima Segmentum ?", r: "est de Terra" },
@@ -35,7 +35,7 @@ const baseTexts = [
     },
     {
         id: "NieR",
-        content: `NieR: Automata se déroule en l’an 11 945, dans un monde post-apocalyptique où la Terre, abandonnée par les humains après une invasion de <span class ="link">machines extraterrestres</span>, est devenue le théâtre d’une guerre par procuration. Les derniers humains, réfugiés sur la Lune, envoient des androïdes (comme <span class = "link">2B</span>, <span class = "link">9S</span> et <span class ="link" >A2 </span>) pour <span class="link">combattre les machines</span>, créées par des extraterrestres. Le jeu explore les thèmes de la futilité de la guerre, de l’humanité, de la mémoire et de la quête de sens, à travers une narration complexe nécessitant plusieurs parties pour en révéler tous les aspects. L’histoire mêle action, émotion et philosophie, dans un univers riche et mélancolique, marqué par une bande-son inoubliable
+        content: `NieR: Automata se déroule en l’an 11 945, dans un monde post-apocalyptique où la Terre, abandonnée par les humains après une invasion de <span class ="link required">machines extraterrestres</span>, est devenue le théâtre d’une guerre par procuration. Les derniers humains, réfugiés sur la Lune, envoient des androïdes (comme <span class = "link required">2B</span>, <span class = "link required">9S</span> et <span class ="link required" >A2 </span>) pour <span class="link required">combattre les machines</span>, créées par des extraterrestres. Le jeu explore les thèmes de la futilité de la guerre, de l’humanité, de la mémoire et de la quête de sens, à travers une narration complexe nécessitant plusieurs parties pour en révéler tous les aspects. L’histoire mêle action, émotion et philosophie, dans un univers riche et mélancolique, marqué par une bande-son inoubliable
 `,
         questions: [
             { q: "Quand est-ce que les machines extraterrestres ont envahi la Terre ?", r: "1ère Guerre des Machines" },
@@ -52,37 +52,37 @@ const baseTexts = [
             { name: "combattre les machines", info: "Les Androïdes sont envoyés sur Terre pour combattre les Machines et tenter de reprendre le contrôle de la planète." },
         ]
     },
-    { 
-        id: "Game of rols", 
-        content: `Quatre héros partent pour <span class = "link">l’île du roi sorcier-dragon</span> : <span class ="link">Archibald</span> (marchand), <span class = "link">Evy</span> (archéologue maudite), <span class="link">Raoul</span> (barde) et <span class ="link">Mimolin</span> (orphelin amnésique). Arrivés, ils découvrent un piège : le roi est un dragon qui dévore les invités. Survivants, ils doivent trouver une rançon (75 000 pièces d’or et un livre maudit) à Mirabilia. Leurs aventures les mènent à Nol (où ils déclenchent une catastrophe), puis à Torini, où Mimolin tombe amoureux, Evy apprend sa malédiction, et Raoul découvre sa paternité secrète. Après avoir livré la rançon, le roi les envoie chercher une sorcière pour la transmigration des âmes. Leur quête les mène au Bharat, où ils affrontent des dragons, des doubles maléfiques, et découvrent des secrets cosmiques.`, 
+    {
+        id: "Game of rols",
+        content: `Quatre héros partent pour <span class = "link required">l’île du roi sorcier-dragon</span> : <span class ="link">Archibald</span> (marchand), <span class = "link required">Evy</span> (archéologue maudite), <span class="link required">Raoul</span> (barde) et <span class ="link">Mimolin</span> (orphelin amnésique). Arrivés, ils découvrent un piège : le roi est un dragon qui dévore les invités. Survivants, ils doivent trouver une rançon (75 000 pièces d’or et un livre maudit) à Mirabilia. Leurs aventures les mènent à Nol (où ils déclenchent une catastrophe), puis à Torini, où Mimolin tombe amoureux, Evy apprend sa malédiction, et Raoul découvre sa paternité secrète. Après avoir livré la rançon, le roi les envoie chercher une sorcière pour la transmigration des âmes. Leur quête les mène au Bharat, où ils affrontent des dragons, des doubles maléfiques, et découvrent des secrets cosmiques.`,
         questions: [
-            {q:"Quel est le nom de la fête organisé sur l'île de Tenegriffe", r:"Fête de la pleine lune"},
-            {q:"Qui été chargé la reine Julia de négocier avec le roi sorcier-dragon ?", r:"Archibald"},
-            {q:"Qui porte une rune ?", r:"Evy"},
-            {q:"Qui est le meilleur ami de Kaheena D’Ashanul", r:"Raoul"},
-            {q:"A qui a échappé à un assassinat ?", r:"Mimolin"}
-        ], 
+            { q: "Quel est le nom de la fête organisé sur l'île de Tenegriffe", r: "Fête de la pleine lune" },
+            { q: "Qui été chargé la reine Julia de négocier avec le roi sorcier-dragon ?", r: "Archibald" },
+            { q: "Qui porte une rune ?", r: "Evy" },
+            { q: "Qui est le meilleur ami de Kaheena D’Ashanul", r: "Raoul" },
+            { q: "A qui a échappé à un assassinat ?", r: "Mimolin" }
+        ],
         links: [
             { name: "l’île du roi sorcier-dragon", info: "Tenegriffe, anciennement appelée simplement l'île du roi sorcier-dragon, est une île située dans la mer des eaux dansantes qui organise la \"fête de la pleine lune\" tous les 10 ans où tout est gratuit." },
             { name: "Archibald", info: "La famille Brisant-Choyeur, autrefois poissonniers et montés en puissance dans le commerce maritime, envoie l’impitoyable homme d’affaires, Archibald, chargé par la reine Julia de négocier et rapporter 2000 pièces d’or au roi sorcier-dragon." },
             { name: "Evy", info: "Une jeune noble avide de savoir et des choses brillantes, cachant des yeux complètement noirs derrière sa coiffure, porte une rune lui donnant un sort quotidien et souffre d’une malédiction liée au Codex Pontis." },
             { name: "Raoul", info: "Raoul, un barde mondialement connu qui promène amour et polémique, veut jouer à la fête de la pleine lune sur l’île du roi sorcier‑dragon et, avant d’y parvenir, quitte ses trois amis pour suivre sa meilleure amie Kaheena D’Ashanul à travers les mers du globe." },
             { name: "Mimolin", info: "Jeune amnésique convaincu d’être un roi, Mimolin traîne une bague et un balai, découvre un contrat de transfert d’âme à Nol, apprend ses liens avec le chevalier Bear et, entre prisons et flash‑backs meurtriers, échappe à un assassinat lié au Tigre de Jade." },
-        ] 
+        ]
     },
-    { 
-        id: "Lovely Complex", 
-        content: `Lovely Complex est l'histoire d'une relation entre deux personnages complexés par leur taille : <span class="link">Risa Koizumi</span>, jeune fille mesurant 170 cm ; et <span class = "link">Atsushi Ootani</span> haut de 156 cm.
+    {
+        id: "Lovely Complex",
+        content: `Lovely Complex est l'histoire d'une relation entre deux personnages complexés par leur taille : <span class="link required">Risa Koizumi</span>, jeune fille mesurant 170 cm ; et <span class = "link required">Atsushi Ootani</span> haut de 156 cm.
 En raison de leur taille et de leurs nombreuses chamailleries, ces deux personnages sont comparés à un duo d'humoristes, les All <span class= "link" >Hanshin Kyojin</span>. Mais leur taille les empêchent de s'épanouir complètement : ils manquent de confiance en eux pour ce qui est des relations avec les personnes du sexe opposé.
-Durant les vacances d'été, Risa et Atsushi tombent amoureux de <span class="link">deux autres personnages </span> et décident de s'entraider et de s'encourager mutuellement pour vaincre leurs complexes et essayer de séduire les élus de leurs coeurs... Mais il s'agit d'un <span class = "link">échec</span> pour eux deux.
-Cependant, à force de rester aux côtés d'Atsushi, Risa ne commence-t-elle pas à devenir amoureuse de lui ?`, 
+Durant les vacances d'été, Risa et Atsushi tombent amoureux de <span class="link">deux autres personnages </span> et décident de s'entraider et de s'encourager mutuellement pour vaincre leurs complexes et essayer de séduire les élus de leurs coeurs... Mais il s'agit d'un <span class = "link required">échec</span> pour eux deux.
+Cependant, à force de rester aux côtés d'Atsushi, Risa ne commence-t-elle pas à devenir amoureuse de lui ?`,
         questions: [
-            {q:"Quel instrument joue le personnage principal ?", r:"saxophone"},
-            {q:"Nobuko est...", r:"La petite amie de Nakao"},
-            {q:"Qui est le membre du duo Hanshin Kyojin le plus petit ?", r:"Hanshin"},
-            {q:"Qui est la première amoureuse de Atsushi ?", r:"Chiharu Tanaka"},
-            {q:"Quel promesse ont-ils faite ?", r:"Ne plus jamais aimer quelqu’un qui ne correspond pas à leur taille"}
-        ], 
+            { q: "Quel instrument joue le personnage principal ?", r: "saxophone" },
+            { q: "Nobuko est...", r: "La petite amie de Nakao" },
+            { q: "Qui est le membre du duo Hanshin Kyojin le plus petit ?", r: "Hanshin" },
+            { q: "Qui est la première amoureuse de Atsushi ?", r: "Chiharu Tanaka" },
+            { q: "Quel promesse ont-ils faite ?", r: "Ne plus jamais aimer quelqu’un qui ne correspond pas à leur taille" }
+        ],
         links: [
             { name: "Risa Koizumi", info: "Koizumiest une lycéenne passionnée de musique et membre du club de fanfare, où elle joue du saxophone, ce qui révèle son côté artistique et déterminé malgré ses complexes liés à sa taille." },
             { name: "Atsushi Ootani", info: "Atsushi Ootani, garçon populaire grâce à son poste dans l’équipe de basketball et complexé par sa taille (156 cm), forme avec Risa le duo All Hanshin-Kyojin ; il a du mal à comprendre ses sentiments pour Koizumi, finit par en tomber amoureux malgré ses prétendantes Mimi et Kanzaki, et compte Nakao et Suzuki parmi ses meilleurs amis, l’appelant parfois \"idiote\"." },
@@ -90,7 +90,7 @@ Cependant, à force de rester aux côtés d'Atsushi, Risa ne commence-t-elle pas
             { name: "Hanshin Kyojin", info: "Le duo comique All Hanshin-Kyojin est célèbre au Japon pour son humour basé sur le contraste de taille entre ses deux membres : l’un très petit (Hanshin) et l’autre très grand (Kyojin)." },
             { name: "deux autres personnages", info: "Risa Koizumi est d'abord amoureuse de Suzuki. Atsushi Ootani est d'abord amoureux de Chiharu Tanaka." },
             { name: "échec", info: "Risa et Atsushi échouent à séduire respectivement Suzuki et Chiharu à cause de leur taille, et se promettent alors de ne plus jamais aimer quelqu’un qui ne correspond pas à leur taille." },
-        ]   
+        ]
     }
 ];
 
@@ -107,7 +107,7 @@ const conditions = [
 function getAllPermutations(array) {
     let result = [];
     const permute = (arr, m = []) => {
-        if (arr.length === 0) { result.push(m); } 
+        if (arr.length === 0) { result.push(m); }
         else {
             for (let i = 0; i < arr.length; i++) {
                 let curr = arr.slice();
@@ -125,9 +125,9 @@ function getAllPermutations(array) {
 // ---------------------------
 function initExperience() {
     const pId = parseInt(new URLSearchParams(window.location.search).get('id'));
-    
+
     // 1. Définir les ordres possibles pour les textes (ex: 4 textes = 24 permutations)
-    const textOrders = getAllPermutations([0, 1, 2, 3]); 
+    const textOrders = getAllPermutations([0, 1, 2, 3]);
     // 2. Définir les ordres pour les conditions
     const conditionOrders = getAllPermutations([0, 1, 2, 3]);
 
@@ -169,7 +169,7 @@ window.onload = initExperience;
 
 function chargerTexteEtCondition() {
     const currentBlock = experimentalSequence[experimentalSequenceIndex];
-    
+
     // 1. Injecter le texte
     textElement.innerHTML = currentBlock.text.content;
 
@@ -179,8 +179,8 @@ function chargerTexteEtCondition() {
     domLinks.forEach((link, index) => {
         // --- RÉINITIALISATION ---
         // On s'assure qu'aucun lien ne garde son état "visité" du texte précédent
-        link.classList.remove('visited-link'); 
-        
+        link.classList.remove('visited-link');
+
         // --- VI : NOMBRE DE LIENS ---
         if (index >= currentBlock.condition.linksCount) {
             // Désactivation des liens excédentaires
@@ -192,7 +192,7 @@ function chargerTexteEtCondition() {
             // Activation
             link.style.pointerEvents = 'auto';
             link.style.cursor = 'pointer';
-            
+
             // la couleur est géré avec la class .visited-link
         }
     });
@@ -203,7 +203,7 @@ function texteSuivant() {
     if (experimentalSequenceIndex >= experimentalSequence.length) {
         envoyerDonnees();
     } else {
-        questionIndex = -1; 
+        questionIndex = -1;
         chargerTexteEtCondition();
         questionSuivante();
     }
@@ -264,10 +264,10 @@ submitBtn.addEventListener("click", () => {
 textElement.addEventListener("click", (e) => {
     // On vérifie que c'est bien un lien et qu'il n'est pas désactivé (pointerEvents)
     if (e.target.classList.contains("link") && e.target.style.pointerEvents !== 'none') {
-        
+
         const terme = e.target.textContent.trim();
         const currentBlock = experimentalSequence[experimentalSequenceIndex];
-        
+
         // 1. Chercher l'info pour la modal
         const lienTrouve = currentBlock.text.links.find(l => l.name === terme);
         modalText.textContent = lienTrouve ? lienTrouve.info : `Détails sur ${terme}...`;
@@ -306,7 +306,7 @@ function envoyerDonnees() {
         },
         "essais": reponses
     };
-    
+
     console.log("ENVOI FINAL", donnees);
     savedata(donnees);
 }
