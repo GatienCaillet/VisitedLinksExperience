@@ -6,6 +6,8 @@ let experimentalSequenceIndex = -1;
 let questionIndex = -1;
 let startTimeQuestion = 0;
 let experimentalSequence = [];
+let currentTextRevisits = 0;
+let clickedLinksInCurrentText = new Set();
 
 // ---------------------------
 //   CONFIGURATION DES TEXTES
@@ -17,7 +19,7 @@ const baseTexts = [
         content: `Dans un <span class= "link distracteur">futur lointain</span>, aux confins de l’<span class="link">Ultima Segmentum</span>, le <span class = "link distracteur">système</span> oublié de <span class = "link">Morologus Novem</span> (ou "Cap du Désespoir") refait surface près de la <span class = "link">Cicatrix Maledictum</span>. Après la chute de <span class ="link">Cadia</span>, <span class = "link distracteur">une flotte</span> de l’<span class = "link">Adeptus Mechanicus</span> y échoue, découvrant les vestiges d’une <span class = "link distracteur">civilisation</span> <span class = "link distracteur">humaine</span> avancée. Ce système, stratégique et ravagé par les marées du Warp, attire l’Imperium, les Orks, le Chaos et même les Nécrons, tous en quête d’un artéfact mystérieux enfoui sous sa surface. Les factions s’affrontent pour contrôler ce point clé entre <span class = "link distracteur">l’Imperium Sanctus</span> et <span class = "link distracteur">l’Imperium Nihilus</span>, tandis que son destin reste incertain, enveloppé dans les ombres du Warp.
 `,
         questions: [
-            { q: "Où se situe Ultima Segmentum ?", p:["est de Terra", "ouest de Terra", "nord de Terra", "sud de Terra"], r: "est de Terra" },
+            { q: "Où se situe Ultima Segmentum ?", p: ["est de Terra", "ouest de Terra", "nord de Terra", "sud de Terra"], r: "est de Terra" },
             { q: "Quel est le nom du système oublié ?", r: "Morologus Novem" },
             { q: "Quel est la zone connaissant des dangers extrems ?", r: "Cicatrix Maledictum" },
             { q: "Quelle planète stratégique est connue pour son importance militaire ?", r: "Cadia" },
@@ -85,11 +87,11 @@ En raison de leur taille et de leurs nombreuses chamailleries, ces deux personna
 Durant les vacances d'été, Risa et Atsushi tombent amoureux de <span class="link">deux autres personnages </span> et décident de s'entraider et de s'encourager mutuellement pour vaincre leurs complexes et essayer de séduire les élus de leurs coeurs... Mais il s'agit d'un <span class = "link required">échec</span> pour eux deux.
 Cependant, à force de rester aux côtés d'Atsushi, Risa ne commence-t-elle pas à devenir amoureuse de lui ?`,
         questions: [
-            { q: "Quel instrument joue le personnage principal ?",p:["Guitare","Piano","Violon","Saxophone"], r: "Saxophone" },
-            { q: "Qui est Nobuko ?",p:["La petite amie de Nakao","La sœur de Risa","La meilleure amie d'Atsushi","La mère de Nakao"], r: "La petite amie de Nakao" },
-            { q: "Qui est le membre du duo Hanshin Kyojin le plus petit ?", p:["Hanshin","Kyojin","Nakao","Atsushi"], r: "Hanshin" },
-            { q: "Qui est la première amoureuse de Atsushi ?",p:["Chiharu Tanaka","Mimi Kuroi","Kanzaki","Suzuki"], r: "Chiharu Tanaka" },
-            { q: "Quel sport fait l'un des personnages ?", p:["Football","Basketball","Tennis","Natation"], r: "Basketball" }  
+            { q: "Quel instrument joue le personnage principal ?", p: ["Guitare", "Piano", "Violon", "Saxophone"], r: "Saxophone" },
+            { q: "Qui est Nobuko ?", p: ["La petite amie de Nakao", "La sœur de Risa", "La meilleure amie d'Atsushi", "La mère de Nakao"], r: "La petite amie de Nakao" },
+            { q: "Qui est le membre du duo Hanshin Kyojin le plus petit ?", p: ["Hanshin", "Kyojin", "Nakao", "Atsushi"], r: "Hanshin" },
+            { q: "Qui est la première amoureuse de Atsushi ?", p: ["Chiharu Tanaka", "Mimi Kuroi", "Kanzaki", "Suzuki"], r: "Chiharu Tanaka" },
+            { q: "Quel sport fait l'un des personnages ?", p: ["Football", "Basketball", "Tennis", "Natation"], r: "Basketball" }
         ],
         links: [
             { name: "Risa Koizumi", info: "Koizumiest une lycéenne passionnée de musique et membre du club de fanfare, où elle joue du saxophone, ce qui révèle son côté artistique et déterminé malgré ses complexes liés à sa taille." },
@@ -157,7 +159,7 @@ function initExperience() {
     // Construction de la séquence avec mélange des questions
     experimentalSequence = myTextOrder.map((textIndex, i) => {
         const originalText = baseTexts[textIndex];
-        
+
         return {
             // On crée une copie de l'objet texte pour ne pas impacter baseTexts
             text: {
@@ -190,7 +192,7 @@ window.onload = initExperience;
 
 function chargerTexteEtCondition() {
     const currentBlock = experimentalSequence[experimentalSequenceIndex];
-    
+
     // 1. Injecter le texte HTML
     textElement.innerHTML = currentBlock.text.content;
 
@@ -236,6 +238,10 @@ function texteSuivant() {
     if (experimentalSequenceIndex >= experimentalSequence.length) {
         envoyerDonnees();
     } else {
+        // RÉINITIALISATION AU CHANGEMENT DE TEXTE
+        currentTextRevisits = 0;
+        clickedLinksInCurrentText.clear();
+
         questionIndex = -1;
         chargerTexteEtCondition();
         questionSuivante();
@@ -252,7 +258,7 @@ function questionSuivante() {
     } else {
         const targetQuestion = currentText.questions[questionIndex];
         questionElement.innerHTML = targetQuestion.q;
-        
+
         const choicesContainer = document.getElementById("choices-container");
         choicesContainer.innerHTML = ""; // On vide les anciens choix
 
@@ -260,13 +266,13 @@ function questionSuivante() {
         const shuffledChoices = shuffleArray([...targetQuestion.p]);
 
         shuffledChoices.forEach(choiceText => {
-        const btn = document.createElement("button");
-        btn.textContent = choiceText;
-        btn.className = "choice-btn";
-        // On passe l'événement 'e' pour récupérer la cible (le bouton cliqué)
-        btn.onclick = (e) => validerReponse(choiceText, e.target); 
-        choicesContainer.appendChild(btn);
-    });
+            const btn = document.createElement("button");
+            btn.textContent = choiceText;
+            btn.className = "choice-btn";
+            // On passe l'événement 'e' pour récupérer la cible (le bouton cliqué)
+            btn.onclick = (e) => validerReponse(choiceText, e.target);
+            choicesContainer.appendChild(btn);
+        });
 
         startTimeQuestion = Date.now();
     }
@@ -277,7 +283,7 @@ function questionSuivante() {
 // ---------------------------
 
 function validerReponse(reponseSelectionnee, btnElement) {
-    
+
     const currentBlock = experimentalSequence[experimentalSequenceIndex];
     const targetQuestion = currentBlock.text.questions[questionIndex];
 
@@ -295,6 +301,8 @@ function validerReponse(reponseSelectionnee, btnElement) {
         "question": targetQuestion.q,
         "reponse": reponseSelectionnee,
         "correcte": isCorrect,
+        "revisits_cumulative": currentTextRevisits, // Nombre de revisites depuis le début du texte
+        "unique_links_clicked": clickedLinksInCurrentText.size,
         "time_ms": duration,
         "timestamp": Date.now()
     });
@@ -318,6 +326,14 @@ textElement.addEventListener("click", (e) => {
     if (e.target.classList.contains("link") && e.target.style.pointerEvents !== 'none') {
 
         const terme = e.target.textContent.trim();
+
+        // Tracking persistant sur tout le bloc de texte
+        if (clickedLinksInCurrentText.has(terme)) {
+            currentTextRevisits++;
+        } else {
+            clickedLinksInCurrentText.add(terme);
+        }
+
         const currentBlock = experimentalSequence[experimentalSequenceIndex];
 
         // 1. Chercher l'info pour la modal
