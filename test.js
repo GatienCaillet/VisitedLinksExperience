@@ -14,7 +14,7 @@ let experimentalSequence = [];
 const baseTexts = [
     {
         id: "Warhammer",
-        content: `Dans un <span class= "link distracteur"futur lointain</span>, aux confins de <span class="link">l’Ultima Segmentum</span>, le <span class = "link distracteur">système</span> oublié de <span class = "link">Morologus Novem</span> (ou "Cap du Désespoir") refait surface près de la <span class = "link">Cicatrix Maledictum</span>. Après la chute de <span class ="link">Cadia</span>, <span class = "link distracteur">une flotte</span> de l’<span class = "link">Adeptus Mechanicus</span> y échoue, découvrant les vestiges d’une <span class = "link distracteur">civilisation</span> <span class = "link distracteur">humaine</span> avancée. Ce système, stratégique et ravagé par les marées du Warp, attire l’Imperium, les Orks, le Chaos et même les Nécrons, tous en quête d’un artéfact mystérieux enfoui sous sa surface. Les factions s’affrontent pour contrôler ce point clé entre <span class = "link distracteur">l’Imperium Sanctus</span> et <span class = "link distracteur">l’Imperium Nihilus</span>, tandis que son destin reste incertain, enveloppé dans les ombres du Warp.
+        content: `Dans un <futur class= "link distracteur">futur lointain</span>, aux confins de l’<span class="link">Ultima Segmentum</span>, le <span class = "link distracteur">système</span> oublié de <span class = "link">Morologus Novem</span> (ou "Cap du Désespoir") refait surface près de la <span class = "link">Cicatrix Maledictum</span>. Après la chute de <span class ="link">Cadia</span>, <span class = "link distracteur">une flotte</span> de l’<span class = "link">Adeptus Mechanicus</span> y échoue, découvrant les vestiges d’une <span class = "link distracteur">civilisation</span> <span class = "link distracteur">humaine</span> avancée. Ce système, stratégique et ravagé par les marées du Warp, attire l’Imperium, les Orks, le Chaos et même les Nécrons, tous en quête d’un artéfact mystérieux enfoui sous sa surface. Les factions s’affrontent pour contrôler ce point clé entre <span class = "link distracteur">l’Imperium Sanctus</span> et <span class = "link distracteur">l’Imperium Nihilus</span>, tandis que son destin reste incertain, enveloppé dans les ombres du Warp.
 `,
         questions: [
             { q: "Où se situe Ultima Segmentum ?", r: "est de Terra" },
@@ -24,7 +24,7 @@ const baseTexts = [
             { q: "Quel est la faction chargé de la technologie et de la science ?", r: "Adeptus Mechanicus" }
         ],
         links: [
-            { name: "l'Ultima Segmentum", info: "L'Ultima Segmentum est un segment de l'Imperium situé à l'extrême Est de l'Imperium" },
+            { name: "Ultima Segmentum", info: "L'Ultima Segmentum est un segment de l'Imperium situé à l'extrême Est de l'Imperium" },
             // Les infos suivantes sont à revoir, j'ai mis des placeholders pour l'instant
             { name: "Morologus Novem", info: "Morologus Novem est un système oublié situé à l'extrême Est de l'Imperium, connu pour ses marées du Warp et son artéfact mystérieux." },
             { name: "Cicatrix Maledictum", info: "La Cicatrix Maledictum est une zone de l'Imperium marquée par des effets du Warp et connais des anomalies et des dangers extrêmes." },
