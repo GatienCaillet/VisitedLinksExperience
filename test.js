@@ -83,9 +83,9 @@ const baseTexts = [
     {
         id: "Lovely Complex",
         content: `Lovely Complex est l'histoire d'une relation entre deux personnages complexés par leur taille : <span class="link required">Risa Koizumi</span>, jeune fille mesurant 170 cm ; et <span class = "link required">Atsushi Ootani</span> haut de 156 cm.
-En raison de leur taille et de leurs nombreuses chamailleries, ces deux personnages sont comparés à un duo d'humoristes, les All <span class= "link" >Hanshin Kyojin</span>. Mais leur taille les empêchent de s'épanouir complètement : ils manquent de confiance en eux pour ce qui est des relations avec les personnes du sexe opposé.
-Durant les vacances d'été, Risa et Atsushi tombent amoureux de <span class="link">deux autres personnages </span> et décident de s'entraider et de s'encourager mutuellement pour vaincre leurs complexes et essayer de séduire les élus de leurs coeurs... Mais il s'agit d'un <span class = "link required">échec</span> pour eux deux.
-Cependant, à force de rester aux côtés d'Atsushi, Risa ne commence-t-elle pas à devenir amoureuse de lui ?`,
+En raison de leur taille et de leurs nombreuses <span class="link distracteur">chamailleries</span>, ces deux personnages sont comparés à un duo d'humoristes, les All <span class= "link required" >Hanshin Kyojin</span>. Mais leur taille les empêchent de s'<span class="link distracteur">épanouir</span> complètement : ils manquent de confiance en eux pour ce qui est des relations avec les personnes du sexe opposé.
+Durant les <span class="link distracteur">vacances</span> d'été, Risa et Atsushi tombent amoureux de <span class="link required">deux autres personnages </span> et décident de s'entraider et de s'<span class="link distracteur">encourager</span> mutuellement pour <span class="link distracteur">vaincre</span> leurs <span class= "link distracteur">complexes</span> et essayer de <span class="link distracteur">séduire</span> les élus de leurs <span class="link distracteur">coeurs</span>... Mais il s'agit d'un <span class = "link distracteur">échec</span> pour <span class="link distracteur">eux</span> deux.
+Cependant, à force de rester aux côtés d'Atsushi, Risa ne commence-t-elle pas à <span class="link distracteur">devenir</span> <span class="link distracteur">amoureuse</span> de lui ?`,
         questions: [
             { q: "Quel instrument joue le personnage principal ?", p: ["Guitare", "Piano", "Violon", "Saxophone"], r: "Saxophone" },
             { q: "Qui est Nobuko ?", p: ["La petite amie de Nakao", "La sœur de Risa", "La meilleure amie d'Atsushi", "La mère de Nakao"], r: "La petite amie de Nakao" },
@@ -99,7 +99,27 @@ Cependant, à force de rester aux côtés d'Atsushi, Risa ne commence-t-elle pas
             { name: "Nakao", info: "Nakao est un garçon très mignon et gentil, toujours prêt à consoler ses amis et à mettre le doigt là où ça fait mal, provoquant souvent Ootani ; follement amoureux de sa petite amie Nobuko et décidé à passer sa vie avec elle." },
             { name: "Hanshin Kyojin", info: "Le duo comique All Hanshin-Kyojin est célèbre au Japon pour son humour basé sur le contraste de taille entre ses deux membres : l’un très petit (Hanshin) et l’autre très grand (Kyojin)." },
             { name: "deux autres personnages", info: "Risa Koizumi est d'abord amoureuse de Suzuki. Atsushi Ootani est d'abord amoureux de Chiharu Tanaka." },
+            // 5 liens distracteurs
             { name: "échec", info: "Risa et Atsushi échouent à séduire respectivement Suzuki et Chiharu à cause de leur taille, et se promettent alors de ne plus jamais aimer quelqu’un qui ne correspond pas à leur taille." },
+            { name: "vacances", info: "Pendant les vacances d'été, Risa et Atsushi tombent amoureux de deux autres personnages et décident de s'entraider pour vaincre leurs complexes et essayer de séduire les élus de leurs cœurs, mais ils échouent tous les deux." },
+            { name: "amoureuse", info: "À force de rester aux côtés d'Atsushi, Risa commence à développer des sentiments pour lui, réalisant qu'elle est amoureuse de lui malgré leurs complexes respectifs." },
+            { name: "complexés", info: "Risa et Atsushi sont tous les deux complexés par leur taille : Risa mesure 170 cm, ce qui est considéré comme grand pour une fille, tandis qu'Atsushi mesure 156 cm, ce qui est considéré comme petit pour un garçon." },
+            { name: "humoristes", info: "En raison de leur taille et de leurs nombreuses chamailleries, Risa et Atsushi sont souvent comparés à un duo d'humoristes japonais célèbres, les All Hanshin-Kyojin, connus pour leur contraste de taille." },
+            // Ajout de liens distracteurs supplémentaires pour atteindre 30 liens
+            { name: "confiance", info: "Risa et Atsushi apprennent à se faire confiance malgré leurs différences de taille, ce qui renforce leur relation." },
+            { name: "relation", info: "La relation entre Risa et Atsushi évolue au fil du temps, passant de la simple amitié à une relation amoureuse profonde et sincère." },
+            { name: "chamailleries", info: "Les chamailleries fréquentes entre Risa et Atsushi sont un aspect central de leur dynamique, ajoutant de l'humour et de la tension à leur relation." },
+            { name: "encourager", info: "Risa et Atsushi s'encouragent mutuellement à surmonter leurs complexes et à poursuivre leurs objectifs, montrant l'importance du soutien dans une relation." },
+            { name: "séduire", info: "Risa et Atsushi tentent de séduire respectivement Suzuki et Chiharu, mais échouent à cause de leurs complexes liés à leur taille." },
+            { name: "épanouir", info: "Risa et Atsushi ont du mal à s'épanouir pleinement en raison de leurs complexes liés à leur taille, ce qui affecte leur confiance en eux et leurs interactions avec les autres." },
+            { name: "devenir", info: "Au fil de l'histoire, Risa et Atsushi développent des sentiments l'un pour l'autre, réalisant qu'ils sont amoureux malgré leurs complexes respectifs." },
+            { name: "eux", info: "Risa et Atsushi finissent par tomber amoureux l'un de l'autre malgré leurs différences de taille et leurs complexes respectifs." },
+            { name: "coeurs", info: "Risa et Atsushi tentent de séduire respectivement Suzuki et Chiharu, mais échouent à cause de leurs complexes liés à leur taille, ce qui les pousse à se tourner l'un vers l'autre." },
+            { name: "vaincre", info: "Risa et Atsushi s'entraident pour vaincre leurs complexes liés à leur taille, ce qui les rapproche et les aide à développer une relation amoureuse." },
+            { name: "rester", info: "À force de rester aux côtés d'Atsushi, Risa commence à développer des sentiments pour lui, réalisant qu'elle est amoureuse de lui malgré leurs complexes respectifs." },
+            { name: "complexes", info: "Risa et Atsushi sont tous les deux complexés par leur taille, ce qui affecte leur confiance en eux et leurs interactions avec les autres, mais ils finissent par surmonter ces complexes grâce à leur relation." },
+            
+
         ]
     }
 ];
