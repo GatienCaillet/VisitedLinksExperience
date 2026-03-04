@@ -259,9 +259,15 @@ fieldset {
     background-color: #e0e0e0;
 }
 
-#erreur-message {
-    display: none;
-    color: red;
-    text-align: center;
-    margin-top: 10px;
+.choice-btn:disabled {
+    background-color: #e0e0e0; /* Gris clair */
+    color: #a0a0a0;           /* Texte estompé */
+    cursor: not-allowed;      /* Curseur de blocage */
+    border: 1px solid #d0d0d0;
+    text-decoration: line-through; /* Optionnel : barre le texte */
+}
+
+.btn-error {
+    background-color: #ffebee !important; 
+    border-color: #ffcdd2 !important;
 }

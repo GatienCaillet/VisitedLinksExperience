@@ -86,7 +86,7 @@ Durant les vacances d'été, Risa et Atsushi tombent amoureux de <span class="li
 Cependant, à force de rester aux côtés d'Atsushi, Risa ne commence-t-elle pas à devenir amoureuse de lui ?`,
         questions: [
             { q: "Quel instrument joue le personnage principal ?",p:["Guitare","Piano","Violon","Saxophone"], r: "Saxophone" },
-            { q: "Nobuko est...",p:["La petite amie de Nakao","La sœur de Risa","La meilleure amie d'Atsushi","La mère de Nakao"], r: "La petite amie de Nakao" },
+            { q: "Qui est Nobuko ?",p:["La petite amie de Nakao","La sœur de Risa","La meilleure amie d'Atsushi","La mère de Nakao"], r: "La petite amie de Nakao" },
             { q: "Qui est le membre du duo Hanshin Kyojin le plus petit ?", p:["Hanshin","Kyojin","Nakao","Atsushi"], r: "Hanshin" },
             { q: "Qui est la première amoureuse de Atsushi ?",p:["Chiharu Tanaka","Mimi Kuroi","Kanzaki","Suzuki"], r: "Chiharu Tanaka" },
             { q: "Quel sport fait l'un des personnages ?", p:["Football","Basketball","Tennis","Natation"], r: "Basketball" }  
@@ -260,12 +260,13 @@ function questionSuivante() {
         const shuffledChoices = shuffleArray([...targetQuestion.p]);
 
         shuffledChoices.forEach(choiceText => {
-            const btn = document.createElement("button");
-            btn.textContent = choiceText;
-            btn.className = "choice-btn"; // Pour ton CSS
-            btn.onclick = () => validerReponse(choiceText);
-            choicesContainer.appendChild(btn);
-        });
+        const btn = document.createElement("button");
+        btn.textContent = choiceText;
+        btn.className = "choice-btn";
+        // On passe l'événement 'e' pour récupérer la cible (le bouton cliqué)
+        btn.onclick = (e) => validerReponse(choiceText, e.target); 
+        choicesContainer.appendChild(btn);
+    });
 
         startTimeQuestion = Date.now();
     }
@@ -275,8 +276,7 @@ function questionSuivante() {
 //      VALIDATION & DATA
 // ---------------------------
 
-function validerReponse(reponseSelectionnee) {
-    desafficherErreur();
+function validerReponse(reponseSelectionnee, btnElement) {
     
     const currentBlock = experimentalSequence[experimentalSequenceIndex];
     const targetQuestion = currentBlock.text.questions[questionIndex];
@@ -300,8 +300,9 @@ function validerReponse(reponseSelectionnee) {
     });
 
     if (!isCorrect) {
-        afficherErreur();
-        // Optionnel : on peut griser le bouton cliqué pour forcer un autre choix
+        // EFFET VISUEL : Griser le bouton
+        btnElement.disabled = true;
+        btnElement.classList.add("btn-error");
     } else {
         questionSuivante();
     }
@@ -334,17 +335,6 @@ textElement.addEventListener("click", (e) => {
 // Gestion du modal
 closeBtn.onclick = () => modal.style.display = "none";
 window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; };
-
-function afficherErreur() {
-    if (erreurDiv) {
-        erreurDiv.textContent = "Réponse incorrecte. Réessayez.";
-        erreurDiv.style.display = "block";
-    }
-}
-
-function desafficherErreur() {
-    if (erreurDiv) erreurDiv.style.display = "none";
-}
 
 function envoyerDonnees() {
     const donnees = {
