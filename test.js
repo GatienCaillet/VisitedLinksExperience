@@ -8,6 +8,7 @@ let startTimeQuestion = 0;
 let experimentalSequence = [];
 let currentTextRevisits = 0;
 let clickedLinksInCurrentText = new Set();
+let currentReadingDuration = 0;
 
 // ---------------------------
 //   CONFIGURATION DES TEXTES
@@ -192,6 +193,38 @@ window.onload = initExperience;
 
 function chargerTexteEtCondition() {
     const currentBlock = experimentalSequence[experimentalSequenceIndex];
+    const reponseContainer = document.querySelector(".reponse-container");
+
+    // 1. Masquer les questions et afficher le texte
+    reponseContainer.classList.add("hidden");
+    textElement.innerHTML = currentBlock.text.content;
+
+    // 2. Créer ou récupérer le bouton "Lecture terminée"
+    let readBtn = document.getElementById("btn-read-done");
+    if (!readBtn) {
+        readBtn = document.createElement("button");
+        readBtn.id = "btn-read-done";
+        readBtn.textContent = "J'ai fini de lire, passer aux questions";
+        // On insère le bouton avant le conteneur de réponse
+        reponseContainer.parentNode.insertBefore(readBtn, reponseContainer);
+    }
+    readBtn.style.display = "block";
+
+    // 3. Lancer le timer de lecture
+    startTimeReading = Date.now();
+
+    // 4. Action au clic
+    readBtn.onclick = () => {
+        // Calcul et stockage du temps de lecture
+        currentReadingDuration = Date.now() - startTimeReading;
+
+        // Cacher le bouton et montrer le conteneur de questions
+        readBtn.style.display = "none";
+        reponseContainer.classList.remove("hidden");
+
+        // Démarrer les questions
+        questionSuivante();
+    };
 
     // 1. Injecter le texte HTML
     textElement.innerHTML = currentBlock.text.content;
@@ -238,13 +271,14 @@ function texteSuivant() {
     if (experimentalSequenceIndex >= experimentalSequence.length) {
         envoyerDonnees();
     } else {
-        // RÉINITIALISATION AU CHANGEMENT DE TEXTE
+        // Reset du tracking cumulatif
         currentTextRevisits = 0;
         clickedLinksInCurrentText.clear();
-
         questionIndex = -1;
+
         chargerTexteEtCondition();
-        questionSuivante();
+        // ATTENTION : Ne pas appeler questionSuivante() ici ! 
+        // C'est le bouton de lecture qui le fera.
     }
 }
 
@@ -303,6 +337,7 @@ function validerReponse(reponseSelectionnee, btnElement) {
         "correcte": isCorrect,
         "revisits_cumulative": currentTextRevisits, // Nombre de revisites depuis le début du texte
         "unique_links_clicked": clickedLinksInCurrentText.size,
+        "reading_time_ms": currentReadingDuration,
         "time_ms": duration,
         "timestamp": Date.now()
     });
