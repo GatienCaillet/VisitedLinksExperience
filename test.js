@@ -66,14 +66,23 @@ const baseTexts = [
     {
     id: "Game of Rols",
     // 30 liens au total : 5 Required (Archibald, Evy, Mimolin, Raoul, Omelas) + 25 Distracteurs
-    content: `Quatre héros partent pour une <span class="link distracteur">île</span> mystérieuse : <span class="link required">Archibald</span> (le marchand), Evy (l'archéologue) qui <span class="link distracteur">tente</span> de <span class="link distracteur">fuir</span> son <span class="link distracteur">passé</span>. L'<span class="link required">archéologue</span> porte une <span class="link distracteur">rune</span>, tandis que Raoul (le barde) <span class="link distracteur">chante</span> ses <span class="link distracteur">exploits</span> dans des <span class="link distracteur">tavernes</span> sombres. Au centre de leurs <span class="link distracteur">tourments</span>, le jeune <span class="link required">Mimolin</span> (l'orphelin amnésique) <span class="link distracteur">cherche</span> désespérément à <span class="link distracteur">comprendre</span> ses <span class="link distracteur">flash-backs</span>. Ils <span class="link distracteur">traversent</span> des <span class="link distracteur">régions</span> isolées où <span class="link required">Raoul</span> compose ses <span class="link distracteur">poèmes</span>, évitant les <span class="link distracteur">dragons</span> et les <span class="link distracteur">assassins</span> de la <span class="link distracteur">guilde</span>. Enfin, sous le <span class="link distracteur">palais</span> du maharaja, ils découvrent la mystérieuse <span class="link distracteur">Omelas</span>, une <span class="link distracteur">créature</span> dont la <span class="link required">destinée</span> <span class="link distracteur">inquiète</span> les <span class="link distracteur">dieux</span> eux-mêmes.`,
+    content: `Quatre héros partent pour une <span class="link distracteur">île</span> mystérieuse : <span class="link required">Archibald</span> (le <span class="link distracteur">marchand</span>), 
+    Evy (l'archéologue) qui <span class="link distracteur">tente</span> de fuir son <span class="link distracteur">passé</span>.
+     L'<span class="link required">archéologue</span> porte une <span class="link distracteur">rune</span>, tandis que Raoul (le <span class="link distracteur">barde</span>) <span class="link distracteur">chante</span> 
+     ses <span class="link distracteur">exploits</span> dans des <span class="link distracteur">tavernes</span> sombres. Au centre de leurs <span class="link distracteur">tourments</span>, 
+     le jeune <span class="link required">Mimolin</span> (l'orphelin amnésique) <span class="link distracteur">cherche</span> désespérément à <span class="link distracteur">comprendre</span> 
+     ses <span class="link distracteur">flash-backs</span>. Ils <span class="link distracteur">traversent</span> des <span class="link distracteur">régions</span> isolées où
+      <span class="link required">Raoul</span> compose ses <span class="link distracteur">poèmes</span>, évitant les <span class="link distracteur">dragons</span> et les
+       <span class="link distracteur">assassins</span> de la <span class="link distracteur">guilde</span>. Enfin, sous le <span class="link distracteur">palais</span> 
+       du <span class="link distracteur">maharaja</span>, ils découvrent la mystérieuse <span class="link distracteur">Omelas</span>, une <span class="link distracteur">créature</span> dont la 
+       <span class="link required">destinée</span> <span class="link distracteur">inquiète</span> les <span class="link distracteur">dieux</span> eux-mêmes.`,
     
     questions: [
         { q: "Quel est le tic nerveux du marchand ?", p: ["Fait craquer ses doigts", "Se gratter", "Cligner les yeux", "Bouger la jambe"], r: "Fait craquer ses doigts" },
         { q: "Quel objet insolite Evy collectionne-t-elle ?", p: ["Plumes de corbeau", "Pierre de lune", "Livre de sorts", "Baguette magique"], r: "Plumes de corbeau" },
         { q: "Qui garde précieusement un médaillon en argent ?", p: ["Mimolin", "Archibald", "Evy", "Raoul"], r: "Mimolin" },
         { q: "Quelle est la particularité de la guitare de Raoul ?", p: ["Elle est en bois d'ébène enchanté", "Elle est en or", "Elle a une tête enargentée", "Elle a des cordes en soie"], r: "Elle est en bois d'ébène enchanté" },
-        { q: "Quelle est la véritable nature d'Omelas ?", p: ["Une créature déstinée à rester dans son palais", "Un esprit maléfique qui destiné à tuer qui la regarde", "Le phantome de l'île Amaru", "Un dieu ancien qui aide nos 4 amis"], r: "Une entité vivante et pensante faite de lumière pure" }
+        { q: "Quelle est la véritable nature d'Omelas ?", p: ["Une créature enfermée sous le palais", "Un esprit maléfique qui destiné à tuer qui la regarde", "Le phantome de l'île Amaru", "Un dieu ancien qui aide nos 4 héros"], r: "Une créature enfermée sous le palais" }
     ],
     
     links: [
@@ -85,19 +94,31 @@ const baseTexts = [
         { name: "destinée", info: "Loin d'être un monstre, Omelas est une entité vivante et pensante faite de lumière pure, emprisonnée sous le palais." },
         
         // 25 DISTRACTEURS
-        { name: "île", info: "Territoire entouré d'eau." }, { name: "tente", info: "Action de chercher à faire quelque chose." },
-        { name: "fuir", info: "Action d'échapper à une menace." }, { name: "passé", info: "Événements survenus avant le présent." },
-        { name: "rune", info: "Symbole magique ancien." }, { name: "chante", info: "Utilisation de la voix pour la musique." },
-        { name: "exploits", info: "Actions héroïques remarquables." }, { name: "tavernes", info: "Lieux de sociabilité." },
-        { name: "tourments", info: "Souffrances morales intenses." }, { name: "cherche", info: "Action d'essayer de trouver." },
-        { name: "comprendre", info: "Action de saisir le sens." }, { name: "flash-backs", info: "Souvenir soudain et vif." },
-        { name: "traversent", info: "Action de passer à travers." }, { name: "régions", info: "Zones géographiques." },
-        { name: "poèmes", info: "Textes littéraires rimés." }, { name: "dragons", info: "Créatures légendaires." },
-        { name: "assassins", info: "Tueurs professionnels." }, { name: "guilde", info: "Association de professionnels." },
-        { name: "palais", info: "Demeure somptueuse d'un souverain." }, { name: "créature", info: "Être vivant." },
-        { name: "Omelas", info: "Sort inéluctable." }, { name: "inquiète", info: "Provoque de l'anxiété." },
-        { name: "dieux", info: "Entités supérieures." }, { name: "marchand", info: "Personne faisant du commerce." },
-        { name: "barde", info: "Artiste musicien et poète." }
+        { name: "île", info: "L'île Amaru est entourée d'eau empoisonnée. Elle se situe proche de l'île Lafait." }, 
+        { name: "tente", info: "Elle a dû mal car ses pensées sont trop sombres" },
+        { name: "passé", info: "Elle a dû quitter l'île Lafait à cause d'un problème d'argent." },
+        { name: "rune", info: "Symbole magique ancien qui lui permet de lancer des sorts." }, 
+        { name: "chante", info: "Il chante des musiques en jouant d'un instrument." },
+        { name: "exploits", info: "Ses musiques racontent ses aventures dans ce monde fantastique." }, 
+        { name: "tavernes", info: "La taverne du Dragon Noir, est un lieu où les assassins se rassemblent." },
+        { name: "tourments", info: "Ils sont encore sous l'emprise d'un sort." }, 
+        { name: "cherche", info: "Il veut comprendre ce qui lui arrive." },
+        { name: "comprendre", info: "Il cherche à donner un sens à ses pensées." }, 
+        { name: "flash-backs", info: "Il a des souvenirs soudains et vifs de sa famille assassinée." },
+        { name: "traversent", info: "Il se balade dans tous types de paysages (montagnes, plaines, forêts, etc)." }, 
+        { name: "régions", info: "Les régions ne sont pas très connues car dangereuse pour la plus part des gens." },
+        { name: "poèmes", info: "Il écrit des poèmes sur ses aventures." }, 
+        { name: "dragons", info: "Créatures légendaires dont la tarverne tire son nom : Taverne du Dragon Noir" },
+        { name: "assassins", info: "Tueurs professionnels qui ont assassiné la famille du pauvre Mimolin." }, 
+        { name: "guilde", info: "Association de professionnels chassant les créatures les plus féroces." },
+        { name: "palais", info: "Demeure somptueuse du souverain de l'île Amaru" }, 
+        { name: "créature", info: "Omelas est une créature de lumière." },
+        { name: "Omelas", info: "Elle est une vielle créature dangereuse et est agée de plus de 10000 ans." }, 
+        { name: "inquiète", info: "Elle inquiète les dieux car elle risque d'angloutir les humains vivants à coté d'elle." },
+        { name: "dieux", info: "Entités supérieures qui dirige le monde de Rols" }, 
+        { name: "marchand", info: "Il fait du commerce pendant ses aventures." },
+        { name: "barde", info: "Il fait de la musique et raconte ses aventures." },
+        { name: "marahaja", info: "Le souverain de l'île Amaru." }
     ]
 },
     {
