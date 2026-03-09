@@ -66,14 +66,14 @@ const baseTexts = [
     {
     id: "Game of Rols",
     // 30 liens au total : 5 Required (Archibald, Evy, Mimolin, Raoul, Omelas) + 25 Distracteurs
-    content: `Quatre héros partent pour une <span class="link distracteur">île</span> mystérieuse : <span class="link required">Archibald</span> (le marchand), Evy (l'archéologue) qui <span class="link distracteur">tente</span> de <span class="link distracteur">fuir</span> son <span class="link distracteur">passé</span>. La <span class="link required">Evy</span> porte une <span class="link distracteur">rune</span>, tandis que Raoul (le barde) <span class="link distracteur">chante</span> ses <span class="link distracteur">exploits</span> dans des <span class="link distracteur">tavernes</span> sombres. Au centre de leurs <span class="link distracteur">tourments</span>, le jeune <span class="link required">Mimolin</span> (l'orphelin amnésique) <span class="link distracteur">cherche</span> désespérément à <span class="link distracteur">comprendre</span> ses <span class="link distracteur">flash-backs</span>. Ils <span class="link distracteur">traversent</span> des <span class="link distracteur">régions</span> isolées où <span class="link required">Raoul</span> compose ses <span class="link distracteur">poèmes</span>, évitant les <span class="link distracteur">dragons</span> et les <span class="link distracteur">assassins</span> de la <span class="link distracteur">guilde</span>. Enfin, sous le <span class="link distracteur">palais</span> du maharaja, ils découvrent la mystérieuse <span class="link required">Omelas</span>, une <span class="link distracteur">créature</span> dont la <span class="link distracteur">destinée</span> <span class="link distracteur">inquiète</span> les <span class="link distracteur">dieux</span> eux-mêmes.`,
+    content: `Quatre héros partent pour une <span class="link distracteur">île</span> mystérieuse : <span class="link required">Archibald</span> (le marchand), Evy (l'archéologue) qui <span class="link distracteur">tente</span> de <span class="link distracteur">fuir</span> son <span class="link distracteur">passé</span>. L'<span class="link required">archéologue</span> porte une <span class="link distracteur">rune</span>, tandis que Raoul (le barde) <span class="link distracteur">chante</span> ses <span class="link distracteur">exploits</span> dans des <span class="link distracteur">tavernes</span> sombres. Au centre de leurs <span class="link distracteur">tourments</span>, le jeune <span class="link required">Mimolin</span> (l'orphelin amnésique) <span class="link distracteur">cherche</span> désespérément à <span class="link distracteur">comprendre</span> ses <span class="link distracteur">flash-backs</span>. Ils <span class="link distracteur">traversent</span> des <span class="link distracteur">régions</span> isolées où <span class="link required">Raoul</span> compose ses <span class="link distracteur">poèmes</span>, évitant les <span class="link distracteur">dragons</span> et les <span class="link distracteur">assassins</span> de la <span class="link distracteur">guilde</span>. Enfin, sous le <span class="link distracteur">palais</span> du maharaja, ils découvrent la mystérieuse <span class="link required">Omelas</span>, une <span class="link distracteur">créature</span> dont la <span class="link distracteur">destinée</span> <span class="link distracteur">inquiète</span> les <span class="link distracteur">dieux</span> eux-mêmes.`,
     
     questions: [
-        { q: "Quel est le tic nerveux d'Archibald ?", r: "Fait craquer ses doigts" },
-        { q: "Quel objet insolite Evy collectionne-t-elle ?", r: "Plumes de corbeau" },
-        { q: "Quel est le seul souvenir que Mimolin a gardé de sa famille ?", r: "Un médaillon en argent" },
-        { q: "Quelle est la particularité de la guitare de Raoul ?", r: "Bois d'ébène enchanté" },
-        { q: "Quelle est la véritable nature d'Omelas ?", r: "Une entité vivante et pensante faite de lumière pure" }
+        { q: "Quel est le tic nerveux d'Archibald ?", p: ["Fait craquer ses doigts", "Se gratter", "Cligner les yeux", "Bouger la jambe"], r: "Fait craquer ses doigts" },
+        { q: "Quel objet insolite Evy collectionne-t-elle ?", p: ["Plumes de corbeau", "Pierre de lune", "Livre de sorts", "Baguette magique"], r: "Plumes de corbeau" },
+        { q: "Quel est le seul souvenir que Mimolin a gardé de sa famille ?", p: ["Un médaillon en argent", "Une lettre", "Un portrait", "Un livre"], r: "Un médaillon en argent" },
+        { q: "Quelle est la particularité de la guitare de Raoul ?", p: ["Elle est en bois d'ébène enchanté", "Elle est en or", "Elle a une tête enargentée", "Elle a des cordes en soie"], r: "Bois d'ébène enchanté" },
+        { q: "Quelle est la véritable nature d'Omelas ?", p: ["Une entité vivante et pensante faite de lumière pure", "Un esprit maléfique", "Une créature mythique", "Un dieu ancien"], r: "Une entité vivante et pensante faite de lumière pure" }
     ],
     
     links: [
@@ -185,45 +185,37 @@ function shuffleArray(array) {
 //      INITIALISATION
 // ---------------------------
 function initExperience() {
-    // Récupération de l'ID (on utilise 1 par défaut si absent ou invalide)
     const urlParams = new URLSearchParams(window.location.search);
     const pId = parseInt(urlParams.get('id')) || 1;
 
-    // Génération de toutes les permutations possibles (4! = 24 pour chaque)
-    const textOrders = getAllPermutations([0, 1, 2, 3]);
-    const conditionOrders = getAllPermutations([0, 1, 2, 3]);
-
-    // Calcul des index pour les 576 combinaisons
-    // (pId - 1) permet de commencer à l'index 0 pour l'ID 1
-    const totalTextPermutations = textOrders.length; // 24
+    // 1. On récupère toutes les permutations possibles uniquement pour les conditions
+    const conditionOrders = getAllPermutations([0, 1, 2, 3]); // 24 possibilités
     
-    // L'index du texte change tous les 1, l'index de condition tous les 24
-    const textIdx = (pId - 1) % totalTextPermutations;
-    const condIdx = Math.floor((pId - 1) / totalTextPermutations) % conditionOrders.length;
-
-    const myTextOrder = textOrders[textIdx];
+    // 2. On choisit l'ordre des conditions selon l'ID (boucle sur 24)
+    const condIdx = (pId - 1) % conditionOrders.length;
     const myConditionOrder = conditionOrders[condIdx];
 
-    console.log(`Participant ID: ${pId}`);
-    console.log(`Ordre des textes: ${myTextOrder}`);
-    console.log(`Ordre des conditions: ${myConditionOrder}`);
+    // 3. Aléatoire pour les textes : On crée une copie mélangée de baseTexts
+    const shuffledTexts = shuffleArray([...baseTexts]);
 
-    // Construction de la séquence expérimentale
-    experimentalSequence = myTextOrder.map((textIndex, i) => {
-        const originalText = baseTexts[textIndex];
+    console.log(`Participant ID: ${pId}`);
+    console.log(`Ordre des conditions (fixe par ID):`, myConditionOrder);
+    console.log(`Ordre des textes (aléatoire):`, shuffledTexts.map(t => t.id));
+
+    // 4. Construction de la séquence
+    experimentalSequence = shuffledTexts.map((textData, i) => {
+        // On associe le texte mélangé à la condition dictée par l'ID
         const condition = conditions[myConditionOrder[i]];
 
         return {
             text: {
-                ...originalText,
-                // Mélange des questions pour chaque texte
-                questions: shuffleArray([...originalText.questions])
+                ...textData,
+                questions: shuffleArray([...textData.questions])
             },
             condition: condition
         };
     });
 
-    // Lancement de l'expérience
     texteSuivant();
 }
 
