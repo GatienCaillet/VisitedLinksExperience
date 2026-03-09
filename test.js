@@ -88,11 +88,11 @@ const baseTexts = [
         les machines et le rôle réel des androïdes dans ce conflit.
 `,
         questions: [
-            { q: "Quand est-ce que les machines extraterrestres ont envahi la Terre ?", r: "1ère Guerre des Machines" },
-            { q: "Quel personnage est reconus pour son efficacité ?", r: "2B" },
-            { q: "Dans quel but les androïdes sont-ils envoyés ?", r: "Reprendre le contrôle de la planète Terre" },
-            { q: "Quel est le type d'androïde de 9S ?", r: "YoRHa" },
-            { q: "Quel est l'android rebelle du jeu ?", r: "A2" }
+            { q: "Quand est-ce que les machines extraterrestres ont envahi la Terre ?",p:["en 11045","2e Guerre des Machines","en 1945","1ère Guerre des Machines"], r: "1ère Guerre des Machines" },
+            { q: "Quel personnage est reconus pour son efficacité ?",p:["C3","2B","9S","A2"], r: "2B" },
+            { q: "Dans quel but les androïdes sont-ils envoyés ?",p:["Reprendre le contrôle de la planète Terre","Pour protéger les humains","Pour explorer la lune","Pour combattre les extraterrestres"], r: "Reprendre le contrôle de la planète Terre" },
+            { q: "Quel est le type d'androïde de 9S ?",p:["C.U.R.A","YoRHa","P.A.N.D.O.R.A","MoHirA"], r: "YoRHa" },
+            { q: "Quel est l'android rebelle du jeu ?",p:["G5","2B","6U","A2"], r: "A2" }
         ],
         links: [ // réponse à revoir
             { name: "machines extraterrestres", info: "Les Machines, apparues lors de la 1ère Guerre des Machines, sont devenues des fantassins redoutablement efficaces dans la guerre interminable contre les Androïdes." },
