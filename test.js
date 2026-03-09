@@ -185,32 +185,45 @@ function shuffleArray(array) {
 //      INITIALISATION
 // ---------------------------
 function initExperience() {
-    const pId = parseInt(new URLSearchParams(window.location.search).get('id'));
+    // Récupération de l'ID (on utilise 1 par défaut si absent ou invalide)
+    const urlParams = new URLSearchParams(window.location.search);
+    const pId = parseInt(urlParams.get('id')) || 1;
 
+    // Génération de toutes les permutations possibles (4! = 24 pour chaque)
     const textOrders = getAllPermutations([0, 1, 2, 3]);
     const conditionOrders = getAllPermutations([0, 1, 2, 3]);
 
-    const textIdx = (pId - 1) % textOrders.length;
-    const condIdx = Math.floor((pId - 1) / textOrders.length) % conditionOrders.length;
+    // Calcul des index pour les 576 combinaisons
+    // (pId - 1) permet de commencer à l'index 0 pour l'ID 1
+    const totalTextPermutations = textOrders.length; // 24
+    
+    // L'index du texte change tous les 1, l'index de condition tous les 24
+    const textIdx = (pId - 1) % totalTextPermutations;
+    const condIdx = Math.floor((pId - 1) / totalTextPermutations) % conditionOrders.length;
 
     const myTextOrder = textOrders[textIdx];
     const myConditionOrder = conditionOrders[condIdx];
 
-    // Construction de la séquence avec mélange des questions
+    console.log(`Participant ID: ${pId}`);
+    console.log(`Ordre des textes: ${myTextOrder}`);
+    console.log(`Ordre des conditions: ${myConditionOrder}`);
+
+    // Construction de la séquence expérimentale
     experimentalSequence = myTextOrder.map((textIndex, i) => {
         const originalText = baseTexts[textIndex];
+        const condition = conditions[myConditionOrder[i]];
 
         return {
-            // On crée une copie de l'objet texte pour ne pas impacter baseTexts
             text: {
                 ...originalText,
-                // On crée une copie du tableau questions et on le mélange
+                // Mélange des questions pour chaque texte
                 questions: shuffleArray([...originalText.questions])
             },
-            condition: conditions[myConditionOrder[i]]
+            condition: condition
         };
     });
 
+    // Lancement de l'expérience
     texteSuivant();
 }
 
@@ -223,6 +236,8 @@ const erreurDiv = document.getElementById("erreur-message");
 const modal = document.getElementById("myModal");
 const modalText = document.getElementById("modal-text");
 const closeBtn = document.querySelector(".close-btn");
+const reponseContainer = document.querySelector(".reponse-container");
+const choicesContainer = document.getElementById("choices-container");
 
 window.onload = initExperience;
 
@@ -232,7 +247,6 @@ window.onload = initExperience;
 
 function chargerTexteEtCondition() {
     const currentBlock = experimentalSequence[experimentalSequenceIndex];
-    const reponseContainer = document.querySelector(".reponse-container");
 
     // 1. Masquer les questions et afficher le texte
     reponseContainer.classList.add("hidden");
@@ -337,8 +351,7 @@ function questionSuivante() {
     } else {
         const targetQuestion = currentText.questions[questionIndex];
         questionElement.innerHTML = targetQuestion.q;
-
-        const choicesContainer = document.getElementById("choices-container");
+        console.log("test")
         choicesContainer.innerHTML = ""; // On vide les anciens choix
 
         // On mélange les propositions (p) pour que la bonne réponse ne soit pas toujours au même endroit
