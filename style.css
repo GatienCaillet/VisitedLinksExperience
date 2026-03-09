@@ -287,3 +287,7 @@ fieldset {
     border: none;
     cursor: pointer;
 }
+
+.required {
+    color: red;
+}
