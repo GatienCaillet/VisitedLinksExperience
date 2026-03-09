@@ -78,7 +78,14 @@ const baseTexts = [
 },
     {
         id: "NieR",
-        content: `NieR: Automata se déroule en l’an 11 945, dans un monde post-apocalyptique où la Terre, abandonnée par les humains après une invasion de <span class ="link ">machines extraterrestres</span>, est devenue le théâtre d’une guerre par procuration. Les derniers humains, réfugiés sur la Lune, envoient des androïdes (comme <span class = "link ">2B</span>, <span class = "link ">9S</span> et <span class ="link " >A2 </span>) pour <span class="link ">combattre les machines</span>, créées par des extraterrestres. Le jeu explore les thèmes de la futilité de la guerre, de l’humanité, de la mémoire et de la quête de sens, à travers une narration complexe nécessitant plusieurs parties pour en révéler tous les aspects. L’histoire mêle action, émotion et philosophie, dans un univers riche et mélancolique, marqué par une bande-son inoubliable
+        content: `En l’an 11 945, la Terre en ruines est occupée par des <span class="link required">machines extraterrestres</span> qui ont contraint les humains à se réfugier sur la Lune. 
+        Pour reconquérir la planète, l’humanité déploie des androïdes soldats comme <span class="link required">2B</span>,<span class="link required">9S</span>,<span class="link required">A2</span>, 
+        chargés de <span class="link required">combattre les machines</span> et de sécuriser les vestiges du monde humain. 
+        À travers leurs missions dans des cités abandonnées, 
+        des forêts envahies par la nature et d’anciennes installations industrielles, 
+        ils affrontent des formes de vie mécaniques toujours plus complexes. 
+        Mais au fil des combats et des découvertes, ils mettent au jour des vérités troublantes sur la guerre, 
+        les machines et le rôle réel des androïdes dans ce conflit.
 `,
         questions: [
             { q: "Quand est-ce que les machines extraterrestres ont envahi la Terre ?", r: "1ère Guerre des Machines" },
