@@ -66,23 +66,23 @@ const baseTexts = [
     {
     id: "Game of Rols",
     // 30 liens au total : 5 Required (Archibald, Evy, Mimolin, Raoul, Omelas) + 25 Distracteurs
-    content: `Quatre héros partent pour une <span class="link distracteur">île</span> mystérieuse : <span class="link required">Archibald</span> (le marchand), Evy (l'archéologue) qui <span class="link distracteur">tente</span> de <span class="link distracteur">fuir</span> son <span class="link distracteur">passé</span>. L'<span class="link required">archéologue</span> porte une <span class="link distracteur">rune</span>, tandis que Raoul (le barde) <span class="link distracteur">chante</span> ses <span class="link distracteur">exploits</span> dans des <span class="link distracteur">tavernes</span> sombres. Au centre de leurs <span class="link distracteur">tourments</span>, le jeune <span class="link required">Mimolin</span> (l'orphelin amnésique) <span class="link distracteur">cherche</span> désespérément à <span class="link distracteur">comprendre</span> ses <span class="link distracteur">flash-backs</span>. Ils <span class="link distracteur">traversent</span> des <span class="link distracteur">régions</span> isolées où <span class="link required">Raoul</span> compose ses <span class="link distracteur">poèmes</span>, évitant les <span class="link distracteur">dragons</span> et les <span class="link distracteur">assassins</span> de la <span class="link distracteur">guilde</span>. Enfin, sous le <span class="link distracteur">palais</span> du maharaja, ils découvrent la mystérieuse <span class="link required">Omelas</span>, une <span class="link distracteur">créature</span> dont la <span class="link distracteur">destinée</span> <span class="link distracteur">inquiète</span> les <span class="link distracteur">dieux</span> eux-mêmes.`,
+    content: `Quatre héros partent pour une <span class="link distracteur">île</span> mystérieuse : <span class="link required">Archibald</span> (le marchand), Evy (l'archéologue) qui <span class="link distracteur">tente</span> de <span class="link distracteur">fuir</span> son <span class="link distracteur">passé</span>. L'<span class="link required">archéologue</span> porte une <span class="link distracteur">rune</span>, tandis que Raoul (le barde) <span class="link distracteur">chante</span> ses <span class="link distracteur">exploits</span> dans des <span class="link distracteur">tavernes</span> sombres. Au centre de leurs <span class="link distracteur">tourments</span>, le jeune <span class="link required">Mimolin</span> (l'orphelin amnésique) <span class="link distracteur">cherche</span> désespérément à <span class="link distracteur">comprendre</span> ses <span class="link distracteur">flash-backs</span>. Ils <span class="link distracteur">traversent</span> des <span class="link distracteur">régions</span> isolées où <span class="link required">Raoul</span> compose ses <span class="link distracteur">poèmes</span>, évitant les <span class="link distracteur">dragons</span> et les <span class="link distracteur">assassins</span> de la <span class="link distracteur">guilde</span>. Enfin, sous le <span class="link distracteur">palais</span> du maharaja, ils découvrent la mystérieuse <span class="link distracteur">Omelas</span>, une <span class="link distracteur">créature</span> dont la <span class="link required">destinée</span> <span class="link distracteur">inquiète</span> les <span class="link distracteur">dieux</span> eux-mêmes.`,
     
     questions: [
-        { q: "Quel est le tic nerveux d'Archibald ?", p: ["Fait craquer ses doigts", "Se gratter", "Cligner les yeux", "Bouger la jambe"], r: "Fait craquer ses doigts" },
+        { q: "Quel est le tic nerveux du marchand ?", p: ["Fait craquer ses doigts", "Se gratter", "Cligner les yeux", "Bouger la jambe"], r: "Fait craquer ses doigts" },
         { q: "Quel objet insolite Evy collectionne-t-elle ?", p: ["Plumes de corbeau", "Pierre de lune", "Livre de sorts", "Baguette magique"], r: "Plumes de corbeau" },
-        { q: "Quel est le seul souvenir que Mimolin a gardé de sa famille ?", p: ["Un médaillon en argent", "Une lettre", "Un portrait", "Un livre"], r: "Un médaillon en argent" },
-        { q: "Quelle est la particularité de la guitare de Raoul ?", p: ["Elle est en bois d'ébène enchanté", "Elle est en or", "Elle a une tête enargentée", "Elle a des cordes en soie"], r: "Bois d'ébène enchanté" },
-        { q: "Quelle est la véritable nature d'Omelas ?", p: ["Une entité vivante et pensante faite de lumière pure", "Un esprit maléfique", "Une créature mythique", "Un dieu ancien"], r: "Une entité vivante et pensante faite de lumière pure" }
+        { q: "Qui garde précieusement un médaillon en argent ?", p: ["Mimolin", "Archibald", "Evy", "Raoul"], r: "Mimolin" },
+        { q: "Quelle est la particularité de la guitare de Raoul ?", p: ["Elle est en bois d'ébène enchanté", "Elle est en or", "Elle a une tête enargentée", "Elle a des cordes en soie"], r: "Elle est en bois d'ébène enchanté" },
+        { q: "Quelle est la véritable nature d'Omelas ?", p: ["Une créature déstinée à rester dans son palais", "Un esprit maléfique qui destiné à tuer qui la regarde", "Le phantome de l'île Amaru", "Un dieu ancien qui aide nos 4 amis"], r: "Une entité vivante et pensante faite de lumière pure" }
     ],
     
     links: [
         // 5 REQUIRED (Réponses dans info uniquement)
         { name: "Archibald", info: "Héritier de la famille Brisant-Choyeur, il a un tic nerveux : il fait craquer ses doigts quand il est stressé." },
-        { name: "Evy", info: "Archéologue maudite, elle collectionne les plumes de corbeau, pensant qu'elles portent chance." },
+        { name: "archéologue", info: "Archéologue maudite, elle collectionne les plumes de corbeau, pensant qu'elles portent chance." },
         { name: "Mimolin", info: "Bien qu'amnésique, il garde précieusement un médaillon en argent en forme de lune, seul vestige de sa famille." },
         { name: "Raoul", info: "Barde célèbre, il possède une guitare secrètement sculptée dans du bois d'ébène enchanté." },
-        { name: "Omelas", info: "Loin d'être un monstre, Omelas est une entité vivante et pensante faite de lumière pure, emprisonnée sous le palais." },
+        { name: "destinée", info: "Loin d'être un monstre, Omelas est une entité vivante et pensante faite de lumière pure, emprisonnée sous le palais." },
         
         // 25 DISTRACTEURS
         { name: "île", info: "Territoire entouré d'eau." }, { name: "tente", info: "Action de chercher à faire quelque chose." },
@@ -95,7 +95,7 @@ const baseTexts = [
         { name: "poèmes", info: "Textes littéraires rimés." }, { name: "dragons", info: "Créatures légendaires." },
         { name: "assassins", info: "Tueurs professionnels." }, { name: "guilde", info: "Association de professionnels." },
         { name: "palais", info: "Demeure somptueuse d'un souverain." }, { name: "créature", info: "Être vivant." },
-        { name: "destinée", info: "Sort inéluctable." }, { name: "inquiète", info: "Provoque de l'anxiété." },
+        { name: "Omelas", info: "Sort inéluctable." }, { name: "inquiète", info: "Provoque de l'anxiété." },
         { name: "dieux", info: "Entités supérieures." }, { name: "marchand", info: "Personne faisant du commerce." },
         { name: "barde", info: "Artiste musicien et poète." }
     ]
@@ -139,7 +139,6 @@ Cependant, à force de <span class="link distracteur">rester</span> aux côtés 
             { name: "rester", info: "À force de rester aux côtés d'Atsushi, Risa commence à développer des sentiments pour lui, réalisant qu'elle est amoureuse de lui malgré leurs complexes respectifs." },
             { name: "complexes", info: "Risa et Atsushi sont tous les deux complexés par leur taille, ce qui affecte leur confiance en eux et leurs interactions avec les autres, mais ils finissent par surmonter ces complexes grâce à leur relation." },
             
-
         ]
     }
 ];
@@ -343,7 +342,7 @@ function questionSuivante() {
     } else {
         const targetQuestion = currentText.questions[questionIndex];
         questionElement.innerHTML = targetQuestion.q;
-        console.log("test")
+
         choicesContainer.innerHTML = ""; // On vide les anciens choix
 
         // On mélange les propositions (p) pour que la bonne réponse ne soit pas toujours au même endroit
@@ -423,7 +422,7 @@ textElement.addEventListener("click", (e) => {
 
         // 1. Chercher l'info pour la modal
         const lienTrouve = currentBlock.text.links.find(l => l.name === terme);
-        modalText.textContent = lienTrouve ? lienTrouve.info : `Détails sur ${terme}...`;
+        modalText.textContent = lienTrouve ? lienTrouve.info : `Il n'y a rien ici`;
         modal.style.display = "flex";
 
         // 2. GÉRER LE CHANGEMENT DE COULEUR (La VI Feedback Visuel)
