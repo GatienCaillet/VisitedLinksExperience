@@ -15,35 +15,67 @@ let currentReadingDuration = 0;
 // ---------------------------
 // Note : Assure-toi d'avoir bien 30 spans par texte pour la condition C3/C4
 const baseTexts = [
-    {
-        id: "Warhammer",
-        content: `Dans un <span class= "link distracteur">futur lointain</span>, aux confins de l’<span class="link">Ultima Segmentum</span>, le <span class = "link distracteur">système</span> oublié de <span class = "link">Morologus Novem</span> (ou "Cap du Désespoir") refait surface près de la <span class = "link">Cicatrix Maledictum</span>. Après la chute de <span class ="link">Cadia</span>, <span class = "link distracteur">une flotte</span> de l’<span class = "link">Adeptus Mechanicus</span> y échoue, découvrant les vestiges d’une <span class = "link distracteur">civilisation</span> <span class = "link distracteur">humaine</span> avancée. Ce système, stratégique et ravagé par les marées du Warp, attire l’Imperium, les Orks, le Chaos et même les Nécrons, tous en quête d’un artéfact mystérieux enfoui sous sa surface. Les factions s’affrontent pour contrôler ce point clé entre <span class = "link distracteur">l’Imperium Sanctus</span> et <span class = "link distracteur">l’Imperium Nihilus</span>, tandis que son destin reste incertain, enveloppé dans les ombres du Warp.
-`,
-        questions: [
-            { q: "Où se situe Ultima Segmentum ?", p: ["est de Terra", "ouest de Terra", "nord de Terra", "sud de Terra"], r: "est de Terra" },
-            { q: "Quel est le nom du système oublié ?", r: "Morologus Novem" },
-            { q: "Quel est la zone connaissant des dangers extrems ?", r: "Cicatrix Maledictum" },
-            { q: "Quelle planète stratégique est connue pour son importance militaire ?", r: "Cadia" },
-            { q: "Quel est la faction chargé de la technologie et de la science ?", r: "Adeptus Mechanicus" }
-        ],
-        links: [
-            { name: "Ultima Segmentum", info: "L'Ultima Segmentum est un segment de l'Imperium situé à l'extrême Est de l'Imperium" },
-            // Les infos suivantes sont à revoir, j'ai mis des placeholders pour l'instant
-            { name: "Morologus Novem", info: "Morologus Novem est un système oublié situé à l'extrême Est de l'Imperium, connu pour ses marées du Warp et son artéfact mystérieux." },
-            { name: "Cicatrix Maledictum", info: "La Cicatrix Maledictum est une zone de l'Imperium marquée par des effets du Warp et connais des anomalies et des dangers extrêmes." },
-            { name: "Cadia", info: "Cadia est une planète stratégique de l'Imperium, connue pour son importance militaire et son rôle dans la défense de l'Imperium." },
-            { name: "Adeptus Mechanicus", info: "L'Adeptus Mechanicus est un ordre religieux de l'Imperium chargé de la technologie et de la science, souvent en conflit avec les autres factions de l'Imperium." },
-            // 5 lien distracteur 
-            { name: "futur lointain", info: "Le futur lointain dans l'univers de Warhammer 40k est une période où l'humanité a colonisé de nombreux systèmes stellaires et est en guerre constante avec diverses factions." },
-            { name: "système", info: "Un système dans l'univers de Warhammer 40k est une région de l'espace contenant des étoiles, des planètes et d'autres corps célestes." },
-            { name: "une flotte", info: "Une flotte dans l'univers de Warhammer 40k est un groupe de vaisseaux spatiaux utilisés pour le transport, la guerre ou d'autres missions." },
-            { name: "Imperium Sanctus", info: "L'Imperium Sanctus est une partie de l'Imperium située à l'extrême Est, connue pour sa foi et sa dévotion envers l'Empereur." },
-            { name: "Imperium Nihilus", info: "L'Imperium Nihilus est une partie de l'Imperium située à l'extrême Ouest, connue pour son isolement et ses dangers extrêmes." },
-            { name: "civilisation", info: "Une civilisation dans l'univers de Warhammer 40k est une société avancée technologiquement et culturellement, souvent en conflit avec d'autres civilisations pour le contrôle de ressources et de territoires." },
-            { name: "humain", info: "L'humanité dans l'univers de Warhammer 40k est une espèce qui a colonisé de nombreux systèmes stellaires et est en guerre constante avec diverses factions pour le contrôle de l'espace et des ressources." }
+{
+    id: "Warhammer",
+    content: `Dans un <span class="link distracteur">futur</span> lointain, aux limites de l'<span class="link distracteur">Ultima Segmentum</span>, le 
+    <span class="link distracteur">système</span> oublié de <span class="link distracteur">Morologus Novem</span> 
+    <span class="link distracteur">refait</span> surface <span class="link distracteur">près</span> 
+    de la <span class="link distracteur">Cicatrix Maledictum</span>. Après la chute de <span class="link required">Cadia</span>, une <span class="link distracteur">flotte</span> 
+    de l’<span class="link required">Adeptus Mechanicus</span> y échoue, <span class="link distracteur">découvrant</span> les 
+    <span class="link distracteur">vestiges</span> d’une <span class="link distracteur">civilisation</span>
+     <span class="link distracteur">humaine</span> avancée. Ce secteur, <span class="link distracteur">stratégique</span> et 
+     troublé par les <span class="link distracteur">marées</span> du Warp, attire l’Empire, les <span class="link distracteur">Orks</span>, 
+     le <span class="link distracteur">Chaos</span> et même les <span class="link required">Nécrons</span>, tous en <span class="link distracteur">quête</span> d’un 
+     <span class="link distracteur">artéfact</span> mystérieux <span class="link distracteur">enfoui</span> sous sa <span class="link distracteur">surface</span>. 
+     Les <span class="link distracteur">factions</span> s’affrontent pour <span class="link distracteur">contrôler</span> ce point clé,
+     situé entre l’<span class="link distracteur">Imperium Sanctus</span> et l’<span class="link required">Imperium Nihilus</span>, 
+      tandis que son <span class="link distracteur">destin</span> reste incertain, caché dans les <span class="link distracteur">ombres</span> 
+      du <span class="link required">Warp</span>.`,
+    
+    questions: [
+        { q: "Quels spécialistes religieux s'occupent de la technologie et des machines ?", p: ["Le Chaos", "Des prêtres", "Les Orks", "Les Nécrons"], r: "Des prêtres" },
+        { q: "Quel monde servait de rempart avant d'être détruit, provoquant une faille géante ?", p: ["Morologus Novem", "Terra", "Cadia", "Mars"], r: "Cadia" },
+        { q: "Quelle menace est composée de guerriers de métal ayant vécu avant les humains ?", p: ["L'Empire", "Les Nécrons", "La Flotte", "Le Destin"], r: "Les Nécrons" },
+        { q: "Quelle partie de l'empire humain est totalement isolée et plongée dans le noir ?", p: ["L'Ultima Segmentum", "L'Imperium Sanctus", "La Surface", "L'Imperium Nihilus"], r: "L'Imperium Nihilus" },
+        { q: "Comment appelle-t-on la dimension instable utilisée pour les voyages spatiaux ?", p: ["Le Warp", "La Cicatrix", "Le Système", "L'Artéfact"], r: "Le Warp" }
+    ],
 
-        ]
-    },
+    links: [
+        // 5 REQUIRED
+        { name: "Cadia", info: "Une planète forteresse dont la destruction a provoqué une faille géante." },
+        { name: "Adeptus Mechanicus", info: "Une organisation de prêtres qui vénèrent et réparent les machines." },
+        { name: "Nécrons", info: "Des squelettes de métal immortels qui dorment sous terre depuis des millions d'années." },
+        { name: "Imperium Nihilus", info: "La moitié de l'empire humain isolée et sans défense de l'autre côté de la faille." },
+        { name: "Warp", info: "Une dimension parallèle folle servant de raccourci pour voyager entre les étoiles." },
+
+        // 25 DISTRACTEURS
+        { name: "futur", info: "Un temps très éloigné (l'an 40 000) où la survie est un combat quotidien." },
+        { name: "Ultima Segmentum", info: "La région la plus vaste et la plus lointaine de l'espace humain." },
+        { name: "système", info: "Un groupe de planètes tournant autour d'une étoile." },
+        { name: "Morologus Novem", info: "Le nom du groupe de planètes où l'histoire se déroule." },
+        { name: "refait", info: "L'action de réapparaître après avoir été perdu pendant des siècles." },
+        { name: "près", info: "À une distance réduite d'un danger spatial majeur." },
+        { name: "Cicatrix Maledictum", info: "Une déchirure géante qui coupe la galaxie en deux comme une cicatrice." },
+        { name: "flotte", info: "Un grand groupe de vaisseaux spatiaux voyageant ensemble." },
+        { name: "découvrant", info: "Trouver par hasard des secrets ou des lieux oubliés." },
+        { name: "vestiges", info: "Les ruines et les restes d'une époque glorieuse passée." },
+        { name: "civilisation", info: "Une société organisée avec sa propre culture et technologie." },
+        { name: "humaine", info: "L'espèce originaire de la Terre qui tente de dominer les étoiles." },
+        { name: "stratégique", info: "Un lieu crucial pour gagner une guerre ou surveiller l'ennemi." },
+        { name: "marées", info: "Des courants d'énergie invisible qui rendent la navigation dangereuse." },
+        { name: "Orks", info: "Des extraterrestres verts et costauds qui ne pensent qu'à se battre." },
+        { name: "Chaos", info: "Des forces maléfiques vivant dans une autre dimension et cherchant à tout corrompre." },
+        { name: "quête", info: "Une recherche difficile pour obtenir un objet de grande valeur." },
+        { name: "artéfact", info: "Un objet ancien très puissant dont on ne comprend pas tout le fonctionnement." },
+        { name: "enfoui", info: "Caché profondément sous le sol d'une planète." },
+        { name: "surface", info: "Le sol extérieur d'un monde, là où les armées débarquent." },
+        { name: "factions", info: "Les différents groupes ou armées qui sont en compétition." },
+        { name: "contrôler", info: "Prendre le commandement total d'une zone ou d'une ressource." },
+        { name: "Imperium Sanctus", info: "La moitié de l'empire humain qui peut encore communiquer avec sa capitale." },
+        { name: "destin", info: "L'avenir inévitable ou le sort final de ce système solaire." },
+        { name: "ombres", info: "Les menaces cachées ou les secrets que personne ne voit venir." }
+    ]
+},
     {
         id: "NieR",
         content: `NieR: Automata se déroule en l’an 11 945, dans un monde post-apocalyptique où la Terre, abandonnée par les humains après une invasion de <span class ="link ">machines extraterrestres</span>, est devenue le théâtre d’une guerre par procuration. Les derniers humains, réfugiés sur la Lune, envoient des androïdes (comme <span class = "link ">2B</span>, <span class = "link ">9S</span> et <span class ="link " >A2 </span>) pour <span class="link ">combattre les machines</span>, créées par des extraterrestres. Le jeu explore les thèmes de la futilité de la guerre, de l’humanité, de la mémoire et de la quête de sens, à travers une narration complexe nécessitant plusieurs parties pour en révéler tous les aspects. L’histoire mêle action, émotion et philosophie, dans un univers riche et mélancolique, marqué par une bande-son inoubliable
