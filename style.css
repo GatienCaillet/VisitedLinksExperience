@@ -175,25 +175,34 @@ fieldset {
     margin: auto;
     text-align: justify;
 }
-/* Style de base pour tous les liens */
+
+/* 1. État par défaut : le lien ressemble à du texte normal */
 .link {
     background: none;
     border: none;
-    color: #0000EE; /* Bleu lien standard */
+    color: inherit;       /* Prend la couleur du texte noir */
     text-decoration: none;
     padding: 0;
     font: inherit;
-    cursor: pointer;
+    cursor: default;      /* Curseur de texte normal */
+    pointer-events: none; /* Empêche de cliquer dessus */
 }
 
-/* Style quand le lien a été cliqué (si autorisé par la VI) */
-.link.visited-link {
-    color: #551A8B !important; /* Violet lien visité standard */
-}
-
-/* Optionnel : un feedback au survol pour montrer que c'est cliquable */
-.link:hover {
+/* 2. État activé : quand on ajoute la classe 'active-link' via JS */
+.link.active-link {
+    color: #0000EE;        /* Bleu lien standard */
     text-decoration: underline;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+/* 3. Feedback visuel (si la condition hasColor est vraie) */
+.link.active-link.visited-link {
+    color: #551A8B !important; /* Violet lien visité */
+}
+
+.link.active-link:hover {
+    text-decoration: none;
 }
 
 /* Structure de la Modal */
@@ -288,6 +297,7 @@ fieldset {
     cursor: pointer;
 }
 
-.required {
+/* Pour afficher les liens required */
+/* .required {
     color: red;
-}
+} */

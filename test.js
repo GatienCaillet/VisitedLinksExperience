@@ -296,77 +296,43 @@ function chargerTexteEtCondition() {
     reponseContainer.classList.add("hidden");
     textElement.innerHTML = currentBlock.text.content;
 
-    // 2. Créer ou récupérer le bouton "Lecture terminée"
+    // 2. Identifier les liens (Logique inchangée)
+    const allLinks = Array.from(textElement.querySelectorAll('.link'));
+    const Links = allLinks.filter(l => l.classList.contains('required'));
+    const distractorLinks = allLinks.filter(l => l.classList.contains('distracteur'));
+
+    const numDistractorsToShow = currentBlock.condition.linksCount - Links.length;
+    const shuffledDistractors = shuffleArray([...distractorLinks]);
+    const selectedDistractors = shuffledDistractors.slice(0, numDistractorsToShow);
+
+    // Liste des liens qui deviendront actifs après le clic
+    const linksToActivate = [...Links, ...selectedDistractors];
+
+    // 4. Créer ou récupérer le bouton "Lecture terminée"
     let readBtn = document.getElementById("btn-read-done");
     if (!readBtn) {
         readBtn = document.createElement("button");
         readBtn.id = "btn-read-done";
         readBtn.textContent = "J'ai fini de lire, passer aux questions";
-        // On insère le bouton avant le conteneur de réponse
         reponseContainer.parentNode.insertBefore(readBtn, reponseContainer);
     }
     readBtn.style.display = "block";
 
-    // 3. Lancer le timer de lecture
     startTimeReading = Date.now();
 
-    // 4. Action au clic
+    // 5. Action au clic : RÉVÉLATION
     readBtn.onclick = () => {
-        // Calcul et stockage du temps de lecture
-        currentReadingDuration = Date.now() - startTimeReading;
+    currentReadingDuration = Date.now() - startTimeReading;
+    readBtn.style.display = "none";
+    reponseContainer.classList.remove("hidden");
 
-        // Cacher le bouton et montrer le conteneur de questions
-        readBtn.style.display = "none";
-        reponseContainer.classList.remove("hidden");
-
-        // Démarrer les questions
-        questionSuivante();
-    };
-
-    // 1. Injecter le texte HTML
-    textElement.innerHTML = currentBlock.text.content;
-
-    // 2. Identifier les deux types de liens
-    const allLinks = Array.from(textElement.querySelectorAll('.link'));
-    const Links = allLinks.filter(l => l.classList.contains('required'));
-    const distractorLinks = allLinks.filter(l => l.classList.contains('distracteur'));
-
-    console.log("Liens obligatoires :", Links.map(l => l.textContent.trim()));
-    console.log("Liens distracteurs :", distractorLinks.map(l => l.textContent.trim()));
-
-    // 3. Calculer combien de distracteurs on doit ajouter
-    // linksCount (10 ou 30) - les 5 obligatoires
-    const numDistractorsToShow = currentBlock.condition.linksCount - Links.length;
-
-    console.log("Condition :", currentBlock.condition);
-    console.log("Nombre de distracteurs à montrer :", numDistractorsToShow);
-
-    // 4. Tirer au sort les distracteurs
-    const shuffledDistractors = shuffleArray([...distractorLinks]);
-    const selectedDistractors = shuffledDistractors.slice(0, numDistractorsToShow);
-
-    // 5. Créer la liste finale des liens à activer
-    const linksToActivate = [...Links, ...selectedDistractors];
-
-    // 6. Appliquer les styles et comportements
-    allLinks.forEach((link) => {
-        // Reset systématique
-        link.classList.remove('visited-link');
-
-        if (linksToActivate.includes(link)) {
-            // ACTIVATION
-            link.style.pointerEvents = 'auto';
-            link.style.cursor = 'pointer';
-            link.style.textDecoration = 'underline'; // On s'assure qu'ils sont visibles comme liens
-            link.style.color = ''; // Reprend la couleur CSS par défaut des liens
-        } else {
-            // DÉSACTIVATION (Distracteurs non choisis)
-            link.style.pointerEvents = 'none';
-            link.style.textDecoration = 'none';
-            link.style.color = 'inherit';
-            link.style.cursor = 'default';
-        }
+    // On récupère tous les liens qui doivent être activés
+    linksToActivate.forEach(link => {
+        link.classList.add('active-link');
     });
+
+    questionSuivante();
+};
 }
 
 function texteSuivant() {
