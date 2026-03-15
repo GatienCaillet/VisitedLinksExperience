@@ -515,7 +515,7 @@ function envoyerDonnees() {
 
 function savedata(data) {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../savedata.php", true);
+    xhr.open("POST", "savedata.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(data));
     alert("Expérience terminée. Merci !");
