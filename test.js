@@ -90,7 +90,7 @@ const baseTexts = [
         questions: [
             { q: "Quand est-ce que les machines extraterrestres ont envahi la Terre ?",p:["en 11045","2e Guerre des Machines","en 1945","1ère Guerre des Machines"], r: "1ère Guerre des Machines" },
             { q: "Quel personnage est reconus pour son efficacité ?",p:["C3","2B","9S","A2"], r: "2B" },
-            { q: "Quel est l'équipement des Androïds ?",p:["Laser orbitale, bras dsisqueuse, roquettes","Fusils plasma, bouclier tactique, mini drône","Arme de mêlée, pods de soutiens, piratage","Fusil de précision, soutiens d'artillerie, essain de drônes"], r: "Arme de mélé, pods de soutiens, piratage" },
+            { q: "Quel est l'équipement des Androïds ?",p:["Laser orbitale, bras dsisqueuse, roquettes","Fusils plasma, bouclier tactique, mini drône","Arme de mêlée, pods de soutiens, piratage","Fusil de précision, soutiens d'artillerie, essain de drônes"], r: "Arme de mêlée, pods de soutiens, piratage" },
             { q: "Quel vérité troublante découvrent les androïdes ?",p:["Les robots sont des humains enfermés dans une armure autonome","Les extraterstres sont en réalité des humains d'une autre faction","Les aliens créateur des machines ont été tués","Les androïdes sont des machines extraterstres déviantes"], r: "Les aliens créateur des machines ont été tués" },
             { q: "Quel type de mission font les androids ?",p:["Soutiens et sécurisation","Exploration et recherche","Assassinat et espionnage","Reconnaissance et attaque"], r: "Soutiens et sécurisation" }
         ],
