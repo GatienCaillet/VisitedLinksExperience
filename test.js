@@ -78,28 +78,55 @@ const baseTexts = [
 },
     {
         id: "NieR",
-        content: `En l’an 11 945, la Terre en ruines est occupée par des <span class="link required">machines extraterrestres</span> qui ont contraint les humains à se réfugier sur la Lune. 
-        Pour reconquérir la planète, l’humanité déploie des androïdes soldats comme <span class="link required">2B</span>,<span class="link required">9S</span>,<span class="link required">A2</span>, 
-        chargés de <span class="link required">combattre les machines</span> et de sécuriser les vestiges du monde humain. 
-        À travers leurs missions dans des cités abandonnées, 
-        des forêts envahies par la nature et d’anciennes installations industrielles, 
-        ils affrontent des formes de vie mécaniques toujours plus complexes. 
-        Mais au fil des combats et des découvertes, ils mettent au jour des vérités troublantes sur la guerre, 
-        les machines et le rôle réel des androïdes dans ce conflit.
+        content: `En l’an <span class="link distracteur">11 945</span>, la Terre en <span class="link distracteur">ruines</span> est <span class="link distracteur">occupée</span> par des <span class="link required">machines extraterrestres</span> qui ont <span class="link distracteur">contraint</span> les <span class="link distracteur">humains</span> à se <span class="link distracteur">réfugier</span> sur la <span class="link distracteur">Lune</span>. 
+        Pour <span class="link distracteur">reconquérir</span> la planète, l’humanité déploie des <span class="link distracteur">androïdes soldats</span> comme <span class="link required">2B</span>,<span class="link distracteur">9S</span>,<span class="link distracteur">A2</span>, 
+        chargés de <span class="link required">combattre les machines</span> et de <span class="link distracteur">sécuriser</span> les <span class="link distracteur">vestiges</span> du <span class="link distracteur">monde humain</span></span>. 
+        À travers leurs <span class="link required">missions</span> dans des <span class="link distracteur">cités abandonnées</span>, 
+        des <span class="link distracteur">forêts</span> <span class="link distracteur">envahies</span> par la <span class="link distracteur">nature</span> et d’anciennes <span class="link distracteur">installations industrielles</span>, 
+        ils affrontent des formes de <span class="link distracteur">vie mécaniques</span> toujours plus <span class="link distracteur">complexes</span>. 
+        Mais au fil des <span class="link distracteur">combats</span> et des <span class="link distracteur">découvertes</span>, ils mettent au jour des <span class="link required">vérités troublantes</span> sur la <span class="link distracteur">guerre</span>, 
+        les machines et le <span class="link distracteur">rôle réel</span> des androïdes dans ce conflit.
 `,
         questions: [
             { q: "Quand est-ce que les machines extraterrestres ont envahi la Terre ?",p:["en 11045","2e Guerre des Machines","en 1945","1ère Guerre des Machines"], r: "1ère Guerre des Machines" },
             { q: "Quel personnage est reconus pour son efficacité ?",p:["C3","2B","9S","A2"], r: "2B" },
-            { q: "Dans quel but les androïdes sont-ils envoyés ?",p:["Reprendre le contrôle de la planète Terre","Pour protéger les humains","Pour explorer la lune","Pour combattre les extraterrestres"], r: "Reprendre le contrôle de la planète Terre" },
-            { q: "Quel est le type d'androïde de 9S ?",p:["C.U.R.A","YoRHa","P.A.N.D.O.R.A","MoHirA"], r: "YoRHa" },
-            { q: "Quel est l'android rebelle du jeu ?",p:["G5","2B","6U","A2"], r: "A2" }
+            { q: "Quel est l'équipement des Androïds ?",p:["Laser orbitale, bras dsisqueuse, roquettes","Fusils plasma, bouclier tactique, mini drône","Arme de mêlée, pods de soutiens, piratage","Fusil de précision, soutiens d'artillerie, essain de drônes"], r: "Arme de mélé, pods de soutiens, piratage" },
+            { q: "Quel vérité troublante découvrent les androïdes ?",p:["Les robots sont des humains enférmés dans une armure autonome","Les extraterstres sont en réalité des humains d'une autre faction","Les aliens créateur des machines ont été tués","Les androïdes sont des machines extraterstres déviantes"], r: "Les aliens créateur des machines ont été tués" },
+            { q: "Quel type de mission font les androids ?",p:["Soutiens et sécurisation","Exploration et recherche","Assassinat et espionnage","Reconnaissance et attaque"], r: "Soutiens et sécurisation" }
         ],
         links: [ // réponse à revoir
             { name: "machines extraterrestres", info: "Les Machines, apparues lors de la 1ère Guerre des Machines, sont devenues des fantassins redoutablement efficaces dans la guerre interminable contre les Androïdes." },
-            { name: "2B", info: "2B est une androïde de combat de type YoRHa, connue pour son efficacité et son apparence élégante." },
+            { name: "2B", info: "2B est une androïde de combat, connue pour son efficacité et son apparence élégante." },
+            { name: "vérités troublantes", info: "Les andorids ont découvert, dans l'un  des vesseaux aliens, que les aliens à l'orgine des machines ont été tué par des machines extraterestres." },
+            { name: "combattre les machines", info: "Les Androïdes sont envoyés sur Terre pour combattre les Machines et tenter de reprendre le contrôle de la planète. Ils sont équipé d'arme de mélé, pods de soutiens, piratage." },
+            { name: "missions", info: "Les missions des Androïdes incluent le soutien et la sécurisation entres autres missions divers. " },
+            // 25 distracteurs
             { name: "9S", info: "9S est un androïde de reconnaissance de type YoRHa, curieux et intelligent, spécialisé dans le piratage." },
-            { name: "A2", info: "A2 est une androïde de combat de type YoRHa, rebelle et mystérieuse, avec un passé sombre." },
-            { name: "combattre les machines", info: "Les Androïdes sont envoyés sur Terre pour combattre les Machines et tenter de reprendre le contrôle de la planète." },
+            { name: "A2", info: "A2 est un androïde de combat de type YoRHa, rebelle et mystérieuse, avec un passé sombre." },
+            { name: "rôle réel", info: "Le rôle réel des Androïdes dans le conflit est complexe et évolue au fil de l'histoire, révélant des aspects surprenants de leur nature et de leur place dans la guerre." },
+            { name: "guerre", info:"La guerre est un conflit durant depuis plus de cinq millénaires, les humain réfugié sur la Lune encoie des ordres "},
+            { name: "découvertes", info: "Au fil des combats, les Androïdes font des découvertes qui remettent en question leur compréhension de la guerre, des Machines et de leur propre existence." },
+            { name: "combats", info: "Les combats entre les Androïdes et les Machines sont intenses et variés, se déroulant dans des environnements allant des cités abandonnées aux forêts envahies par la nature." },
+            { name: "vie mécaniques", info: "Les formes de vie mécaniques sont des créatures artificielles, souvent plus puissantes et plus résistantes que leurs homologues biologiques." },
+            { name: "complexes", info: "Les formes de vie mécaniques deviennent de plus en plus complexes au fil de l'histoire, présentant des défis croissants pour les Androïdes." },
+            { name: "installations industrielles", info: "Les anciennes installations industrielles sont des lieux où les Androïdes affrontent des formes de vie mécaniques, souvent remplies de dangers et de mystères." },
+            { name: "nature", info: "La nature envahie est un environnement où la végétation a repris le dessus, créant des obstacles et des cachettes pour les Machines." },
+            { name: "envahies", info: "Les forêts envahies sont des zones où la nature a repris le dessus, créant des obstacles et des cachettes pour les Machines." },
+            { name: "cités abandonnées", info: "Les cités abandonnées sont des lieux où les Androïdes affrontent des formes de vie mécaniques, souvent remplies de dangers et de mystères." },
+            { name: "monde humain", info: "Le monde humain est le lieu d'origine de l'humanité, désormais en ruines et occupé par les Machines." },
+            { name: "sécuirser", info: "Les Androïdes sont chargés de sécuriser les vestiges du monde humain, protégeant les ressources et les informations précieuses contre les Machines." },
+            { name: "vestiges", info: "Les vestiges du monde humain sont des lieux et des objets laissés derrière par l'humanité, souvent riches en ressources et en informations sur le passé." },
+            { name: "forêts", info: "Les forêts envahies sont des zones où la nature a repris le dessus, créant des obstacles et des cachettes pour les Machines." },
+            { name: "androïdes soldats", info: "Les Androïdes soldats sont des unités de combat créées pour affronter les Machines et tenter de reprendre le contrôle de la Terre." },
+            { name: "Lune", info: "La Lune est le refuge de l'humanité après l'invasion des Machines, où les survivants vivent en attendant de pouvoir reconquérir la Terre." },
+            { name: "11 945", info: "L'année 11 945 marque une période où la Terre est en ruines et occupée par les Machines, avec l'humanité réfugiée sur la Lune." },
+            { name: "ruines", info: "La Terre en ruines est le résultat de l'invasion des Machines, avec des paysages dévastés et des vestiges de la civilisation humaine." },
+            { name: "occupée", info: "La Terre est occupée par les Machines, qui ont pris le contrôle de la planète et contraint l'humanité à se réfugier sur la Lune." },
+            { name: "contraint", info: "L'humanité a été contrainte de se réfugier sur la Lune en raison de l'invasion des Machines et de la destruction de la Terre." },
+            { name: "reconquérir", info: "L'humanité cherche à reconquérir la Terre en envoyant des Androïdes soldats pour combattre les Machines et sécuriser les vestiges du monde humain." },
+            { name: "humains", info: "Les humains sont les survivants de l'invasion des Machines, vivant sur la Lune en attendant de pouvoir reconquérir la Terre." },
+            { name: "réfugier", info: "L'humanité a été contrainte de se réfugier sur la Lune en raison de l'invasion des Machines et de la destruction de la Terre." },
+
         ]
     },
     {
