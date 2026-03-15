@@ -79,7 +79,7 @@ const baseTexts = [
     {
         id: "NieR",
         content: `En l’an <span class="link distracteur">11 945</span>, la Terre en <span class="link distracteur">ruines</span> est <span class="link distracteur">occupée</span> par des <span class="link required">machines extraterrestres</span> qui ont <span class="link distracteur">contraint</span> les <span class="link distracteur">humains</span> à se <span class="link distracteur">réfugier</span> sur la <span class="link distracteur">Lune</span>. 
-        Pour <span class="link distracteur">reconquérir</span> la planète, l’humanité déploie des <span class="link distracteur">androïdes soldats</span> comme <span class="link required">2B</span>,<span class="link distracteur">9S</span>,<span class="link distracteur">A2</span>, 
+        Pour <span class="link distracteur">reconquérir</span> la planète, l’humanité déploie des <span class="link distracteur">androïdes soldats</span> comme <span class="link required">2B</span>, <span class="link distracteur">9S</span>, <span class="link distracteur">A2</span>, 
         chargés de <span class="link required">combattre les machines</span> et de <span class="link distracteur">sécuriser</span> les <span class="link distracteur">vestiges</span> du <span class="link distracteur">monde humain</span></span>. 
         À travers leurs <span class="link required">missions</span> dans des <span class="link distracteur">cités abandonnées</span>, 
         des <span class="link distracteur">forêts</span> <span class="link distracteur">envahies</span> par la <span class="link distracteur">nature</span> et d’anciennes <span class="link distracteur">installations industrielles</span>, 
@@ -91,10 +91,10 @@ const baseTexts = [
             { q: "Quand est-ce que les machines extraterrestres ont envahi la Terre ?",p:["en 11045","2e Guerre des Machines","en 1945","1ère Guerre des Machines"], r: "1ère Guerre des Machines" },
             { q: "Quel personnage est reconus pour son efficacité ?",p:["C3","2B","9S","A2"], r: "2B" },
             { q: "Quel est l'équipement des Androïds ?",p:["Laser orbitale, bras dsisqueuse, roquettes","Fusils plasma, bouclier tactique, mini drône","Arme de mêlée, pods de soutiens, piratage","Fusil de précision, soutiens d'artillerie, essain de drônes"], r: "Arme de mélé, pods de soutiens, piratage" },
-            { q: "Quel vérité troublante découvrent les androïdes ?",p:["Les robots sont des humains enférmés dans une armure autonome","Les extraterstres sont en réalité des humains d'une autre faction","Les aliens créateur des machines ont été tués","Les androïdes sont des machines extraterstres déviantes"], r: "Les aliens créateur des machines ont été tués" },
+            { q: "Quel vérité troublante découvrent les androïdes ?",p:["Les robots sont des humains enfermés dans une armure autonome","Les extraterstres sont en réalité des humains d'une autre faction","Les aliens créateur des machines ont été tués","Les androïdes sont des machines extraterstres déviantes"], r: "Les aliens créateur des machines ont été tués" },
             { q: "Quel type de mission font les androids ?",p:["Soutiens et sécurisation","Exploration et recherche","Assassinat et espionnage","Reconnaissance et attaque"], r: "Soutiens et sécurisation" }
         ],
-        links: [ // réponse à revoir
+        links: [ 
             { name: "machines extraterrestres", info: "Les Machines, apparues lors de la 1ère Guerre des Machines, sont devenues des fantassins redoutablement efficaces dans la guerre interminable contre les Androïdes." },
             { name: "2B", info: "2B est une androïde de combat, connue pour son efficacité et son apparence élégante." },
             { name: "vérités troublantes", info: "Les andorids ont découvert, dans l'un  des vesseaux aliens, que les aliens à l'orgine des machines ont été tué par des machines extraterestres." },
