@@ -51,7 +51,7 @@ label {
     font-family: Arial, sans-serif;
 }
 
-#soumission {
+#soumission,#btn-next-text {
     align-self: center;
     padding: 10px 20px;
     margin: 10px;
@@ -63,7 +63,7 @@ label {
     cursor: pointer;
 }
 
-#soumission:hover {
+#soumission:hover,#btn-next-text:hover {
     background-color: #ccc;
 }
 fieldset {
