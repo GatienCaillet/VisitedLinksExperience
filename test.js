@@ -4,11 +4,12 @@
 let reponses = [];
 let experimentalSequenceIndex = -1;
 let questionIndex = -1;
-let startTimeQuestion = 0;
 let experimentalSequence = [];
 let currentTextRevisits = 0;
 let clickedLinksInCurrentText = new Set();
 let currentReadingDuration = 0;
+let clickedLinkTimestamp = 0;
+let listInteractionsTimes = [];
 
 // ---------------------------
 //   CONFIGURATION DES TEXTES
@@ -352,7 +353,12 @@ function chargerTexteEtCondition() {
 
     // 5. Action au clic : RÉVÉLATION
     readBtn.onclick = () => {
-        currentReadingDuration = Date.now() - startTimeReading;
+        let label = currentBlock.text.id
+        listInteractionsTimes.push({ label : {
+            "Debut lecture" : startTimeReading,
+            "Fin lecture" : Date.now()
+        }});
+        
         readBtn.style.display = "none";
         reponseContainer.classList.remove("hidden");
 
@@ -401,12 +407,12 @@ function questionSuivante() {
             const btn = document.createElement("button");
             btn.textContent = choiceText;
             btn.className = "choice-btn";
-            // On passe l'événement 'e' pour récupérer la cible (le bouton cliqué)
-            btn.onclick = (e) => validerReponse(choiceText, e.target);
+            btn.onclick = (e) => {
+            listInteractionsTimes.push({choiceText : Date.now()});
+            validerReponse(choiceText, e.target);
+    };
             choicesContainer.appendChild(btn);
         });
-
-        startTimeQuestion = Date.now();
     }
 }
 
@@ -420,7 +426,6 @@ function validerReponse(reponseSelectionnee, btnElement) {
     const targetQuestion = currentBlock.text.questions[questionIndex];
 
     const isCorrect = (reponseSelectionnee === targetQuestion.r);
-    const duration = Date.now() - startTimeQuestion;
 
     // Enregistrement des données
     reponses.push({
@@ -435,6 +440,7 @@ function validerReponse(reponseSelectionnee, btnElement) {
         "correcte": isCorrect,
         "revisits_cumulative": currentTextRevisits, // Nombre de revisites depuis le début du texte
         "unique_links_clicked": clickedLinksInCurrentText.size,
+        "times": listInteractionsTimes,
         "reading_time_ms": currentReadingDuration,
         "time_ms": duration,
         "timestamp": Date.now()
@@ -460,6 +466,8 @@ textElement.addEventListener("click", (e) => {
 
         const terme = e.target.textContent.trim();
 
+        clickedLinkTimestamp = Date.now();
+
         // Tracking persistant sur tout le bloc de texte
         if (clickedLinksInCurrentText.has(terme)) {
             currentTextRevisits++;
@@ -482,8 +490,25 @@ textElement.addEventListener("click", (e) => {
 });
 
 // Gestion du modal
-closeBtn.onclick = () => modal.style.display = "none";
-window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; };
+closeBtn.onclick = () => {
+    // AJOUT : Log du timestamp et de l'action
+    listInteractionsTimes.push({terme : {
+        "opened" : clickedLinkTimestamp,
+        "closed" : Date.now()
+    }})
+    modal.style.display = "none";
+};
+
+window.onclick = (e) => {
+    if (e.target == modal) {
+        // AJOUT : Log du timestamp et de l'action
+        listInteractionsTimes.push({terme : {
+        "opened" : clickedLinkTimestamp,
+        "closed" : Date.now()
+    }})
+        modal.style.display = "none";
+    }
+};
 
 function envoyerDonnees() {
     const donnees = {
@@ -494,7 +519,7 @@ function envoyerDonnees() {
             "daltonisme": Number(localStorage.getItem("userDaltonisme")),
             "dyslexie": Number(localStorage.getItem("userDyslexie"))
         },
-        "essais": reponses
+        "questions": reponses
     };
 
     console.log("ENVOI FINAL", donnees);
