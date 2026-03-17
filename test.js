@@ -7,7 +7,6 @@ let questionIndex = -1;
 let experimentalSequence = [];
 let currentTextRevisits = 0;
 let clickedLinksInCurrentText = new Set();
-let currentReadingDuration = 0;
 let clickedLinkTimestamp = 0;
 let listInteractionsTimes = [];
 
@@ -441,8 +440,6 @@ function validerReponse(reponseSelectionnee, btnElement) {
         "revisits_cumulative": currentTextRevisits, // Nombre de revisites depuis le début du texte
         "unique_links_clicked": clickedLinksInCurrentText.size,
         "times": listInteractionsTimes,
-        "reading_time_ms": currentReadingDuration,
-        "time_ms": duration,
         "timestamp": Date.now()
     });
 
