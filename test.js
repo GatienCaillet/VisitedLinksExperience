@@ -351,10 +351,9 @@ function chargerTexteEtCondition() {
 
     // 5. Action au clic : RÉVÉLATION
     readBtn.onclick = () => {
-        let label = currentBlock.text.id
-        listInteractionsTimes.push({ [label] : {
-            "Debut lecture" : startTimeReading,
-            "Fin lecture" : Date.now()
+        listInteractionsTimes.push({ "lecture" : {
+            "start" : startTimeReading,
+            "end" : Date.now()
         }});
         readBtn.style.display = "none";
         reponseContainer.classList.remove("hidden");
@@ -460,7 +459,10 @@ function questionSuivante() {
             btn.textContent = choiceText;
             btn.className = "choice-btn";
             btn.onclick = (e) => {
-            listInteractionsTimes.push({[choiceText] : Date.now()});
+            listInteractionsTimes.push({ reponse : {
+                "name" : [choiceText],
+                "time" : Date.now()
+            }});
             validerReponse(choiceText, e.target);
     };
             choicesContainer.appendChild(btn);
@@ -542,7 +544,8 @@ textElement.addEventListener("click", (e) => {
 // Gestion du modal
 closeBtn.onclick = () => {
     // AJOUT : Log du timestamp et de l'action
-    listInteractionsTimes.push({[terme] : {
+    listInteractionsTimes.push({ lien : {
+        "name" : [terme],
         "opened" : clickedLinkTimestamp,
         "closed" : Date.now()
     }})
@@ -552,7 +555,8 @@ closeBtn.onclick = () => {
 window.onclick = (e) => {
     if (e.target == modal) {
         // AJOUT : Log du timestamp et de l'action
-        listInteractionsTimes.push({terme : {
+        listInteractionsTimes.push({ lien : {
+        "name" : [terme],
         "opened" : clickedLinkTimestamp,
         "closed" : Date.now()
     }})
