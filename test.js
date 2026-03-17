@@ -365,6 +365,60 @@ function chargerTexteEtCondition() {
     };
 }
 
+function pausingText() {
+    // Affichage du panel pour la pause inter texte
+    // affichage pour le premier texte
+    reponseContainer.classList.add("hidden");
+
+    if (experimentalSequenceIndex === 0) {
+        textElement.innerHTML = `<div class="pausing-panel">
+            <h2>Bienvenue dans cette expérience !</h2> 
+            </br>
+            <p>Prenez le temps de lire les instructions ci-dessous avant de commencer.</p>
+            </br>
+            <p>Vous allez passer à la première séquence de lecture. Veuillez bien vous assurer des conditions suivante :</p>
+            </br>
+            <ul>
+                <li>Vous êtes dans un endroit calme, sans distraction.</li>
+                <li>Vous appareil éléctronique sont éteints ou en mode silencieux (sans vibration).</li>
+                <li>Vous allez pouvoir lire et répondre aux questions sans interruption</li>
+            </ul>
+            </br>
+            <p>NB: vous pourrez prendre une pause avant la lecture de chaque texte.</p>
+            </br>
+            <p> Cliquer le bouton ci-dessous pour commencer la première séquence de lecture.</p>
+            </br>
+            <button id="btn-next-text">Commencer la première séquence de lecture</button>
+        </div>`;
+    }
+    else if (experimentalSequenceIndex < experimentalSequence.length) {
+        textElement.innerHTML = `<div class="pausing-panel">
+            <h2>Vous avez terminé ce texte.</h2>
+            </br>
+            <p>Vous pouvez prendre une petite pause avant de passer au suivant.</p>
+            </br>
+            <h3>Rappel de la consigne :</h3>
+            </br>
+            <ul>
+                <li>Vous êtes dans un endroit calme, sans distraction.</li>
+                <li>Vous appareil éléctronique sont éteints ou en mode silencieux (sans vibration).</li>
+                <li>Vous allez pouvoir lire et répondre aux questions sans interruption</li>
+            </ul>
+            <p>NB: vous pourrez prendre une pause avant la lecture de chaque texte.</p>
+            <p> Cliquer le bouton ci-dessous pour commencer la première séquence de lecture.</p>
+            </br>
+            <button id="btn-next-text">Passer au texte suivant</button>
+        </div>`;
+    }
+    else {
+        chargerTexteEtCondition();
+        return;
+    }
+    document.getElementById("btn-next-text").onclick = () => {
+       chargerTexteEtCondition();
+    };
+}
+
 function texteSuivant() {
     experimentalSequenceIndex++;
     if (experimentalSequenceIndex >= experimentalSequence.length) {
@@ -375,7 +429,7 @@ function texteSuivant() {
         clickedLinksInCurrentText.clear();
         questionIndex = -1;
 
-        chargerTexteEtCondition();
+        pausingText();
         // ATTENTION : Ne pas appeler questionSuivante() ici ! 
         // C'est le bouton de lecture qui le fera.
     }
