@@ -9,6 +9,7 @@ let currentTextRevisits = 0;
 let clickedLinksInCurrentText = new Set();
 let clickedLinkTimestamp = 0;
 let listInteractionsTimes = [];
+let startTimeReading = 0;
 
 // ---------------------------
 //   CONFIGURATION DES TEXTES
@@ -348,8 +349,6 @@ function chargerTexteEtCondition() {
     }
     readBtn.style.display = "block";
 
-    startTimeReading = Date.now();
-
     // 5. Action au clic : RÉVÉLATION
     readBtn.onclick = () => {
         let label = currentBlock.text.id
@@ -420,6 +419,7 @@ function pausingText() {
         return;
     }
     document.getElementById("btn-next-text").onclick = () => {
+        startTimeReading = Date.now();
        chargerTexteEtCondition();
     };
 }
