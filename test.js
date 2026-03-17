@@ -376,6 +376,8 @@ function pausingText() {
         textElement.innerHTML = `<div class="pausing-panel">
             <h2>Bienvenue dans cette expérience !</h2> 
             </br>
+            <p>Etape ${experimentalSequenceIndex+1}/${experimentalSequence.length}</p>
+            </br>
             <p>Prenez le temps de lire les instructions ci-dessous avant de commencer.</p>
             </br>
             <p>Vous allez passer à la première séquence de lecture. Veuillez bien vous assurer des conditions suivante :</p>
@@ -396,6 +398,8 @@ function pausingText() {
     else if (experimentalSequenceIndex < experimentalSequence.length) {
         textElement.innerHTML = `<div class="pausing-panel">
             <h2>Vous avez terminé ce texte.</h2>
+            </br>
+            <p>Etape ${experimentalSequenceIndex+1}/${experimentalSequence.length}</p>
             </br>
             <p>Vous pouvez prendre une petite pause avant de passer au suivant.</p>
             </br>
