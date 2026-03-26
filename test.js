@@ -10,6 +10,7 @@ let clickedLinksInCurrentText = new Set();
 let clickedLinkTimestamp = 0;
 let listInteractionsTimes = [];
 let startTimeReading = 0;
+let terme = 0;
 
 // ---------------------------
 //   CONFIGURATION DES TEXTES
@@ -516,7 +517,7 @@ textElement.addEventListener("click", (e) => {
     // On vérifie que c'est bien un lien et qu'il n'est pas désactivé (pointerEvents)
     if (e.target.classList.contains("link") && e.target.style.pointerEvents !== 'none') {
 
-        const terme = e.target.textContent.trim();
+        terme = e.target.textContent.trim();
 
         clickedLinkTimestamp = Date.now();
 
