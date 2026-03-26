@@ -123,7 +123,7 @@ fieldset {
     max-width: 500px;
     height: auto;
 }
-#exp-2, #exp-3, #exp-5 {
+.exp {
     display: flex;
     flex-direction:row;
     gap: 30px;
@@ -134,9 +134,6 @@ fieldset {
     flex: 1;
     display: flex;
     align-items: center;
-}
-#exp-4 {
-    padding-inline: 30px;
 }
 
 .form-control{

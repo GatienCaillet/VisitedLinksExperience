@@ -10,7 +10,7 @@ let clickedLinksInCurrentText = new Set();
 let clickedLinkTimestamp = 0;
 let listInteractionsTimes = [];
 let startTimeReading = 0;
-let terme = 0;
+let terme = "";
 
 // ---------------------------
 //   CONFIGURATION DES TEXTES
@@ -352,10 +352,12 @@ function chargerTexteEtCondition() {
 
     // 5. Action au clic : RÉVÉLATION
     readBtn.onclick = () => {
-        listInteractionsTimes.push({ "lecture" : {
-            "start" : startTimeReading,
-            "end" : Date.now()
-        }});
+        listInteractionsTimes.push({
+            "lecture": {
+                "start": startTimeReading,
+                "end": Date.now()
+            }
+        });
         readBtn.style.display = "none";
         reponseContainer.classList.remove("hidden");
 
@@ -375,47 +377,49 @@ function pausingText() {
 
     if (experimentalSequenceIndex === 0) {
         textElement.innerHTML = `<div class="pausing-panel">
-            <h2>Bienvenue dans cette expérience !</h2> 
-            </br>
-            <p>Etape ${experimentalSequenceIndex+1}/${experimentalSequence.length}</p>
-            </br>
-            <p>Prenez le temps de lire les instructions ci-dessous avant de commencer.</p>
-            </br>
-            <p>Vous allez passer à la première séquence de lecture. Veuillez bien vous assurer des conditions suivante :</p>
-            </br>
-            <ul>
-                <li>Vous êtes dans un endroit calme, sans distraction.</li>
-                <li>Vous appareil éléctronique sont éteints ou en mode silencieux (sans vibration).</li>
-                <li>Vous allez pouvoir lire et répondre aux questions sans interruption</li>
-            </ul>
-            </br>
-            <p>NB: vous pourrez prendre une pause avant la lecture de chaque texte.</p>
-            </br>
-            <p> Cliquer le bouton ci-dessous pour commencer la première séquence de lecture.</p>
-            </br>
-            <button id="btn-next-text">Commencer la première séquence de lecture</button>
-        </div>`;
+        <h2>Bienvenue dans cette expérience !</h2> 
+        <br/>
+        <p>Étape ${experimentalSequenceIndex + 1}/${experimentalSequence.length}</p>
+        <br/>
+        <p>Prenez le temps de lire les instructions ci-dessous avant de commencer.</p>
+        <br/>
+        <p>Vous allez passer à la première séquence de lecture. Veuillez vous assurer du respect des conditions suivantes :</p>
+        <br/>
+        <ul>
+            <li>Vous êtes dans un endroit calme, sans distraction.</li>
+            <li>Vos appareils électroniques sont éteints ou en mode silencieux (sans vibration).</li>
+            <li>Vous allez pouvoir lire et répondre aux questions sans interruption.</li>
+        </ul>
+        <br/>
+        <p><strong>NB :</strong> Vous pourrez prendre une pause avant la lecture de chaque texte.</p>
+        <br/>
+        <p>Cliquez sur le bouton ci-dessous pour commencer la première séquence de lecture.</p>
+        <br/>
+        <button id="btn-next-text">Commencer la première séquence de lecture</button>
+    </div>`;
     }
     else if (experimentalSequenceIndex < experimentalSequence.length) {
         textElement.innerHTML = `<div class="pausing-panel">
-            <h2>Vous avez terminé ce texte.</h2>
-            </br>
-            <p>Etape ${experimentalSequenceIndex+1}/${experimentalSequence.length}</p>
-            </br>
-            <p>Vous pouvez prendre une petite pause avant de passer au suivant.</p>
-            </br>
-            <h3>Rappel de la consigne :</h3>
-            </br>
-            <ul>
-                <li>Vous êtes dans un endroit calme, sans distraction.</li>
-                <li>Vous appareil éléctronique sont éteints ou en mode silencieux (sans vibration).</li>
-                <li>Vous allez pouvoir lire et répondre aux questions sans interruption</li>
-            </ul>
-            <p>NB: vous pourrez prendre une pause avant la lecture de chaque texte.</p>
-            <p> Cliquer le bouton ci-dessous pour commencer la première séquence de lecture.</p>
-            </br>
-            <button id="btn-next-text">Passer au texte suivant</button>
-        </div>`;
+        <h2>Vous avez terminé ce texte.</h2>
+        <br/>
+        <p>Étape ${experimentalSequenceIndex + 1}/${experimentalSequence.length}</p>
+        <br/>
+        <p>Vous pouvez prendre une petite pause avant de passer au suivant.</p>
+        <br/>
+        <h3>Rappel des consignes :</h3>
+        <br/>
+        <ul>
+            <li>Vous êtes dans un endroit calme, sans distraction.</li>
+            <li>Vos appareils électroniques sont éteints ou en mode silencieux (sans vibration).</li>
+            <li>Vous allez pouvoir lire et répondre aux questions sans interruption.</li>
+        </ul>
+        <br/>
+        <p><strong>NB :</strong> Vous pourrez prendre une pause avant la lecture de chaque texte.</p>
+        <br/>
+        <p>Cliquez sur le bouton ci-dessous pour passer à la suite.</p>
+        <br/>
+        <button id="btn-next-text">Passer au texte suivant</button>
+    </div>`;
     }
     else {
         chargerTexteEtCondition();
@@ -423,7 +427,7 @@ function pausingText() {
     }
     document.getElementById("btn-next-text").onclick = () => {
         startTimeReading = Date.now();
-       chargerTexteEtCondition();
+        chargerTexteEtCondition();
     };
 }
 
@@ -464,12 +468,14 @@ function questionSuivante() {
             btn.textContent = choiceText;
             btn.className = "choice-btn";
             btn.onclick = (e) => {
-            listInteractionsTimes.push({ reponse : {
-                "name" : [choiceText],
-                "time" : Date.now()
-            }});
-            validerReponse(choiceText, e.target);
-    };
+                listInteractionsTimes.push({
+                    reponse: {
+                        "name": [choiceText],
+                        "time": Date.now()
+                    }
+                });
+                validerReponse(choiceText, e.target);
+            };
             choicesContainer.appendChild(btn);
         });
     }
@@ -549,22 +555,26 @@ textElement.addEventListener("click", (e) => {
 // Gestion du modal
 closeBtn.onclick = () => {
     // AJOUT : Log du timestamp et de l'action
-    listInteractionsTimes.push({ lien : {
-        "name" : [terme],
-        "opened" : clickedLinkTimestamp,
-        "closed" : Date.now()
-    }})
+    listInteractionsTimes.push({
+        lien: {
+            "name": [terme],
+            "opened": clickedLinkTimestamp,
+            "closed": Date.now()
+        }
+    })
     modal.style.display = "none";
 };
 
 window.onclick = (e) => {
     if (e.target == modal) {
         // AJOUT : Log du timestamp et de l'action
-        listInteractionsTimes.push({ lien : {
-        "name" : [terme],
-        "opened" : clickedLinkTimestamp,
-        "closed" : Date.now()
-    }})
+        listInteractionsTimes.push({
+            lien: {
+                "name": [terme],
+                "opened": clickedLinkTimestamp,
+                "closed": Date.now()
+            }
+        })
         modal.style.display = "none";
     }
 };
