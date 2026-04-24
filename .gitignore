@@ -1,0 +1,6 @@
+*.Rdata
+.Rdata
+*.json
+*.Rhistory
+*.csv
+*.zip
