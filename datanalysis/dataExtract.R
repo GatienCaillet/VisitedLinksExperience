@@ -45,8 +45,8 @@ extract.participant <- function(json_data, filename) {
   participant_info <- data.frame(
     id          = participant_id,
     age         = age,
-    genre       = ifelse(safe(json_data$utilisateur$genre) == 1, "male",
-                         ifelse(safe(json_data$utilisateur$genre) == 2, "female", NA)),
+    genre       = ifelse(safe(json_data$utilisateur$genre) == 2, "male",
+                         ifelse(safe(json_data$utilisateur$genre) == 1, "female", NA)),
     daltonism   = as.logical(safe(json_data$utilisateur$daltonisme)),
     dyslexia    = as.logical(safe(json_data$utilisateur$dyslexie)),
     stringsAsFactors = FALSE
@@ -59,12 +59,77 @@ extract.participant <- function(json_data, filename) {
 
 extract.results <- function(json_data, participant_id) {
   
-  if (is.null(json_data$questions) || length(json_data$questions) == 0) {
-    return(NULL)
+  if (is.null(json_data$questions) || length(json_data$questions) == 0) return(NULL)
+  
+  # Extraire tous les événements de la session à plat
+  tous_evenements <- list()
+  for (q_idx in seq_along(json_data$questions)) {
+    q <- json_data$questions[[q_idx]]
+    for (t in q$times) {
+      if (!is.null(t$lecture)) {
+        tous_evenements[[length(tous_evenements) + 1]] <- list(
+          type       = "lecture",
+          q_idx      = q_idx,
+          start      = as.numeric(t$lecture$start),
+          end        = as.numeric(t$lecture$end)
+        )
+      }
+      if (!is.null(t$reponse)) {
+        tous_evenements[[length(tous_evenements) + 1]] <- list(
+          type       = "reponse",
+          q_idx      = q_idx,
+          name       = as.character(t$reponse$name[[1]]),
+          time       = as.numeric(t$reponse$time)
+        )
+      }
+    }
   }
   
-  results_list <- lapply(json_data$questions, function(q) {
-    data.frame(
+  results_list <- list()
+  temps_reponse_precedente <- NA
+  
+  for (q_idx in seq_along(json_data$questions)) {
+    q <- json_data$questions[[q_idx]]
+    
+    # Trouver la fin de lecture de cette question
+    temps_fin_lecture <- NA
+    for (ev in tous_evenements) {
+      if (ev$type == "lecture" && ev$q_idx == q_idx) {
+        temps_fin_lecture <- ev$end
+        break
+      }
+    }
+    
+    # Trouver le timestamp de la réponse sélectionnée
+    temps_reponse_actuelle <- NA
+    for (ev in tous_evenements) {
+      if (ev$type == "reponse" && ev$q_idx == q_idx &&
+          ev$name == as.character(q$reponse)) {
+        temps_reponse_actuelle <- ev$time
+        break
+      }
+    }
+    
+    # Calcul du temps de complétion
+    if (q_idx == 1) {
+      # Première question : fin de lecture -> réponse
+      temps_completion <- ifelse(
+        !is.na(temps_fin_lecture) & !is.na(temps_reponse_actuelle),
+        (temps_reponse_actuelle - temps_fin_lecture) / 1000,
+        NA
+      )
+    } else {
+      # Questions suivantes : réponse précédente -> réponse actuelle
+      temps_completion <- ifelse(
+        !is.na(temps_reponse_precedente) & !is.na(temps_reponse_actuelle),
+        (temps_reponse_actuelle - temps_reponse_precedente) / 1000,
+        NA
+      )
+    }
+    
+    temps_reponse_precedente <- temps_reponse_actuelle
+    
+    results_list[[q_idx]] <- data.frame(
       participant          = participant_id,
       testId               = as.integer(q$testId),
       ordreDansSession     = as.integer(q$ordreDansSession),
@@ -78,9 +143,12 @@ extract.results <- function(json_data, participant_id) {
       revisits_cumulative  = as.integer(q$revisits_cumulative),
       unique_links_clicked = as.integer(q$unique_links_clicked),
       timestamp            = as.numeric(q$timestamp),
+      temps_fin_lecture    = temps_fin_lecture,
+      temps_reponse        = temps_reponse_actuelle,
+      temps_completion     = temps_completion,
       stringsAsFactors = FALSE
     )
-  })
+  }
   
   return(do.call(rbind, results_list))
 }
@@ -168,12 +236,6 @@ extract.all.json <- function(data_dir = "./datanalysis/data", output_dir = "./da
   write.csv(all_participants, file.path(output_dir, "participants.csv"), row.names = FALSE)
   write.csv(all_results,      file.path(output_dir, "results.csv"),      row.names = FALSE)
   
-  #filtre des CSV pour exclure les passage non voulu
-  write.csv(donnees_filtered$participants, 
-            "./datanalysis/expe/participants_filtered.csv", row.names = FALSE)
-  write.csv(donnees_filtered$results, 
-            "./datanalysis/expe/results_filtered.csv", row.names = FALSE)
-  
   cat("\n=== Terminé ===\n")
   cat("Participants :", nrow(all_participants), "\n")
   cat("Questions    :", nrow(all_results), "\n")
@@ -181,6 +243,7 @@ extract.all.json <- function(data_dir = "./datanalysis/data", output_dir = "./da
   
   return(list(participants = all_participants, results = all_results))
 }
+
 
 donnees <- extract.all.json(
   data_dir   = "./datanalysis/data",
@@ -192,7 +255,15 @@ donnees_filtered <- filter.latest(donnees)
 cat("\n--- Aperçu participants ---\n")
 print(head(donnees$participants))
 
+#filtre des CSV pour exclure les passage non voulu
+write.csv(donnees_filtered$participants, 
+          "./datanalysis/expe/participants_filtered.csv", row.names = FALSE)
+write.csv(donnees_filtered$results, 
+          "./datanalysis/expe/results_filtered.csv", row.names = FALSE)
+
 cat("\n--- Aperçu résultats ---\n")
 print(head(donnees$results))
 
-rm(base_url,f, fichiers, page, json)
+rm(base_url,f, fichiers, page)
+cat("\n--- Nombre de participants: ---\n")
+nrow(donnees_filtered$participants)

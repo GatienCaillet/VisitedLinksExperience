@@ -1,0 +1,198 @@
+---
+output: html_document
+
+title: ""
+author: ""
+date: ""
+jury1: "M. Rafael Laboissière"
+parcours: "Master Mathematique Informatique Appliqué aux Sciences Humaines et Sociales parcours Informatique et Cognition "
+maintitle: "Replication of the paper : Early and late indications of item-specific
+control in a Stroop mouse tracking study"
+mainauthor1: "Gatien Caillet"
+mainauthor2: "Alain Karapetian"
+maindate: "Année Universitaire 2025-2026"
+
+---
+
+
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+if (!requireNamespace("ggplot2", quietly = TRUE)) install.packages("ggplot2")
+if (!requireNamespace("dplyr",   quietly = TRUE)) install.packages("dplyr")
+if (!requireNamespace("knitr",   quietly = TRUE)) install.packages("knitr")
+
+library(ggplot2)
+library(dplyr)
+library(knitr)
+```
+
+# Import des données
+
+```{r data-import, echo=FALSE, message=FALSE, warning=FALSE}
+results      <- read.csv2("../expe/results_filtered.csv", sep = ",")
+participants <- read.csv2("../expe/participants_filtered.csv", sep = ",")
+
+# Filtrage immédiat
+results <- results[results$correcte == TRUE, ]
+results <- results[results$participant %in% participants$id, ]
+
+# Recodage des conditions
+results$feedback <- factor(
+  ifelse(results$conditionId %in% c("C1", "C3"), "Présent", "Absent"),
+  levels = c("Présent", "Absent")
+)
+results$densite <- factor(
+  ifelse(results$conditionId %in% c("C1", "C2"), "Basse (10 liens)", "Haute (30  liens)"),
+  levels = c("Basse (10 liens)", "Haute (30  liens)")
+)
+
+results$temps_completion <- as.numeric(results$temps_completion)
+
+cat("Essais chargés :", nrow(results), "\n")
+cat("Participants :", nrow(participants), "\n")
+```
+
+---
+
+# Population
+
+```{r stat-desc, echo=FALSE, results='asis'}
+# Sexe des participants
+cat("## Répartition par genre\n\n")
+kable(table(participants$genre), col.names = c("Genre", "N"))
+
+# Age des participants
+cat("\n## Âge des participants\n\n")
+cat("**Médiane :**", median(participants$age, na.rm = TRUE), "ans\n\n")
+cat("**Écart-type :**", round(sd(participants$age, na.rm = TRUE), 2), "\n\n")
+```
+
+```{r boxplot-age, echo=FALSE, fig.align='center', fig.width=5, fig.height=5}
+ggplot(participants, aes(y = age)) +
+  geom_boxplot(fill = "#7B9CDA", color = "#2C4A8C", width = 0.4) +
+  labs(title = "Distribution de l'âge des participants", y = "Âge") +
+  theme_minimal(base_size = 13) +
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
+
+cat("--- Âge Min ---\n")
+min(participants$age)
+cat("\n--- Âge Max ---\n")
+max(participants$age)
+```
+
+---
+
+# VD1 : Temps de complétion
+
+> Temps en secondes entre l'affichage de la page et le clic sur la cible.
+
+```{r vd1-prep, echo=FALSE}
+results <- results %>%
+  arrange(participant, timestamp) %>%
+  group_by(participant) %>%
+  ungroup()
+
+# Retirer valeurs aberrantes (< 0 ou > 5 minutes)
+results_temps <- results %>%
+  filter(!is.na(temps_completion), temps_completion > 0, temps_completion < 300)
+```
+
+```{r vd1-stats, echo=FALSE, results='asis'}
+stats_temps <- results_temps %>%
+  group_by(feedback, densite) %>%
+  summarise(
+    N       = n(),
+    Médiane = round(median(temps_completion, na.rm = TRUE), 2),
+    SD      = round(sd(temps_completion,     na.rm = TRUE), 2),
+    Min     = round(min(temps_completion,    na.rm = TRUE), 2),
+    Max     = round(max(temps_completion,    na.rm = TRUE), 2),
+    .groups = "drop"
+  )
+
+kable(stats_temps, caption = "Temps de complétion (secondes) par condition")
+```
+
+```{r vd1-plot, echo=FALSE, fig.align='center', fig.width=8, fig.height=5}
+ggplot(results_temps, aes(x = densite, y = temps_completion, fill = feedback)) +
+  geom_boxplot(alpha = 0.8, outlier.alpha = 0.3) +
+  scale_fill_manual(values = c("Présent" = "#7B9CDA", "Absent" = "#DA7B7B")) +
+  labs(
+    title = "Temps de complétion selon le feedback et la densité",
+    x     = "Densité d'information",
+    y     = "Temps de complétion (secondes)",
+    fill  = "Feedback visuel"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+```{r vd1-test, echo=FALSE}
+temps_agg <- results_temps %>%
+  group_by(participant, feedback, densite) %>%
+  summarise(temps_moyen = mean(temps_completion, na.rm = TRUE), .groups = "drop")
+
+modele_temps <- aov(temps_moyen ~ feedback * densite + Error(participant / densite),
+                    data = temps_agg)
+summary(modele_temps)
+
+coefficients(modele_temps)
+```
+
+---
+
+# VD2 : Taux de clics redondants
+
+> Nombre de clics effectués sur des liens déjà consultés au cours d'une même tâche (`revisits_cumulative`).
+
+```{r vd2-stats, echo=FALSE, results='asis'}
+stats_revisits <- results %>%
+  group_by(feedback, densite) %>%
+  summarise(
+    N       = n(),
+    Médiane = round(median(revisits_cumulative, na.rm = TRUE), 2),
+    SD      = round(sd(revisits_cumulative,     na.rm = TRUE), 2),
+    Min     = min(revisits_cumulative,           na.rm = TRUE),
+    Max     = max(revisits_cumulative,           na.rm = TRUE),
+    .groups = "drop"
+  )
+
+kable(stats_revisits, caption = "Clics redondants par condition")
+```
+
+```{r vd2-plot, echo=FALSE, fig.align='center', fig.width=8, fig.height=5}
+ggplot(results, aes(x = densite, y = revisits_cumulative, fill = feedback)) +
+  geom_boxplot(alpha = 0.8, outlier.alpha = 0.3) +
+  scale_fill_manual(values = c("Présent" = "#7B9CDA", "Absent" = "#DA7B7B")) +
+  labs(
+    title = "Clics redondants selon le feedback et la densité",
+    x     = "Densité d'information",
+    y     = "Nombre de clics redondants",
+    fill  = "Feedback visuel"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+```{r vd2-test, echo=FALSE}
+revisits_agg <- results %>%
+  group_by(participant, feedback, densite) %>%
+  summarise(revisits_moyen = mean(revisits_cumulative, na.rm = TRUE), .groups = "drop")
+
+modele_revisits <- aov(revisits_moyen ~ feedback * densite + Error(participant / densite),
+                       data = revisits_agg)
+summary(modele_revisits)
+```
+
+# Results
+
+```{r variabilite-temps-facet, echo=FALSE, fig.align='center', fig.width=12, fig.height=6}
+ggplot(results_temps, aes(x = textId, y = temps_completion, fill = feedback)) +
+  geom_boxplot(alpha = 0.8, outlier.alpha = 0.3) +
+  scale_fill_manual(values = c("Présent" = "#7B9CDA", "Absent" = "#DA7B7B")) +
+  facet_wrap(~ densite) +
+  labs(
+    title = "Variabilité du temps de complétion par texte, feedback et densité",
+    x     = "Texte",
+    y     = "Temps de complétion (secondes)",
+    fill  = "Feedback visuel"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
